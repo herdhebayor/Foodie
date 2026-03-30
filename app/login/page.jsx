@@ -1,24 +1,34 @@
 'use client'
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { FaGoogle } from "react-icons/fa";
 import { signIn } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
 import {FaEye, FaEyeSlash} from 'react-icons/fa'
 import ButtonLoading from '@/components/ButtonLoading';
+import { useSession } from 'next-auth/react';
 
 function Register() {
     const router = useRouter()
+    const {data:session, status} = useSession()
 
     const [email, setEmail]= useState('')
     const [password, setPassword]= useState('')
-    const [showPassword, setShowPassword]= useState('')
+    const [showPassword, setShowPassword]= useState(false)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const [googleLoading, setGoogleLoading] = useState(false)
     const [btnDisabled, setBtnDisabled] = useState(false)
 
 
+    useEffect(()=>{
+      if(status === 'loading'){
+        setBtnDisabled(true)
+      }
+      if(session?.user){
+        router.push('/')
+      }
+    },[status, router, session])
     //signin with google or register with google
     const handleGoogleLogin = async () => {
       setGoogleLoading(true)
@@ -38,10 +48,12 @@ function Register() {
   };
 
   // Sign in with email
-   const handleLogin = async () => {
+  const handleLogin = async (e) => {
+   e.preventDefault();
 
-    setLoading(true)
     setBtnDisabled(true)
+    setLoading(true)
+    
     const res = await signIn("credentials", {
       email,
       password,
@@ -66,10 +78,10 @@ function Register() {
   };
 
   return (
-    <div className='w-screen min-h-screen bg-gray-50'>
-        <div className='flex justify-center items-center w-full min-h-screen '>
-            <div className='container text-slate-900 flex justify-center items-center px-10 md:px-6  '>
-                <div className='w-full md:w-100  border-gray-300 py-4 px-6 rounded-md bg-orange-50'>
+    <div className='w-screen bg-gray-50'>
+        <div className='flex justify-center items-center w-full'>
+            <div className='container text-slate-900 flex justify-center items-center px-6 py-8 md:px-6  '>
+                <div className='w-full md:w-100 border  border-gray-400 py-4 px-6 rounded-md bg-orange-50'>
 
                   {/* header */}
                     <h2 className='text-2xl font-bold text-center mb-6'> Login</h2>
@@ -77,7 +89,7 @@ function Register() {
                         {/* Email signin form */}
                         <div>  
                           <p className='text-sm'>Don't have an account <span onClick={()=> router.push('/register')} className='text-blue-500 underline cursor-pointer'>Sign up</span></p>
-                          <form action={ handleLogin}>
+                            <form onSubmit={handleLogin}>
                             <div className='my-2'>
                                 <input type='email' 
                                 placeholder='Enter your email address'
@@ -86,17 +98,18 @@ function Register() {
                                 required
                                 className=' py-2 w-full px-4 border border-gray-300 rounded-md text-slate-900'/>
                             </div>
-                            <div className='my-2'>
-                                <input type='password' 
+                            <div className='my-2 relative'>
+                                <input type={showPassword ? 'text' : 'password'} 
                                 placeholder='Enter you password'
                                 value={password} 
                                 required
                                 onChange={(e)=> setPassword(e.target.value)}
                                 className=' py-2 w-full px-4 border border-gray-300 rounded-md text-slate-900'
                                 />
+                                <span onClick={()=> setShowPassword(prev => !prev)} className='absolute top-1/3 text-slate-900 cursor-pointer right-3 my-auto '>{showPassword ? <FaEye/> : <FaEyeSlash/>}</span>
                             </div>
                             <button disabled={btnDisabled} 
-                              className='text-gray-50 px-4 py-2 cursor-pointer disabled:cursor-not-allowed flex items-center gap-4 justify-center hover:bg-slate-800 w-full rounded-md mt-3 bg-slate-900'>
+                              className='text-gray-50 px-4 py-2 cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-600 flex items-center gap-4 justify-center hover:bg-slate-800 w-full rounded-md mt-3 bg-slate-900'>
                               {loading ? <><ButtonLoading/> Signing in...</>  : "Sign in" }
                             </button>
                           </form>
@@ -112,7 +125,12 @@ function Register() {
                     </div>
 
                     {/* Google signin button */}
-                    <button disabled={btnDisabled} onClick={handleGoogleLogin} className='text-green-50 px-4 py-2 cursor-pointer disabled:cursor-not-allowed flex items-center justify-center w-full rounded-md mt-3 bg-red-500'>
+                    <button 
+                      disabled={btnDisabled} 
+                      onClick={handleGoogleLogin} 
+                      className='text-green-50 px-4 py-2 cursor-pointer disabled:cursor-not-allowed flex disabled:bg-red-200 items-center
+                      justify-center w-full rounded-md mt-3 bg-red-500'
+                      >
                         {googleLoading ? <> <ButtonLoading/> Signing in... </> : <><FaGoogle size={20} className='mr-4'/> Signin with Google</>}
                     </button>
                 </div>

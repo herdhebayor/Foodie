@@ -12,7 +12,7 @@ import ButtonLoading from './ButtonLoading';
 import Link from 'next/link';
 
 function Navbar() {
-  const [showProfileMenu, setShowProfileMenu] = useState(true)
+  const [showProfileMenu, setShowProfileMenu] = useState(false)
 const {data:session, status, update}= useSession()
 
   const {cart} = useGlobalContext()
@@ -30,8 +30,7 @@ const {data:session, status, update}= useSession()
         <div className="flex items-center gap-4 md:gap-10 text-sm md:text-lg">
             <span className="text-gray-50 hover:text-green-400"><Link href="/">Home</Link></span>
             <span className="text-gray-50  hover:text-green-400"><Link href="/menu">Menu</Link></span>
-            <span className="md:block hidden text-gray-50  hover:text-green-400"><Link href="/about_us">About Us</Link></span>
-            <span className="md:block hidden text-gray-50  hover:text-green-400"><Link href="/jobs">Jobs</Link></span>
+            <span className=" text-gray-50  hover:text-green-400"><Link href="/about_us">About Us</Link></span>
             <span className="hover:text-green-400 text-gray-50 "><Link href="/contact">Contact</Link></span>
             <div className="relative hover:text-green-400 text-gray-50 ">
               <Link href="/cart">
@@ -74,7 +73,7 @@ const {data:session, status, update}= useSession()
             //Login button
             <div className="flex items-center gap-2">
               <Link href="/login" className="md:px-4 md:py-2 ml-2 p-1 px-2 w-fit md:textlg bg-gray-50 text-slate-900 hover:bg-transparent hover:text-gray-50 hover:border border-gray-50 md:text-sm text-xs rounded-md cursor-pointer "> Login </Link>
-              <Link href="/register" className="md:px-4 md:py-2 ml-2 p-1 px-2 w-fit md:textlg border md:text-sm text-xs rounded-md cursor-pointer ">Signup </Link>
+              <Link href="/register" className="md:px-4 md:py-2 ml-2 p-1 border-gray-50 text-gray-50 px-2 w-fit md:textlg border md:text-sm text-xs rounded-md cursor-pointer ">Signup </Link>
             </div>
           )
             }
