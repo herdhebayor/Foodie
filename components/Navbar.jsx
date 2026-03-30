@@ -28,12 +28,12 @@ const {data:session, status, update}= useSession()
         <div className="mr-8 flex justify-center items-center">Foodie</div>
         {/* Nav menu */}
         <div className="flex items-center gap-4 md:gap-10 text-sm md:text-lg">
-            <span className="hover:text-green-400"><Link href="/">Home</Link></span>
-            <span className="hover:text-green-400"><Link href="/menu">Menu</Link></span>
-            <span className="md:block hidden hover:text-green-400"><Link href="/about_us">About Us</Link></span>
-            <span className="md:block hidden hover:text-green-400"><Link href="/jobs">Jobs</Link></span>
-            <span className="hover:text-green-400"><Link href="/contact">Contact</Link></span>
-            <div className="relative hover:text-green-400">
+            <span className="text-gray-50 hover:text-green-400"><Link href="/">Home</Link></span>
+            <span className="text-gray-50  hover:text-green-400"><Link href="/menu">Menu</Link></span>
+            <span className="md:block hidden text-gray-50  hover:text-green-400"><Link href="/about_us">About Us</Link></span>
+            <span className="md:block hidden text-gray-50  hover:text-green-400"><Link href="/jobs">Jobs</Link></span>
+            <span className="hover:text-green-400 text-gray-50 "><Link href="/contact">Contact</Link></span>
+            <div className="relative hover:text-green-400 text-gray-50 ">
               <Link href="/cart">
               <IoCartOutline className="md:text-2xl text-xl"/>
               </Link>
