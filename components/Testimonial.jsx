@@ -34,12 +34,12 @@ const testimonials = [
 
 function Testimonial() {
   return (
-    <div className='w-full bg-white'>
+    <div className='w-full bg-white text-slate-900'>
         <div className='container mx-auto py-10 px-4'>
             <h2 className='text-3xl font-bold text-center mb-6'>What Our Customers Say</h2>
-            <div className='flex items-center justify-center gap-6'>
+            <div className='flex overflow-x-auto items-center md:justify-center gap-6'>
                 {testimonials.map((testimonial) => (
-                    <div key={testimonial.id} className='text-sm w-35 hover:shadow-2xl  md:w-45 items-center'>
+                    <div key={testimonial.id} className='text-sm min-w-35 hover:shadow-2xl  md:w-45 items-center'>
                             <div className='flex flex-col space-y-3 text-slate-900'>
                                 <p className='font-bold line-clamp-1'>{testimonial.name}</p>
                                 <p className='text-sm italic'>{testimonial.feedback}</p>

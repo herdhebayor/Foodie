@@ -37,10 +37,10 @@ function Features() {
 	const recentProducts = shuffledProduct.slice(0, 6)
   return (
     <div className='relative z-2 w-screen bg-white min-h-screen'>
-        <div className='container mx-auto block border px-10 py-10'>
-            <section className='flex flex-col justify-center '>
+        <div className='container mx-auto block border px-4 md:px-10 py-10'>
+            <section className='flex flex-col justify-center text-slate-900 '>
                 <h2 className='text-3xl font-bold text-center mb-6'>Our Featured Dishes</h2>
-                <div className='flex items-center justify-center gap-6'>
+                <div className='flex flex-wrap items-center justify-center gap-6'>
                     {recentProducts.map((item) => (
                         <div key={item.id} className='text-sm w-35 hover:shadow-2xl  md:w-45 items-center bg-black/10 p-2 rounded-md'>
                             <Link href={`/menu/${item.id}`}>
@@ -63,24 +63,24 @@ function Features() {
                     View Full Menu
                 </Link>
             </section>
-            <section className='flex flex-col'>
+            <section className='flex flex-col text-slate-900 justify-center mt-10'>
                     {/* Service section */}
                     <h2 className='text-3xl font-bold text-center mb-6 mt-10'>Why Choose Us?</h2>
-                    <div className='flex items-center justify-center gap-6'>
+                    <div className='flex flex-col md:flex-row items-center justify-center gap-6'>
                         <div className='flex flex-col items-center text-center gap-4'>
                             <img src='/images/fresh.png' className='w-20 h-20' alt='fresh'/>
                             <h3 className='font-bold text-lg'>Fresh Ingredients</h3>
-                            <p className='text-sm text-gray-500'>We use only the freshest ingredients to prepare our dishes, ensuring a delicious and healthy meal every time.</p>
+                            <p className='text-sm text-gray-500 w-100'>We use only the freshest ingredients to prepare our dishes, ensuring a delicious and healthy meal every time.</p>
                         </div>
                         <div className='flex flex-col items-center text-center gap-4'>
                             <img src='/images/delivery.png' className='w-20 h-20' alt='delivery'/>
                             <h3 className='font-bold text-lg'>Fast Delivery</h3>
-                            <p className='text-sm text-gray-500'>Our efficient delivery system ensures that your food arrives hot and on time, every time.</p>
+                            <p className='text-sm text-gray-500 w-100'>Our efficient delivery system ensures that your food arrives hot and on time, every time.</p>
                         </div>
                         <div className='flex flex-col items-center text-center gap-4'>
                             <img src='/images/quality.png' className='w-20 h-20' alt='quality'/>
                             <h3 className='font-bold text-lg'>Quality Service</h3>
-                            <p className='text-sm text-gray-500'>Our friendly and professional staff are dedicated to providing you with the best dining experience possible.</p>
+                            <p className='text-sm text-gray-500 w-100'>Our friendly and professional staff are dedicated to providing you with the best dining experience possible.</p>
                         </div>
                     </div>
             </section>

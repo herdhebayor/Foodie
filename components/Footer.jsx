@@ -6,7 +6,7 @@ function Footer(){
 
     return(
         <div className='w-screen h-fit min-h-50 bg-gray-400 relative'>
-            <div className='container mx-auto md:flex justify-around items-center py-15'>
+            <div className='container mx-auto flex flex-col md:flex-row justify-around items-center py-15'>
                 
                 <div  className='flex justify-around items-center w-full md:w-1/2'>
                     <div className='text-gray-50'>
