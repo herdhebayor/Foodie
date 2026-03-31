@@ -40,7 +40,7 @@ function Features() {
         <div className='container mx-auto block border px-4 md:px-10 py-10'>
             <section className='flex flex-col justify-center text-slate-900 '>
                 <h2 className='text-3xl font-bold text-center mb-6'>Our Featured Dishes</h2>
-                <div className='flex flex-wrap items-center justify-center gap-6'>
+                <div className='flex flex-wrap items-center justify-center gap-4  md:gap-6'>
                     {recentProducts.map((item) => (
                         <div key={item.id} className='text-sm w-35 hover:shadow-2xl  md:w-45 items-center bg-black/10 p-2 rounded-md'>
                             <Link href={`/menu/${item.id}`}>
