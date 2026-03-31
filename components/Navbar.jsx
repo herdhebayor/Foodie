@@ -1,6 +1,7 @@
 'use client'
 
 import React , {useState} from 'react'
+import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { FaRegUser } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -11,15 +12,23 @@ import Loading from './Loading';
 import ButtonLoading from './ButtonLoading';
 import Link from 'next/link';
 
+
 function Navbar() {
   const [showProfileMenu, setShowProfileMenu] = useState(false)
 const {data:session, status, update}= useSession()
+const pathName = usePathname()
+const hideNavBarOnRoute = ['/login', '/register']
 
   const {cart} = useGlobalContext()
   const profileImg = session?.user?.image
   const handleSignout = async ()=>{
     await signOut({redirect: false})
   }
+  if(hideNavBarOnRoute.includes(pathName)){
+    return null
+  }
+
+
   
   return (
     <div className="sticky top-0 flex justify-center w-screen left-0 text-gary-50 z-100 shadow-lg bg-slate-900 py-4 md:pb-6">

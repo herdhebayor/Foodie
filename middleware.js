@@ -12,11 +12,6 @@ export default withAuth(
         
         const { pathname } = req.nextUrl;
   
-        // if (trigger === "update") {
-        //   token.profileCompleted = session.profileCompleted;
-        // }
-
-        // 🔓 Public auth routes
         if (
           pathname.startsWith("/api/auth") ||
           pathname.startsWith("/login") ||
@@ -25,7 +20,7 @@ export default withAuth(
           return true;
         }
 
-        // ❌ Not logged in
+        
          if (!token) {
             return Response.redirect(
               new URL("/login", req.url)

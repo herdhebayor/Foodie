@@ -2,11 +2,11 @@
 import React,{useState, useEffect} from 'react'
 import { FaGoogle } from "react-icons/fa";
 import { signIn } from 'next-auth/react';
-import { toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
 import {FaEye, FaEyeSlash} from 'react-icons/fa'
 import ButtonLoading from '@/components/ButtonLoading';
 import { useSession } from 'next-auth/react';
+import { useGlobalContext } from '@/context/GlobalContext';
 
 function Register() {
     const router = useRouter()
@@ -19,7 +19,6 @@ function Register() {
     const [loading, setLoading] = useState(false)
     const [googleLoading, setGoogleLoading] = useState(false)
     const [btnDisabled, setBtnDisabled] = useState(false)
-
 
     useEffect(()=>{
       if(status === 'loading'){
@@ -78,8 +77,8 @@ function Register() {
   };
 
   return (
-    <div className='w-screen bg-gray-50'>
-        <div className='flex justify-center items-center w-full'>
+    <div className='w-screen h-screen bg-gray-100'>
+        <div className='flex justify-center items-center h-full w-full'>
             <div className='container text-slate-900 flex justify-center items-center px-6 py-8 md:px-6  '>
                 <div className='w-full md:w-100 border  border-gray-400 py-4 px-6 rounded-md bg-orange-50'>
 

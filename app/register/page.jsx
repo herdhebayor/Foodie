@@ -87,8 +87,8 @@ export default function RegisterForm() {
     };
 
   return (
-    <div className="w-screen bg-gray-50">
-        <div className="container px-6 py-8 flex justify-center items-center">
+    <div className="w-screen h-screen bg-gray-100">
+        <div className="container h-full px-6 py-8 flex justify-center items-center">
             <div className="bg-orange-50 w-full md:w-100 block border border-gray-400 px-6 py-4 rounded-md">
                 <h2 className="text-2xl text-slate-900 font-bold text-center my-3">Register</h2>
                 <form className="flex flex-col space-y-3" onSubmit={handleRegister}>

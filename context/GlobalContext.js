@@ -10,12 +10,10 @@ const GlobalContext = createContext();
 //Create Provider
 
 export function GlobalProvider({children}){
-        const [unreadCount, setUnreadCount] = useState(0)
+        //const [unreadCount, setUnreadCount] = useState(0)
         const [email, setEmail]= useState('')
         const [password, setPassword]= useState('')
         const [cart, setCart] = useState([])
-        const [extras, setExtras] = useState([])
-        const {data:session} = useSession()
         const [loading , setLoading] = useState(false)
 
         // Hydrate cart from localStorage on mount (client only)
@@ -56,7 +54,7 @@ export function GlobalProvider({children}){
             password,
             setPassword,
             loading,
-            setLoading
+            setLoading,
         }}>
             {children}
         </GlobalContext.Provider>

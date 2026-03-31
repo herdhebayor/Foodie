@@ -1,8 +1,17 @@
+'use client'
+
 import React from 'react'
+import { usePathname } from 'next/navigation';
 import{FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaPinterest} from 'react-icons/fa'
 
 
 function Footer(){
+    const pathName = usePathname()
+    const hideFooterOnRoute = ['/login', '/register']
+
+    if(hideFooterOnRoute.includes(pathName)){
+        return null
+    }
 
     return(
         <div className='w-screen h-fit min-h-50 bg-gray-400 relative'>
