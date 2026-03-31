@@ -14,55 +14,55 @@ function Menu() {
     const products = data.products
     
   return (
-    <div className='w-screen block min-h-screen bg-white'>
+    <div className='w-screen block min-h-screen bg-gray-100'>
         <div className='w-full min-h-screen  h-full border-slate-900'>
         <div className='flex flex-col md:gap-6 gap-4 relative'>
-            <div className='sticky top-18 md:top-20 h-auto flex text-sm items-center bg-teal-100 text-slate-900 justify-around'>
+            <div className='sticky top-18 md:top-20 h-auto flex text-sm items-center bg-teal-200 text-slate-900 justify-around'>
                 <a href='#burgers' className='group relative transition-all px-4 py-2 cursor-pointer duration-300 flex items-center hover:bg-teal-200'>
                     <CiBurger className='md:text-xl block text-lg'/>
-                    <span className="ml-2 overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 md:opacity-100 group-hover:opacity-100">
+                    <span className="ml-1 text-xs md:text-lg overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 md:opacity-100 group-hover:opacity-100">
                         Burgers
                     </span>
                 </a>
                 <a href='#shawarma' className='group relative transition-all px-4 py-2 cursor-pointer duration-300 flex items-center hover:bg-teal-200'>
                     <GiSandwich className='md:text-xl block text-lg'/>
-                    <span className="ml-2 overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 md:opacity-100 group-hover:opacity-100">
+                    <span className="ml-1 text-xs md:text-lg overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 md:opacity-100 group-hover:opacity-100">
                         Sharwama
                     </span>
                 </a>
                 <a href='#grills' className='group relative transition-all px-4 py-2 cursor-pointer duration-300 flex items-center hover:bg-teal-200'>
                     <MdOutdoorGrill className='md:text-xl block text-lg'/>
-                    <span className="ml-2 overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
+                    <span className="ml-1 text-xs md:text-lg overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
                         Grills
                     </span>
                 </a>
                 <a href='#cakes' className='group relative transition-all px-4 py-2 cursor-pointer duration-300 flex items-center hover:bg-teal-200'>
                     <MdCake className='md:text-xl block text-lg'/>
-                    <span className="ml-2 overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
+                    <span className="ml-1 text-xs md:text-lg overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
                         Cakes
                     </span>
                 </a>
                 <a href='#small_chops' className='group relative transition-all px-4 py-2 cursor-pointer duration-300 flex items-center hover:bg-teal-200'>
                     <GiCookie className='md:text-xl block text-lg'/>
-                    <span className="ml-2 overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
+                    <span className="ml-1 text-xs md:text-lg overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
                         Small chops
                     </span>
                 </a>
                 <a href='#crunches' className='group relative transition-all px-4 py-2 cursor-pointer duration-300 flex items-center hover:bg-teal-200'>
                     <CiFries className='md:text-xl block text-lg'/>
-                    <span className="ml-2 overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
+                    <span className="ml-1 text-xs md:text-lg overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
                         Crunchies
                     </span>
                 </a>
                 <a href='#milkshakes' className='group relative transition-all px-4 py-2 cursor-pointer duration-300 flex items-center hover:bg-teal-200'>
                     <TbMilkshake className='md:text-xl block text-lg'/>
-                    <span className="ml-2 overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
+                    <span className="ml-1 text-xs md:text-lg overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
                         Milkshakes
                     </span>
                 </a>
                 <a href='#soda_drinks' className='group relative transition-all px-4 py-2 cursor-pointer duration-300 flex items-center hover:bg-teal-200'>
                     <GiSodaCan className='md:text-xl block text-lg'/>
-                    <span className="ml-2 overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
+                    <span className="ml-1 text-xs md:text-lg overflow-hidden transition-all duration-300 ease-in-out w-0 md:w-auto md:opacity-100 group-hover:w-auto group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100">
                         Soda Drinks
                     </span>
                 </a>
@@ -129,7 +129,9 @@ function Menu() {
                     </div>
                 </section>
                 <section id='crunches' className='text-slate-900 my-4 w-full '>
-                    <div className='font-bold py-1 px-4 md:pl-30 bg-slate-900 text-gray-50 italic mb-6'>Crunches</div>
+                    <div className='font-bold py-1 px-4 md:pl-30 bg-slate-900 text-gray-50 italic mb-6'>
+                        Sides
+                    </div>
                     <div className=' w-fit mx-auto md:px-20 flex justify-center flex-wrap gap-4 px-4 '>
                         {
                             products.filter(product=> product.category === 'Crunches').map((p, index) =>(

@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import Footer from "@/components/Footer"
+import { Playfair_Display, Poppins } from 'next/font/google';
 
 
 
@@ -15,6 +16,18 @@ import Footer from "@/components/Footer"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair-display', // Define custom CSS variable
+  display: 'swap',
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-poppins",
 });
 
 const geistMono = Geist_Mono({
@@ -35,7 +48,7 @@ export default async function RootLayout({ children }) {
     
           <html lang="en">
             <body
-              className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+              className={`${playfair.variable} ${poppins.variables} antialiased`}
             >
                 <AuthProvider session = {session}>
                   <GlobalProvider>

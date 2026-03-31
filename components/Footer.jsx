@@ -10,7 +10,10 @@ function Footer(){
                 
                 <div  className='flex justify-around items-center w-full md:w-1/2'>
                     <div className='text-gray-50'>
-                        <div>Logo</div>
+                        {/* //Web Logo */}
+                        <div className="mr-8 font-display text-[4vw] md:text-[2vw] font-bold flex justify-center items-center">
+                        Foodie.
+                    </div>
                         <div className='flex  mt-10 gap-4 items-center'>
                             <FaFacebook size={20}/>
                             <FaTwitter size={20}/>

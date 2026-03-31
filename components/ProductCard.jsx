@@ -49,14 +49,14 @@ function ProductCard({product}) {
     setCart((prev)=>[...prev,updatedItem])
   }
   return (
-    <div className='text-sm w-35 hover:shadow-2xl  md:w-45 items-center bg-black/10 p-2 rounded-md'>
+    <div className='text-sm w-35 hover:shadow-2xl  md:w-45 items-center bg-white p-2 rounded-md'>
        <Link href={`/menu/${product.id}`}>
          <img src={`/images/${product.image}`} className='w-fit h-25 md:h-30 mb-4  mx-auto' alt='product'/>
        </Link>
         <div className='flex flex-col space-y-3 text-slate-900'>
             <p className='font-bold line-clamp-1'>{product.name}</p>
             <p className='text-sm line-clamp-2'>{product.description}</p>
-            <div className='bg-green-50 flex justify-between items-center p-1'>
+            <div className='bg-gray-100 flex justify-between items-center p-1'>
                 <h2 className='md:text-lg font-bold'>${product.price}</h2>
                 <button onClick={handleAddToCart} disabled={btnDisabled} className='bg-slate-900 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed text-green-50 h-full p-1 text-center'><IoCartOutline className='text-xl md:text-2xl text-green-500'/></button>
             </div>

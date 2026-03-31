@@ -17,6 +17,9 @@ function Hero() {
         </p>
         <button className='bg-green-50 cursor-pointer w-fit text-stone-900 rounded-md py-2 px-6'>More...</button>
       </div>
+      <div className="hidden md:flex rounded-2xl ">
+        <img src='/images/' alt='iamge' className='w-150'/>
+      </div>
       <div className="flex absolute opacity-40 -bottom-13 md:-bottom-32 left-0 items-center justify-center  w-screen">
         <p className="md:text-[18vw] text-[25vw]  font-extrabold text-white text-center">
             FOODIE

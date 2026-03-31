@@ -7,9 +7,11 @@ import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { useParams } from 'next/navigation';
 import { data } from '@/Product';
 
+
 function ProductId() {
       const params = useParams()
       const product = data.products.find((product)=>( product.id === params.id))
+      
       
     
   return (

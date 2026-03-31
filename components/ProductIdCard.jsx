@@ -6,6 +6,10 @@ import { useGlobalContext } from '@/context/GlobalContext'
 import { useParams } from 'next/navigation'
 import { data } from '@/Product'
 import { toast } from 'react-toastify'
+import { Rating, Star } from '@smastrom/react-rating';
+
+
+ 
 
 function ProductIdCard({product}) {
     const [extra, setExtra]= useState([])
@@ -14,6 +18,11 @@ function ProductIdCard({product}) {
     const [quantity, setQuantity] = useState(1) 
     
 
+    const myStyles = {
+    itemShapes: Star,
+    activeFillColor: '#f59e0b', // Tailwind's amber-500
+    inactiveFillColor: '#fed7aa', // Tailwind's orange-200
+  };
     
 
 
@@ -106,7 +115,7 @@ function ProductIdCard({product}) {
                     <div className='text-slate-900 space-y-3'>
                         <p className='text-sm border border-gray-300 rounded-2xl md:mb-20 w-fit px-4'>tag</p>
                         <h2 className='text-2xl font-bold'>{product.name}</h2>
-                        <p className='font-bold'>{product.rating}</p>
+                        <div className='w-15 flex'><Rating value={product.rating} readOnly itemStyles={myStyles} /></div>
                         <p className='italic'>
                            {product.description}
                         </p>

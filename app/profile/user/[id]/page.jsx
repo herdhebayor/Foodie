@@ -25,7 +25,7 @@ export default async function UserProfile({ params }) {
 
   if(!dbUser) {
     return (
-      <div className='bg-gray-50 w-screen min-h-screen flex items-center justify-center'>
+      <div className='bg-gray-100 w-screen min-h-screen flex items-center justify-center'>
         <div className='bg-white flex flex-col gap-6 px-4 py-3 rounded-md w-full h-fit min-h-50'>
           <h1 className='text-2xl text-slate-900 font-bold'>You need to be logged in to view this page</h1>
           <Link href='/auth/login' className='bg-slate-900 px-4 py-1 text-white rounded-md cursor-pointer hover:bg-white hover:text-slate-900 hover:border border-slate-900 w-fit'>
@@ -40,7 +40,7 @@ export default async function UserProfile({ params }) {
     return (
       <div className='bg-gray-50 w-screen min-h-screen flex items-center justify-center'>
         <div className='bg-white flex flex-col gap-6 px-4 py-3 rounded-md w-full h-fit min-h-50'>
-          <h1 className='text-2xl text-slate-900 font-bold'>No user Found</h1>
+          <h1 className='text-2xl text-slate-900 font-bold'>You currently do not have any order</h1>
         </div>
       </div>
     );
@@ -51,7 +51,7 @@ export default async function UserProfile({ params }) {
   }
 
   return (
-    <div className='bg-gray-50 w-screen min-h-screen'>
+    <div className='bg-gray-100 w-screen min-h-screen'>
       <div className='container mx-auto min-h-screen md:px-6 md:py-4'>
         <div className="bg-white flex flex-col gap-6 px-4 py-3 rounded-md w-full h-fit min-h-50">
           <div className='flex items-center gap-6'>
@@ -69,7 +69,7 @@ export default async function UserProfile({ params }) {
           </div>
         </div>
         <div className='grid md:grid-cols-4 gap-6 mt-6 w-full h-fit min-h-100'>
-          <div className='col-span-1 rounded-md bg-white min-h-60 max-h-60'>Likes</div>
+          <div className='col-span-1 rounded-md bg-white min-h-60 hidden md:block  max-h-60'>Likes</div>
           <div className='col-span-2 rounded-md bg-white min-h-60 overflow-y-scroll max-h-100'>
             <div className="container mx-auto p-6">
               <h1 className="text-2xl font-bold mb-6">My Orders</h1>
@@ -99,7 +99,7 @@ export default async function UserProfile({ params }) {
               </div>
             </div>
           </div>
-          <div className='col-span-1 rounded-md bg-white min-h-60 max-h-60'>Reviews</div>
+          <div className='col-span-1 rounded-md bg-white min-h-60 max-h-60 hidden md:block '>Reviews</div>
         </div>
       </div>
     </div>
