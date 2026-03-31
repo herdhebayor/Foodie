@@ -25,7 +25,7 @@ const {data:session, status, update}= useSession()
     <div className="sticky top-0 flex justify-center w-screen left-0 text-gary-50 z-100 shadow-lg bg-slate-900 py-4 md:pb-6">
       <div className="container flex justify-between md:px-6 px-4">
         {/* //Web Logo */}
-        <div className="mr-8 font-display text-[4vw] md:text-[2vw] font-bold flex justify-center items-center">
+        <div className="mr-8 text-gray-50 font-display text-[4vw] md:text-[2vw] font-bold flex justify-center items-center">
           Foodie.
           </div>
         {/* Nav menu */}
