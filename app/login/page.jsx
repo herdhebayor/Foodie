@@ -77,9 +77,10 @@ function Register() {
   };
 
   return (
-    <div className='w-screen h-screen bg-gray-100'>
-        <div className='flex justify-center items-center h-full w-full'>
-            <div className='container text-slate-900 flex justify-center items-center px-6 py-8 md:px-6  '>
+    <div className='w-screen min-h-screen bg-gray-100'>
+        <div className='flex justify-center items-center h-screen w-full'>
+            <div className='container text-slate-900 h-full flex justify-center items-center px-4  md:px-6  '>
+              
                 <div className='w-full md:w-100 border  border-gray-400 py-4 px-6 rounded-md bg-orange-50'>
 
                   {/* header */}
