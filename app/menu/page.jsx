@@ -60,7 +60,7 @@ function Menu() {
 
   return (
     <div className='min-h-screen w-full bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.15),transparent_55%)] bg-gray-50 py-25 text-slate-900'>
-      <div className='lg:container md:container-xl mx-auto px-4 md:px-8'>
+      <div className='lg:container md:container-xl mx-auto px-4 sm:px-2 md:px-8'>
         <div className='mb-6 rounded-3xl bg-linear-to-r from-orange-500 to-amber-400 p-6 text-white shadow-lg'>
           <div className='flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
             <div>
@@ -176,7 +176,7 @@ function Menu() {
             </div>
 
             {featuredProducts.length > 0 && (
-              <section className='mb-6 rounded-2xl bg-white p-4 shadow-sm'>
+              <section className='mb-6 rounded-2xl bg-white p-4 sm:p-2 shadow-sm'>
                 <div className='mb-4 flex items-center justify-between'>
                   <div>
                     <h2 className='text-lg font-bold'>Popular picks</h2>
@@ -197,7 +197,7 @@ function Menu() {
               </section>
             )}
 
-            <section className='rounded-2xl bg-white p-4 shadow-sm'>
+            <section className='rounded-2xl bg-white p-4 sm:p-2 shadow-sm'>
               <div className='mb-4 flex items-center justify-between'>
                 <div>
                   <h2 className='text-lg font-bold'>Full menu</h2>
@@ -210,7 +210,7 @@ function Menu() {
                   No dishes match your search yet. Try a different keyword or category.
                 </div>
               ) : (
-                <div className='grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]  place-items-center md:gap-6'>
+                <div className='grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-4 md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]  place-items-center md:gap-6'>
                   {regularProducts.length > 0 ? regularProducts.map((product) => (
                     <Link className='cursor-pointer' href={`/menu/${product.id}`} key={product.id}>
                       <ProductCard product={product} />
