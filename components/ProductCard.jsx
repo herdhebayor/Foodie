@@ -1,67 +1,85 @@
 'use client'
-import React, {useState, useEffect} from 'react'
+import React from 'react'
+import Image from 'next/image';
 import { IoCartOutline } from "react-icons/io5";
-import { useGlobalContext } from '@/context/GlobalContext';
-import Link from 'next/link';
-import { toast } from 'react-toastify';
+import { FaStar } from "react-icons/fa";
+import LikeBtn from '@/components/LikeBtn'
 
-function ProductCard({product}) {
-  const {cart, setCart}= useGlobalContext()
-  const [btnDisabled, setBtnDisabled]= useState(false)
+
+function ProductCard({ product }) {
+  const getProductCategoryName = (item) => item?.category?.name ?? item?.category ?? 'Featured'
   
+  const getProductImage = (item) => {
+    const images = Array.isArray(item?.images) ? item.images : []
+    const firstImage = images[0]
 
-  useEffect(
-    ()=>{
-      const itemExist = cart.find(p => p.id === product.id)
-      if(itemExist){
-        setBtnDisabled(true)
-      }else{
-        setBtnDisabled(false)
-      }
-    }
-  )
-  const handleAddToCart = ()=>{
-    const itemExist = cart.find(p => p.id === product.id)
-    if(itemExist){
-      alert('item allready add to cart')
-    }
-    const newProduct = {
-      id: product.id,
-      image: product.image,
-      name:product.name,
-      quantity: 1,
-      extras: [],
-      totalPrice:product.price ,
-    }
-
-    setCart(prev => [...prev, newProduct])
-    setBtnDisabled(true)
-    toast.success('item added to cart')
+    if (typeof firstImage === 'string' && firstImage.startsWith('http')) return firstImage
+    if (typeof firstImage === 'string' && firstImage.startsWith('/')) return firstImage
+    return '/images/chicken_burger.jpg'
   }
+  
+  const isFeatured = Boolean(product?.featured ?? product?.badges?.includes('Popular'))
 
-  const handleIncrease = ()=>{
-    const item = cart.find((p)=> p.id === product.id)
-    const updatedItem = {
-      item,
-      quantity:quantity + 1,
-      totalPrice: product.price * quantity
-    }
-    setCart((prev)=>[...prev,updatedItem])
-  }
+  const imageSrc = getProductImage(product)
+  const categoryName = getProductCategoryName(product)
+
   return (
-    <div className='text-sm w-35 hover:shadow-2xl  md:w-45 items-center bg-white p-2 rounded-md'>
-       <Link href={`/menu/${product.id}`}>
-         <img src={`/images/${product.image}`} className='w-fit h-25 md:h-30 mb-4  mx-auto' alt='product'/>
-       </Link>
-        <div className='flex flex-col space-y-3 text-slate-900'>
-            <p className='font-bold line-clamp-1'>{product.name}</p>
-            <p className='text-sm line-clamp-2'>{product.description}</p>
-            <div className='bg-gray-100 flex justify-between items-center p-1'>
-                <h2 className='md:text-lg font-bold'>${product.price}</h2>
-                <button onClick={handleAddToCart} disabled={btnDisabled} className='bg-slate-900 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed text-green-50 h-full p-1 text-center'><IoCartOutline className='text-xl md:text-2xl text-green-500'/></button>
-            </div>
+    <div className='group w-full overflow-hidden md:rounded-3xl rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl lg:w-50'>
+      <div className='relative h-26 overflow-hidden bg-linear-to-br from-orange-50 to-amber-100 md:h-30'>
+        <Image
+          src={imageSrc}
+          width={240}
+          height={180}
+          loading='lazy'
+          unoptimized={imageSrc.startsWith('http')}
+          className='h-full w-full object-cover transition duration-500 group-hover:scale-105'
+          alt={product.name}
+        />
+        <div className='absolute left-2 w-fit max-w-[60%] line-clamp-1 top-2 rounded-full bg-white/90 px-2 py-1 text-[10px] font-semibold text-slate-700 backdrop-blur md:text-xs'>
+          {product.badges?.[0] || (isFeatured ? 'Featured' : '')}
         </div>
-      
+        <div
+          className='absolute right-2 top-2 '
+          onClick={(e) => {
+            // Prevent any parent navigation (e.g., if card is wrapped in a Link)
+            e.preventDefault()
+            e.stopPropagation()
+          }}
+        >
+          <LikeBtn product={product}/>
+        </div>
+
+        <div className='absolute bottom-2 left-2 rounded-full bg-slate-900/80 px-2 py-1 text-[10px] font-semibold text-white md:text-xs'>
+          {categoryName}
+        </div>
+      </div>
+
+      <div className='space-y-2 md:p-3 p-2'>
+        <div className='flex items-start md:items-center justify-between gap-2'>
+          <p className='line-clamp-1 text-sm font-semibold text-slate-900'>{product.name}</p>
+          <div className='flex items-center text-amber-500'>
+            <FaStar size={11} />
+            <span className='ml-1 text-[11px] text-slate-600'>{product.reviewStats?.averageRating?.toFixed(1) || "3.9"}</span>
+          </div>
+        </div>
+
+        <p className='line-clamp-2 text-xs leading-5 text-slate-500'>{product.shortDescription}</p>
+
+        <div className='flex items-end justify-between gap-2 pt-0 md:pt-1'>
+          <div>
+            <p className='text-sm font-bold text-slate-900'>&#x20A6;{product.pricing.basePrice.toLocaleString('en-US')}</p>
+            <p className='text-[11px] text-slate-400'>Fast delivery • {product.prerpTime || '15-20 mins'}</p>
+          </div>
+          
+            <button
+              className='rounded-full bg-orange-600 p-2 text-white shadow-sm transition hover:bg-orange-500'
+            >
+              <IoCartOutline size={16} />
+            </button>
+          
+
+        </div>
+      </div>
     </div>
   )
 }

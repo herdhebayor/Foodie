@@ -1,159 +1,488 @@
 'use client'
 
-import React, {useState, useEffect} from 'react'
-import {FaPlus, FaMinus} from 'react-icons/fa'
+import React, { useMemo, useState, useEffect } from 'react'
+import Image from 'next/image';
+import { FaPlus, FaMinus, FaHeart, FaRegHeart, FaStar } from 'react-icons/fa'
 import { useGlobalContext } from '@/context/GlobalContext'
-import { useParams } from 'next/navigation'
-import { data } from '@/Product'
-import { toast } from 'react-toastify'
+import Toast from '@/components/Toast'
 import { Rating, Star } from '@smastrom/react-rating';
+import '@smastrom/react-rating/style.css';
+import { data as productsData } from '@/foodie_products'
+import Link from 'next/link'
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import ProductCard from './ProductCard'
+import LikeBtn from '@/components/LikeBtn'
 
 
+function ProductIdCard({ product }) {
+  const [extra, setExtra] = useState([])
+  const { cart, setCart,setToastType, setToastMessage,setShowToast  } = useGlobalContext()
+  const [quantity, setQuantity] = useState(1)
+  const [variants, setVariants] = useState(null)
+  const [spiceLevel, setSpiceLevel] = useState('Mild')
+  const [removeIngredients, setRemoveIngredients] = useState([])
+  const [milkType, setMilkType] = useState(null)
+  const [crustType, setCrustType] = useState(null)
+
+
+  
+  const getProductPrice = (item) => variants?.price ? variants.price : item?.pricing?.basePrice 
+  const getProductImage = (item) => {
+    const images = Array.isArray(item?.images) ? item.images : []
+    const firstImage = images[0]
+
+    if (typeof firstImage === 'string' && firstImage.startsWith('http')) return firstImage
+    if (typeof firstImage === 'string' && firstImage.startsWith('/')) return firstImage
+  }
+  
  
 
-function ProductIdCard({product}) {
-    const [extra, setExtra]= useState([])
-    const {cart, setCart} = useGlobalContext()
-    const [btnDisabled, setBtnDisabled]= useState(false)
-    const [quantity, setQuantity] = useState(1) 
-    
+  const suggestedProducts = useMemo(() => (
+    productsData.products.filter((item) => item.category.name  === product.category.name && item.id !== product.id).slice(0, 6)
+  ), [product.category.name, product.id])
 
-    const myStyles = {
+  const myStyles = {
     itemShapes: Star,
-    activeFillColor: '#f59e0b', // Tailwind's amber-500
-    inactiveFillColor: '#fed7aa', // Tailwind's orange-200
+    activeFillColor: '#f59e0b',
+    inactiveFillColor: '#fed7aa',
   };
+
+  const cartKey = JSON.stringify({
+    id: product.id,
+    size: variants?.name ?? null,
+    extras: [...extra].sort((a, b) => a.name.localeCompare(b.name)),
+    spiceLevel: spiceLevel || null,
+    removeIngredients: [...removeIngredients].sort(),
+    });
+
+  const cartProduct = cart.find((item) => item.cartKey === cartKey)
+
+  const isAddDisabled = cartProduct &&
+    cartProduct.quantity === quantity;
+
+
+  const handleSelectExtra = (event, selectedExtra) => {
+    if (event.target.checked) {
+      setExtra((prev) => [
+        ...prev,
+        {
+          name: selectedExtra.name,
+          price: selectedExtra.price,
+        },
+      ])
+    } else {
+      setExtra((prev) => prev.filter((item) => item.name !== selectedExtra.name))
+    }
+  }
+
+  const handleIncreaseQuantity = () => {
+    if (quantity < 20) {
+      setQuantity((prev) => prev + 1)
+    }
+  }
+
+  const handleDecreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1)
+    }
+  }
+
+  const calculateItemTotal = () => {
+    const extrasTotal = extra.reduce((sum, item) => sum + item.price, 0)
+    return (getProductPrice(product) + extrasTotal) * quantity
+  }
+
+  const formatCurrency = (value) => new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+    maximumFractionDigits: 0,
+  }).format(value)
+
+  const handleAddToCart = () => {
+
+    if( variants === null){
+      setToastType('error')
+      setToastMessage('Add Variants')
+      setShowToast(true)
+      return;
+    }
+    const newProduct = {
+      cartKey,
+      id: product.id,
+      name: product.name,
+      image: getProductImage(product),
+      price: getProductPrice(product),
+      size: variants?.name,
+      spiceLevel,
+      removeIngredients,
+      milkType,
+      crustType,
+      quantity,
+      extras: extra,
+      totalPrice: calculateItemTotal(),
+    }
+
     
-
-
-    useEffect(() => {
-      const cartProduct = cart.find(p => p.id === product.id)
-      if (!cartProduct) {
-        setBtnDisabled(false)
-        return
+    setCart((prev) => {
+      const existing = prev.find((item) => item.cartKey === cartKey)
+      if (existing) {
+        return prev.map((item) =>
+          item.cartKey === cartKey
+            ? { ...item, quantity, totalPrice: calculateItemTotal() }
+            : item
+        )
       }
-      const sameQuantity = cartProduct.quantity === quantity
-      const sameExtras = JSON.stringify(cartProduct.extras) === JSON.stringify(extra)
-      setBtnDisabled(sameQuantity && sameExtras)
-    }, [cart, quantity, extra, product.id])
+      return [...prev, newProduct]
+    })
 
-    //Select extra
-    const handleSelectExtra = (e, selectedExtra) => {
-      if (e.target.checked) {
-        setExtra(prev => [
-          ...prev,
-          {
-            name: selectedExtra.name,
-            price: selectedExtra.price
-          }
-        ])
-      } else {
-        setExtra(prev => prev.filter(ex => ex.name !== selectedExtra.name))
-      }
-    }
+    setShowToast(true)
+    setToastMessage('Item has been added to cart successfully')
+    setToastType('success')
+  }
 
-    //Increase Quantity
-
-    const handleIncreaseQuantity = () => {
-        if (quantity < 20) {
-            setQuantity(prev => prev + 1);
-        }
-    }
-
-
-    // Decrease Quantity
-    const handleDecreaseQuantity = () => {
-        if (quantity > 1) {
-            setQuantity(prev => prev - 1);
-        }
-    }
-
-    
-
-    const calculateItemTotal = () => {
-  const extrasTotal = extra.reduce((sum, e) => sum + e.price, 0)
-
-  return (product.price + extrasTotal) * quantity
-}
-
-
-    const handleAddToCart = () => {
-      const newProduct = {
-        id: product.id,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        quantity,
-        extras: extra,
-        totalPrice: calculateItemTotal()
-      }
-      setCart(prev => {
-        const existing = prev.find(item => item.id === product.id)
-        if (existing) {
-          // update quantity instead
-          return prev.map(item =>
-            item.id === product.id
-              ? { ...item, quantity, extras: extra, totalPrice: calculateItemTotal() }
-              : item
-          )
-        }
-        return [...prev, newProduct]
-      })
-      toast.success('Product added to cart')
-    }
+  const reviewStats = [
+    { label: 'ServingSize', value: `${product.nutrition?.servingSize}` },
+    { label: 'Calories', value: `${product.nutrition?.calories}` },
+    { label: 'Protein', value: `${product.nutrition?.protein}g` },
+    { label: 'Carbs', value: `${product.nutrition?.carbs}g` },
+    { label: 'Fat', value: `${product.nutrition?.fat}g` },
+    { label: 'Sugar', value: `${product.nutrition?.sugar}g` },
+    { label: 'Fiber', value: `${product.nutrition?.fiber}g` },
+    { label: 'Sodium', value: `${product.nutrition?.sodium}mg` },
+  ]
 
   return (
-    <div className='w-screen min-h-screen border flex items-center justify-center bg-gray-50'>
-        <div className='container  min-h-screen'>
-            <div className='flex gap-6 mx-auto md:px-15 px-4 md:flex-row flex-col'>
-                <div className='md:w-1/3 w-full h-100 border'>
-                    <div className='container mx-auto h-full mt-2 w-full border p-4 border-gray-300'>
-                        <img src={`/images/${product.image}`} alt='product-img' className='w-full h-full'/>
-                    </div>
-                </div>
-                <div className='md:w-1/3 w-full min-h-screen h-fit py-4 px-6 md:px-8'>
-                    <div className='text-slate-900 space-y-3'>
-                        <p className='text-sm border border-gray-300 rounded-2xl md:mb-20 w-fit px-4'>tag</p>
-                        <h2 className='text-2xl font-bold'>{product.name}</h2>
-                        <div className='w-15 flex'><Rating value={product.rating} readOnly itemStyles={myStyles} /></div>
-                        <p className='italic'>
-                           {product.description}
-                        </p>
-                        <div className='px-4 '>
-                            {/* Extras */}
-                            {
-                                product?.extras?.map((extra, index)=>(
-                                    <div key={index} className='flex gap-4 items-center'>
-                                        <input onChange={(e) => handleSelectExtra(e, extra)} type='checkbox' value={extra.name} className='accent-slate-900 cursor-pointer'/>
-                                        <span>{extra.name}</span>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                        <div className='flex justify-between items-center'>
-                            <h3 className='text-2xl'>${calculateItemTotal()}</h3>
-                            
-                            <div className='flex gap-4 items-center w-fit'>
-                                <button disabled={quantity === 1} 
-                                onClick={()=> handleDecreaseQuantity()} 
-                                className='border border-gray-300 cursor-pointer disabled:bg-gray-200 disabled:cursor-not-allowed hover:bg-gray-100 w-6 h-6 flex justify-center items-center rounded-full'><FaMinus/></button>
-                                <span>{quantity}</span>
-                                <button disabled={quantity === 20} onClick={()=> handleIncreaseQuantity()} className='border disabled:bg-gray-200 disabled:cursor-not-allowed disabled:border border-gray-300 cursor-pointer hover:bg-gray-100 w-6 h-6 flex justify-center items-center rounded-full'><FaPlus/></button>
-                            </div>
-                        </div>
-
-                        <button onClick={()=> handleAddToCart()} disabled={btnDisabled} className='md:w-100 w-full disabled:bg-gray-400 disabled:cursor-not-allowed px-6 py-2 mt-4 cursor-pointer hover:bg-slate-700 bg-slate-900 text-white text-center rounded-xl'>Add To Cart</button>
-                        
-                    </div>
-                    <div className='my-4 p-4'>
-                        Reviews
-                    </div>
-                    
-
-                </div>
+    <div className='w-full min-h-screen bg-ambient-orange px-4 py-6 md:px-8 '>
+      <div className='mx-auto flex max-w-7xl flex-col gap-6'>
+        <div className='grid gap-6 lg:grid-cols-[1.1fr_0.9fr]'>
+          <div className='rounded-4xl border border-orange-100 bg-white p-3 shadow-sm'>
+            <div className='relative overflow-hidden rounded-3xl bg-orange-50'>
+              <Image
+                src={getProductImage(product)}
+                alt={product.name}
+                width={800}
+                height={800}
+                className='h-120 w-full object-cover md:h-150'
+              />
+              <div className='absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700 backdrop-blur'>
+                {product.category.name}
+              </div>
+              <div className='absolute bottom-4 right-4 rounded-full bg-slate-900/85 px-3 py-1 text-xs font-semibold text-white'>
+                {product.availability.quantityAvailable >= 5  ? 'In stock' : product.availability.quantityAvailable > 1 ? 'Limited' : 'Out of stock'}
+              </div>
             </div>
+          </div>
+
+          <div className='rounded-4xl border border-gray-100 bg-white p-6 shadow-sm'>
+            <div className='flex items-start justify-between gap-4'>
+              <div>
+                <div className='mb-3 inline-flex rounded-full bg-orange-50 px-3 py-1 text-sm font-semibold text-orange-600'>
+                  Popular choice
+                </div>
+                <h1 className='text-3xl font-bold text-slate-900'>{product.name}</h1>
+                <p className='mt-2 text-sm leading-6 text-slate-500'>{product.description}</p>
+              </div>
+              {<LikeBtn product={product}/>}
+            </div>
+
+            <div className='mt-5 flex flex-wrap items-center gap-3'>
+              <div className='flex items-center rounded-full bg-amber-50 px-3 py-2 text-sm font-medium text-amber-600'>
+                <Rating value={product.reviewStats.averageRating} readOnly itemStyles={myStyles} />
+                <span className='ml-2'>{product.reviewStats.averageRating.toFixed(1)}</span>
+              </div>
+              <span className='rounded-full bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-600'>⚡ {product.deleiveryTime}</span>
+              <span className='rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-600'>Free delivery over &#x20A6;5,000</span>
+            </div>
+
+            <div className='mt-6 rounded-2xl bg-slate-50 p-3'>
+              <div className='mb-3 flex items-center justify-between'>
+                <h2 className='text-lg font-semibold text-slate-900'>Make it your own</h2>
+                <span className='text-sm text-slate-500'>Add extras</span>
+              </div>
+
+              {product?.extras?.length ? (
+                <div className='flex flex-wrap gap-2'>
+                  {product.extras.map((ext, index) => {
+                    const isChecked = extra.some((item) => item.name === ext.name)
+                    return (
+                      <label
+                        key={`${ext.name}-${index}`}
+                        className={`flex min-w-35 cursor-pointer items-center justify-between rounded-2xl border px-3 py-3 text-sm transition ${isChecked ? 'border-orange-400 bg-orange-50 text-orange-700' : 'border-gray-200 bg-white text-slate-700'}`}
+                      >
+                        <span className='flex items-center gap-2'>
+                          <input
+                            type='checkbox'
+                            checked={isChecked}
+                            onChange={(event) => handleSelectExtra(event, ext)}
+                            className='h-4 w-4 rounded border-gray-300 text-orange-600 accent-orange-600 focus:ring-orange-500'
+                          />
+                          <span className='text-xs'>{ext.name}</span>
+                        </span>
+                        <span className='font-semibold'> + {formatCurrency(ext.price * quantity)}</span>
+                      </label>
+                    )
+                  })}
+                </div>
+              ) : (
+                <p className='text-sm text-slate-500'>No add-ons available for this item yet.</p>
+              )}
+            </div>
+
+            <div className='mt-6'>
+              <h2 className='text-lg font-semibold text-slate-900'>Variant</h2>
+              <div className='mt-3 flex flex-wrap gap-2'>
+                {product.variants?.map((variant) => (
+                  <span key={variant.id} onClick={() => setVariants(prev => prev?.name === variant.name ? prev : {"name": variant.name, "price":variant.price})} className={`cursor-pointer rounded-2xl border p-3 text-sm transition ${variants?.name === variant.name  ? 'border-orange-400 bg-orange-50 text-orange-700' : 'border-gray-200 bg-white text-slate-700'}`}>
+                    {variant.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {product.customizations.spiceLevel && product.customizations.spiceLevel > 0 && <div className='mt-6'>
+              <h2 className='text-lg font-semibold text-slate-900'>Spice Level</h2>
+              <div className='mt-3 flex flex-wrap gap-2'>
+                {product.customizations?.spiceLevel?.map((level, index) => (
+                  <span key={`${level}-${index}`} onClick={() => setSpiceLevel(prev=> prev === level ?'' : level)} className={`cursor-pointer rounded-2xl border px-3 py-3 text-sm transition ${spiceLevel === level ? 'border-orange-400 bg-orange-50 text-orange-700' : 'border-gray-200 bg-white text-slate-700'}`}>
+                    {level}
+                  </span>
+                ))}
+              </div>
+            </div>}
+
+            {/* //Milk type */}
+            {product.customizations.milkType && product.customizations.milkType > 0 && <div className='mt-6'>
+              <h2 className='text-lg font-semibold text-slate-900'>Select Milk Type</h2>
+              <div className='mt-3 flex flex-wrap gap-2'>
+                {product.customizations?.milkType?.map((type, index) => (
+                  <span key={`${type}-${index}`} onClick={() => setMilkType(prev=> prev === type ?'' : type)} className={`cursor-pointer rounded-2xl border px-3 py-3 text-sm transition ${milkType === type ? 'border-orange-400 bg-orange-50 text-orange-700' : 'border-gray-200 bg-white text-slate-700'}`}>
+                    {type}
+                  </span>
+                ))}
+              </div>
+            </div>}
+
+                {/* //Crust type for pizza */}
+            {product.customizations.crustType && product.customizations.crustType > 0 && <div className='mt-6'>
+              <h2 className='text-lg font-semibold text-slate-900'>Select Crust Type</h2>
+              <div className='mt-3 flex flex-wrap gap-2'>
+                {product.customizations?.crustType?.map((type, index) => (
+                  <span key={`${type}-${index}`} onClick={() => setCrustType(prev=> prev === type ?'' : type)} className={`cursor-pointer rounded-2xl border px-3 py-3 text-sm transition ${crustType === type ? 'border-orange-400 bg-orange-50 text-orange-700' : 'border-gray-200 bg-white text-slate-700'}`}>
+                    {type}
+                  </span>
+                ))}
+              </div>
+            </div>}
+
+            {product.customizations.removeIngredients && product.customizations.removeIngredients.length > 0 && <div className='mt-6'>
+              <h2 className='text-lg font-semibold text-slate-900'>Remove Ingredients</h2>
+              <div className='mt-3 flex flex-wrap gap-2'>
+                {product.customizations.removeIngredients.map((ing, index) => (
+                  <span key={`${ing}-${index}`} onClick={() => setRemoveIngredients((prev) => prev.includes(ing) ? prev.filter((i) => i !== ing) : [...prev, ing])} className={`cursor-pointer rounded-2xl border px-3 py-3 text-sm transition ${removeIngredients.includes(ing) ? 'border-orange-400 bg-orange-50 text-orange-700' : 'border-gray-200 bg-white text-slate-700'}`}>
+                    {ing}
+                  </span>
+                ))}
+              </div>
+            </div>}
+
+            <div className='mt-6 flex items-center justify-between rounded-2xl border border-gray-100 bg-white p-4'>
+              <div>
+                <p className='text-sm text-slate-500'>Your total</p>
+                <p className='text-2xl font-bold text-slate-900'>{formatCurrency(calculateItemTotal())}</p>
+              </div>
+              <div className='flex items-center gap-2'>
+                <button
+                  type='button'
+                  disabled={quantity === 1}
+                  onClick={handleDecreaseQuantity}
+                  className='flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-orange-600 disabled:cursor-not-allowed disabled:bg-gray-100'
+                >
+                  <FaMinus size={12} />
+                </button>
+                <span className='min-w-8 text-center font-semibold text-slate-900'>{quantity}</span>
+                <button
+                  type='button'
+                  disabled={quantity === 20}
+                  onClick={handleIncreaseQuantity}
+                  className='flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-orange-600 disabled:cursor-not-allowed disabled:bg-gray-100'
+                >
+                  <FaPlus size={12} />
+                </button>
+              </div>
+            </div>
+
+            <button
+              type='button'
+              onClick={handleAddToCart}
+              disabled={isAddDisabled}
+              className='mt-4 w-full rounded-2xl cursor-pointer bg-orange-600 px-6 py-3 font-semibold text-white transition hover:bg-orange-500 disabled:cursor-not-allowed disabled:bg-gray-400'
+            >
+              Add to cart
+            </button>
+          </div>
         </div>
-      
+
+        <div className='  '>
+          <section className='rounded-4xl border border-gray-100 bg-white p-6 shadow-sm'>
+            <div className='flex items-center justify-between'>
+              <div>
+                <h2 className='text-xl font-semibold text-slate-900'>Nutrition & details</h2>
+                <p className='text-sm text-slate-500'>Helpful info for a balanced order.</p>
+              </div>
+              <div className='rounded-full bg-orange-50 px-3 py-1 text-sm font-semibold text-orange-600'>
+                {product.availability.quantityAvailable >= 5  ? 'multiple available' : product.availability.quantityAvailable > 1 ? 'Limited' : 'Out of stock'}
+              </div>
+            </div>
+            <div className='mt-5 flex flex-wrap gap-4'>
+              {reviewStats.map((item) => (
+                <div key={item.label} className='rounded-2xl min-w-30 border border-gray-100 bg-gray-50 p-4'>
+                  <p className='text-sm text-slate-500'>{item.label}</p>
+                  <p className='mt-1 text-lg font-semibold text-slate-900'>{item.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className='mt-6'>
+              <h2 className='text-lg font-semibold text-slate-900'>Ingredients</h2>
+              <div className='mt-3 flex flex-wrap gap-2'>
+                {product.ingredients?.map((ingredient) => (
+                  <span key={ingredient} className='rounded-lg bg-gray-100 p-4 text-sm text-slate-600'>
+                    {ingredient}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className='mt-6'>
+              <h2 className='text-lg font-semibold text-slate-900'>Dietary Information</h2>
+              <div className='mt-3 flex flex-wrap gap-2'>
+                
+                  {<span className='rounded-lg bg-gray-100 p-4 text-sm text-slate-600'>
+                    {product.dietary.halal ? 'Halal' : 'Non-halal'}
+                  </span>}
+                  {product.dietary.vegetarian && (
+                    <span className='rounded-lg bg-gray-100 p-4 text-sm text-slate-600'>
+                      Vegetarian
+                    </span>
+                  )}
+                  {product.dietary.vegan && (
+                    <span classN ame='rounded-lg bg-gray-100 p-4 text-sm text-slate-600'>
+                      Vegan
+                    </span>
+                  )}
+                  {product.dietary.glutenFree && (
+                    <span className='rounded-lg bg-gray-100 p-4 text-sm text-slate-600'>
+                      Gluten-Free
+                    </span>
+                  )}
+              </div>
+            </div>
+
+            <div className='mt-6'>
+              <h2 className='text-lg font-semibold text-slate-900'>Allergies</h2>
+              <div className='mt-3 flex flex-wrap gap-2'>
+                {product.allergens?.map((allergy) => (
+                  <span key={allergy} className='rounded-lg bg-gray-100 p-4 text-sm text-slate-600'>
+                    {allergy}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+              <h2 className='text-lg mt-6 font-semibold text-slate-900'>Stats</h2>
+            <div className=' flex mt-3 flex-wrap gap-4'>
+                              
+              
+                <div className='rounded-2xl min-w-35 border border-gray-100 bg-gray-50 p-4'>
+                  <p className='text-sm text-slate-500'>Sold</p>
+                  <p className='mt-1 text-lg font-semibold text-slate-900'>{product.metrics.soldCount.toLocaleString('en-US')}</p>
+                </div>
+
+                <div className='rounded-2xl min-w-35 border border-gray-100 bg-gray-50 p-4'>
+                  <p className='text-sm text-slate-500'>Wish List</p>
+                  <p className='mt-1 text-lg font-semibold text-slate-900'>{product.metrics.wishlistCount.toLocaleString('en-US')}</p>
+                </div>
+
+                <div className='rounded-2xl min-w-35 border border-gray-100 bg-gray-50 p-4'>
+                  <p className='text-sm text-slate-500'>Views</p>
+                  <p className='mt-1 text-lg font-semibold text-slate-900'>{product.metrics.views.toLocaleString('en-US')}</p>
+                </div>
+
+                <div className='rounded-2xl min-w-35 border border-gray-100 bg-gray-50 p-4'>
+                  <p className='text-sm text-slate-500'>Cart Add</p>
+                  <p className='mt-1 text-lg font-semibold text-slate-900'>{product.metrics.cartAdds.toLocaleString('en-US')}</p>
+                </div>
+              
+            </div>
+
+            <section className='rounded-4xl border border-gray-100 bg-white p-6 shadow-sm mt-10'>
+          <div className='flex items-center justify-between'>
+            <div>
+              <h2 className='text-xl font-semibold text-slate-900'>Customer reviews <span className='text-sm'>({product.reviewStats.totalReviews})</span></h2>
+              <p className='text-sm text-slate-500'>What people say after trying this dish.</p>
+            </div>
+            <button type='button' className='flex items-center gap-2 rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white'>
+              <FaPlus size={12} />
+              Write a review
+            </button>
+          </div>
+
+          <div className='mt-5 grid gap-4 lg:grid-cols-2'>
+            {product.reviews?.map((review, index) => {
+              const reviewTitle = review.rating >= 4 ? 'Loved it' : review.rating === 3 ? 'Solid choice' : 'Needs a tweak'
+              const reviewDate = review.date ? new Date(review.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recently reviewed'
+              return (
+                <div key={`${review.userName}-${index}`} className='rounded-2xl border border-gray-100 bg-gray-50 p-4'>
+                  <div className='flex items-center justify-between'>
+                    <div className='flex items-center gap-3'>
+                      <div className='flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 font-semibold text-orange-600'>
+                        {review.userName?.charAt(0) ?? 'U'}
+                      </div>
+                      <div>
+                        <p className='font-semibold text-slate-900'>{review.userName}</p>
+                        <p className='text-sm text-slate-500'>{reviewDate}</p>
+                      </div>
+                    </div>
+                    <div className='rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-600'>Verified order</div>
+                  </div>
+
+                  <div className='mt-3 flex flex-col gap-2'>
+                    <div className='flex items-center'><Rating value={review.rating} readOnly itemStyles={myStyles} /></div>
+                    <span className='text-sm font-semibold text-slate-700'>{reviewTitle}</span>
+                  </div>
+
+                  <p className='mt-3 text-sm leading-6 text-slate-600'>{review.comment}</p>
+                  <div className='mt-4 flex items-center justify-between text-sm text-slate-500'>
+                    <span>Helpful • {Math.max(3, review.rating + 2)} people found this useful</span>
+                    <button type='button' className='font-semibold text-orange-600'>Helpful</button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+          </section>
+
+          <section className='rounded-4xl border border-gray-100 bg-white p-4 md:p-6 shadow-sm'>
+            <div className='flex items-center  justify-between'>
+              <h2 className='text-xl font-semibold text-slate-900'>You may also like</h2>
+              <Link href='/menu' className='flex items-center gap-1 text-sm font-medium text-orange-600'>
+                View all
+                <MdOutlineKeyboardDoubleArrowRight size={15} />
+              </Link>
+            </div>
+            <div className='mt-5 flex overflow-x-scroll snap-x snap-mandatory gap-4'>
+              {suggestedProducts.map((item) => (
+                <Link href={`/menu/${item.id}`} key={item.id} className='min-w-40 md:min-w-50 snap-center cursor-pointer'>
+                  <ProductCard product={item} />
+                </Link>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        
+      </div>
     </div>
   )
 }

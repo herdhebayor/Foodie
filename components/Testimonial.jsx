@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image';
 import '@smastrom/react-rating/style.css';
 import { Rating, Star } from '@smastrom/react-rating';
 
@@ -27,7 +28,7 @@ const testimonials = [
         id: 4,
         name: 'Emily Davis',
         rating: 5,
-        feedback: 'I tried the combo meal and it was amazing! The portion size was perfect and the flavors were on point. Highly recommend!',
+        feedback: 'I tried the combo meal and it was amazing! The portion size was perfect and the flavors were on point.',
     },
     {
         id: 5,
@@ -41,20 +42,21 @@ function Testimonial() {
 
     const myStyles = {
     itemShapes: Star,
-    activeFillColor: '#f59e0b', // Tailwind's amber-500
-    inactiveFillColor: '#fed7aa', // Tailwind's orange-200
+    activeFillColor: '#f59e0b', 
+    inactiveFillColor: '#fed7aa', 
   };
   return (
     <div className='w-full bg-white text-slate-900'>
-        <div className='container mx-auto py-10 px-4'>
+        <div className='md:container-xl lg:container mx-auto px-0 md:px-10 py-10 '>
             <h2 className='text-3xl font-bold text-center mb-6 md:mb-10'>What Our Customers Say</h2>
-            <div className='flex overflow-x-auto  items-center md:justify-center gap-6'>
+            <div className='flex overflow-x-auto snap-x snap-mandatory gap-6 px-4 py-6'>
                 {testimonials.map((testimonial) => (
-                    <div key={testimonial.id} className='text-sm min-w-45 items-center'>
-                            <div className='flex flex-col space-y-3 text-slate-900'>
+                    <div key={testimonial.id} className='text-sm min-w-100 snap-center snap-always  rounded-lg shadow-lg border border-gray-100 px-4 py-4'>
+                            <div className='space-y-3 text-slate-900 flex flex-col items-center'>
+                                <div className='w-15 h-15 rounded-full bg-orange-100 text-orange-600 object-cover text-2xl font-bold flex justify-center items-center'>{testimonial.name[0]}</div>
                                 <p className='font-bold line-clamp-1'>{testimonial.name}</p>
                                 <div className='w-15'><Rating value={testimonial.rating} readOnly itemStyles={myStyles} /></div>
-                                <p className='text-sm italic'>{testimonial.feedback}</p>
+                                <p className='text-sm italic text-center'>{testimonial.feedback}</p>
                             </div>  
                     </div>
                 ))}

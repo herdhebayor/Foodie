@@ -2,7 +2,6 @@
 
 import { createContext,useContext, useState,useEffect } from "react"
 import { useSession } from "next-auth/react";
-//import getUnreadMessageCount from "@/app/action/getUnreadMessageCount";
 
 //Create context
 const GlobalContext = createContext();
@@ -10,39 +9,55 @@ const GlobalContext = createContext();
 //Create Provider
 
 export function GlobalProvider({children}){
-        //const [unreadCount, setUnreadCount] = useState(0)
         const [email, setEmail]= useState('')
         const [password, setPassword]= useState('')
-        const [cart, setCart] = useState([])
-        const [loading , setLoading] = useState(false)
+        const [selectedCategory, setSelectedCategory] = useState('all')
+        const [cartLoading , setCartLoading] = useState(false)
+        const [showToast, setShowToast] = useState(false)
+        const [toastType, setToastType] = useState('')
+        const [toastMessage, setToastMessage] = useState('')
+        const [logingin, setLogingin] = useState(false)
 
-        // Hydrate cart from localStorage on mount (client only)
-        useEffect(() => {
-            setLoading(true)
-            const savedCart = localStorage.getItem("foodieCart")
-            if (savedCart) {
-                setCart(JSON.parse(savedCart))
-                setLoading(false)
+        const [cart, setCart] = useState(() => {
+                setCartLoading(true)
+            if (typeof window === "undefined") return []
+
+            try {
+                const savedCart = window.localStorage.getItem("foodieCart")
+                return savedCart ? JSON.parse(savedCart) : []
+                setCartLoading(false)
+            } catch {
+                setCartLoading(false)
+                return []
             }
-        }, [])
+        })
+        const [loading , setLoading] = useState(false)
 
         // Save cart to localStorage whenever it changes
         useEffect(() => {
-            localStorage.setItem("foodieCart", JSON.stringify(cart))
+            if (typeof window !== "undefined") {
+                window.localStorage.setItem("foodieCart", JSON.stringify(cart))
+            }
         }, [cart])
 
+        //Toast
+        useEffect(
+                    ()=>{
+                      let timer;
+                      if(showToast){
+                        timer = setTimeout(
+                          ()=>{setShowToast(false),
+                            setToastMessage(''),
+                            setToastType('')
+                          }, 1500
+                        )
+                      } 
+                      return ()=> clearInterval(timer)
+                    }
+                    
+                   ,[showToast,toastMessage,toastType])
+
         
-
-
-    // useEffect(
-    //     ()=>{
-    //         if(session && session.user){
-    //             getUnreadMessageCount().then((res)=>{
-    //                 if(res.count) setUnreadCount(res.count)
-    //             })
-    //         }
-    //     },[session]
-    // )
 
     return(
         <GlobalContext.Provider
@@ -55,6 +70,17 @@ export function GlobalProvider({children}){
             setPassword,
             loading,
             setLoading,
+            selectedCategory,
+            setSelectedCategory,
+            cartLoading,
+            setShowToast,
+            setToastMessage,
+            setToastType,
+            toastMessage,
+            toastType,
+            showToast,
+            logingin,
+            setLogingin
         }}>
             {children}
         </GlobalContext.Provider>

@@ -1,32 +1,22 @@
 import { Schema,model, models } from "mongoose";
 
 const MessageSchema = new Schema({
-	sender: {
+	user: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',
 		require: true,
 	},
-
-	recipient: {
-		type: Schema.Types.ObjectId,
-		ref: 'User',
-		require: true,
+	body:{
+		type:String
 	},
-	property: {
-		type: Schema.Types.ObjectId,
-		ref: 'Property',
-		require: true,
+	orderId:{
+		type: Schema.Types.ObjectId
 	},
-	name: {
-		type: String,
-		require: [true, 'Name is required'],
+	messageType:{
+		type:String,
+		required:true,
+		default:'order'
 	},
-	email: {
-		type: String,
-		require: [true, 'Email is required'],
-	},
-    phone:String,
-    body:String,
     read:{
         type:Boolean,
         default:false,

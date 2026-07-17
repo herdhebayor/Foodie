@@ -35,9 +35,9 @@ export async function addEmailAndPhone(formData) {
     { new: true }
   )
 
-  // ✅ refresh layout/session UI
+  //refresh layout/session UI
   revalidatePath('/')
 
-  // ✅ redirect after success
+  //redirect after success
   redirect('/')
 }

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import getOrders from "@/app/actions/getUserOrders";
+import { toast } from "react-toastify";
 
 export async function GET() {
   try {
@@ -11,7 +12,7 @@ export async function GET() {
     });
 
   } catch (error) {
-    console.error("Orders API error:", error);
+    toast.error("Orders API error:", error);
 
     return NextResponse.json(
       { success: false, error: error.message },

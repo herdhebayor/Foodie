@@ -9,7 +9,7 @@ export async function getUserOrders() {
 
     const sessionUser = await getSessionUser()
     if(!sessionUser?.userId){
-        throw new Error ('User id is required')
+        throw new Error ("You've been logged out, log in to continue")
     }
     
     const userOrders = await Order.find({

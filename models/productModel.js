@@ -1,6 +1,6 @@
 /** @format */
 
-import { Schema, model, models } from 'mongoose'
+import mongoose, { Schema, model, models } from 'mongoose'
 
 const ProductSchema = new Schema(
 	{
@@ -37,6 +37,24 @@ const ProductSchema = new Schema(
 		size: {
 			type: String,
 		},
+		reviews:[{
+			user: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'User',
+				required: true,
+			},
+			comment:{
+				type:String,
+				default:'',
+				required:true
+			},
+			rating:{
+				type:Number,
+				deafault:1,
+				required: true,
+			}
+			
+		}]
 	},
 	{ timestamps: true }
 )

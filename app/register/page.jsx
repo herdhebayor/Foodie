@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import { registerUser } from "@/app/actions/registerNewUser";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import ButtonLoading from "@/components/ButtonLoading";
-import {toast} from 'react-toastify'
+import Toast from '@/components/Toast'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import { useGlobalContext } from "@/context/GlobalContext";
+import {FaUnlockAlt} from 'react-icons/fa'
+import Image from 'next/image';
 
 export default function RegisterForm() {
     const [error, setError] = useState('')
@@ -15,17 +18,15 @@ export default function RegisterForm() {
     const [btnLoading, setBtnLoading] = useState(false)
     const [googleLoading, setGoogleLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
+    const { setShowToast, setToastMessage,setToastType } = useGlobalContext()
     const router = useRouter();
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    if (status === "loading") {
-      setBtnDisabled(true);
-    }
     if (session?.user) {
-      router.push("/");
+      router.replace("/");
     }
-  }, [status, router, session]);
+  }, [router, session?.user]);
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -41,10 +42,12 @@ export default function RegisterForm() {
         return;
     }
     try {
-      // ✅ create user
+      //Create User
       const res = await registerUser(formData);
       if(res.error){
-        toast.error(res.error);
+        setShowToast(true),
+        setToastType('error')
+        setToastMessage(res.error)
         setBtnLoading(false);
         setBtnDisabled(false);
         return;
@@ -61,7 +64,9 @@ export default function RegisterForm() {
       setBtnLoading(false);
       router.push("/onboarding");
     } catch (error) {
-      toast.error(error.message);
+      setShowToast(true),
+      setToastType('error')
+      setToastMessage(error.message)
       setBtnDisabled(false);
       setBtnLoading(false);
     }
@@ -87,66 +92,115 @@ export default function RegisterForm() {
     };
 
   return (
-    <div className="w-screen h-screen bg-gray-100">
-        <div className="container h-full px-6 py-8 flex justify-center items-center">
-            <div className="bg-orange-50 w-full md:w-100 block border border-gray-400 px-6 py-4 rounded-md">
-                <h2 className="text-2xl text-slate-900 font-bold text-center my-3">Register</h2>
-                <form className="flex flex-col space-y-3" onSubmit={handleRegister}>
-                  <p className='text-sm text-gray-400 '>Don't have an account <span onClick={()=> router.push('/login')} className='text-blue-500 underline cursor-pointer'>Login</span></p>
-                <input
-                type='text'
-                className=' w-full py-2 px-4 border border-gray-300 rounded-md text-slate-900'
-                 name="username" placeholder="Enter your username" required 
-                 />
-                <input 
-                className=' w-full py-2 px-4 border border-gray-300 rounded-md text-slate-900'
-                name="email" 
-                type="email" 
-                placeholder="Enter your email" required 
-                />
-                
-                <div className="relative">
-                  <input 
-                    className=' w-full py-2 px-4 border border-gray-300 rounded-md text-slate-900'
-                    name="password"
+    <div className="w-screen h-screen bg-white">
+        <div className="mx-auto h-full w-full flex justify-between items-center">
+          <div className="p-6 w-full h-screen overflow-scroll md:w-[30%] min-w-130 max-w-full px-10">
+              <div className="w-full max-w-130 mx-auto block border border-gray-100 shadow-lg  px-6 py-4 rounded-md">
+                <div className="p-4 rounded-full mx-auto w-fit bg-orange-500 text-white text-4xl">
+                        <FaUnlockAlt/>
+                      </div>
+                  <h2 className="text-2xl text-slate-900 font-bold text-center my-3 mb-6">Register</h2>
+                  <form className="flex flex-col space-y-3 mx-auto" onSubmit={handleRegister}>
+                    <input
+                      type='text'
+                      className=' w-full p-4 border border-gray-100 shadow-sm outline-0  focus:border-orange-500 rounded-lg text-slate-900'
+                      name="username" placeholder="Enter your username" required 
+                    />
+                    <input 
+                    className=' w-full p-4 border border-gray-100 rounded-lg shadow-sm focus:border-orange-500 outline-0 text-slate-900'
+                    name="email" 
+                    type="email" 
+                    placeholder="Enter your email" required 
+                    />
+                  
+                  <div className="relative">
+                    <input 
+                      className=' w-full p-4 border border-gray-100 rounded-lg focus:border-orange-500 outline-0 shadow-sm text-slate-900'
+                      name="password"
+                      type={showPassword ? 'text' : 'password'} 
+                      placeholder="Eneter your password" required 
+                    />
+                    <span onClick={()=> setShowPassword(prev => !prev)} className='absolute text-slate-900 cursor-pointer top-1/3 right-3 my-auto '>
+                      {showPassword ? <FaEye/> : <FaEyeSlash/>}
+                    </span>
+                  </div>
+                  <div className="relative">
+                    <input 
+                    className='w-full p-4 border border-gray-100 rounded-lg focus:border-orange-500 outline-0 shadow-sm text-slate-900'
+                    name="confirmPassword" 
                     type={showPassword ? 'text' : 'password'} 
-                    placeholder="Eneter your password" required 
-                  />
-                  <span onClick={()=> setShowPassword(prev => !prev)} className='absolute text-slate-900 cursor-pointer top-1/3 right-3 my-auto '>
-                    {showPassword ? <FaEye/> : <FaEyeSlash/>}
-                  </span>
-                </div>
-                <div className="relative">
-                  <input 
-                  className='w-full py-2 px-4 border border-gray-300 rounded-md text-slate-900'
-                  name="confirmPassword" 
-                  type={showPassword ? 'text' : 'password'} 
-                  placeholder="Confirm password" required 
-                  />
-                  <span onClick={()=> setShowPassword(prev => !prev)} className='absolute text-slate-900 cursor-pointer top-1/3 right-3'>
-                    {showPassword ? <FaEye/> : <FaEyeSlash/>}
-                  </span>
-                </div>
-                <span className='text-red-500 text-xs'>{error}</span>
+                    placeholder="Confirm password" required 
+                    />
+                    <span onClick={()=> setShowPassword(prev => !prev)} className='absolute text-slate-900 text-xl cursor-pointer top-1/3 right-3'>
+                      {showPassword ? <FaEye/> : <FaEyeSlash/>}
+                    </span>
+                  </div>
+                  <span className='text-red-500 text-xs'>{error}</span>
 
-                <button
-                disabled={btnDisabled}
-                className="w-full hover:bg-slate-800 flex items-center gap-4 justify-center bg-slate-900 disabled:bg-slate-600 disabled:cursor-not-allowed text-gray-50 cursor-pointer rounded-md text-center px-4 py-2"
-                 type="submit">{btnLoading ? <> <ButtonLoading /> 'Creating account...'</> : 'Register'}
-                </button>
-                </form>
+                  <button
+                  disabled={btnDisabled}
+                  className="w-full hover:bg-orange-600 shadow-sm flex items-center gap-4 justify-center bg-orange-500 disabled:bg-slate-600 disabled:cursor-not-allowed text-gray-50 cursor-pointer rounded-lg text-center p-4 mt-4"
+                  type="submit">{btnLoading ? <> <ButtonLoading /> Creating account...</> : 'Register'}
+                  </button>
+                  </form>
 
-                {/* Divide */}
-                 <div className='flex gap-2 items-center my-4 text-slate-900'>
-                    <span className='w-1/2 border-b border-b-gray-300'></span>
-                    <p>Or</p>
-                    <span className='w-1/2 border-b border-b-gray-300'></span>
+                  {/* Divide */}
+                  <div className='flex gap-2 items-center my-4 text-slate-900'>
+                      <span className='w-1/2 border-b border-b-orange-300'></span>
+                      <p>Or</p>
+                      <span className='w-1/2 border-b border-b-orange-300'></span>
+                  </div>
+                  
+                  {/* Google signin button */}
+                  <button disabled={btnDisabled} onClick={handleGoogleLogin}  className='text-orange-500 p-4 shadow-md disabled:bg-gray-200 disabled:cursor-not-allowed  mt-4 cursor-pointer flex items-center justify-center w-full  rounded-lg bg-orange-100'>
+                      {googleLoading? <ButtonLoading /> : <><FcGoogle size={30} className='mr-4'/> Signin with Google</>}
+                  </button>
+
+                  <p className='text-md text-gray-400 mt-6 mx-auto'>Don&apos;t have an account <span onClick={()=> router.push('/login')} className='text-blue-500 underline cursor-pointer'>Login</span></p>
+              </div>
+            </div>
+            <div className='bg-orange-500 md:flex w-[70%] hidden h-screen overflow-hidden'>
+              <div className="w-full h-full relative ">
+                <div className="absolute inset-0">
+                  <Image
+                    src="/images/image-login-landing.webp"
+                    alt="foodie"
+                    fill
+                    className="object-cover opacity-25"
+                    priority
+                  />
                 </div>
-                
-                {/* Google signin button */}
-                <button disabled={btnDisabled} onClick={handleGoogleLogin} className='text-green-50 px-4 disabled:bg-red-200 disabled:cursor-not-allowed py-2 cursor-pointer flex items-center justify-center w-full hover:bg-red-400 rounded-md mt-3 bg-red-500'>
-                    {googleLoading? <ButtonLoading /> : <><FaGoogle size={20} className='mr-4'/> Signin with Google</>}
-                </button>
+
+                <div className="relative z-10 h-full w-full flex flex-col justify-center px-15 py-12">
+                  <div className="max-w-md text-white">
+                    <h3 className="text-5xl font-bold leading-tight">Join MyFoodie</h3>
+                    <p className="mt-4 text-white">
+                      Create your account to order faster, track progress, and enjoy personalized recommendations.
+                    </p>
+
+                    <ul className="mt-8 space-y-3 text-white/95">
+                      <li className="flex items-start gap-3">
+                        <span className="mt-1 inline-block h-2 w-2 rounded-full bg-white" />
+                        <span>Secure registration with email/password.</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="mt-1 inline-block h-2 w-2 rounded-full bg-white" />
+                        <span>Use Google sign-up for a quick start.</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="mt-1 inline-block h-2 w-2 rounded-full bg-white" />
+                        <span>Get onboarding tips right after signup.</span>
+                      </li>
+                    </ul>
+
+                    <div className="mt-10 rounded-2xl bg-white/10 border border-white/20 p-5">
+                      <p className="text-sm text-white/90">
+                        We respect your privacy—your data is only used to provide the service.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
     </div>

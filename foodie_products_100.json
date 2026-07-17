@@ -1,0 +1,4302 @@
+[
+  {
+    "id": 1,
+    "name": "Burger Special 1",
+    "category": "Burger",
+    "price": 14.67,
+    "currency": "USD",
+    "description": "A delicious burger made with fresh ingredients.",
+    "ingredients": [
+      "pepper",
+      "chicken",
+      "beans"
+    ],
+    "extras": [
+      "mushrooms",
+      "garlic dip",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user1a",
+        "rating": 3.5,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user1b",
+        "rating": 3.4,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "African Dish Special 2",
+    "category": "African Dish",
+    "price": 19.88,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "rice",
+      "fish",
+      "beef"
+    ],
+    "extras": [
+      "bbq sauce",
+      "jalapenos",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user2a",
+        "rating": 4.1,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user2b",
+        "rating": 3.9,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Grill Special 3",
+    "category": "Grill",
+    "price": 10.53,
+    "currency": "USD",
+    "description": "A delicious grill made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "fish",
+      "shrimp"
+    ],
+    "extras": [
+      "mushrooms",
+      "extra cheese",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.7,
+    "reviews": [
+      {
+        "user": "user3a",
+        "rating": 4.0,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user3b",
+        "rating": 4.1,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "African Dish Special 4",
+    "category": "African Dish",
+    "price": 11.57,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "fish",
+      "rice",
+      "shrimp"
+    ],
+    "extras": [
+      "mushrooms",
+      "spicy sauce",
+      "garlic dip"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.9,
+    "reviews": [
+      {
+        "user": "user4a",
+        "rating": 4.2,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user4b",
+        "rating": 4.2,
+        "comment": "Good value for money."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Burger Special 5",
+    "category": "Burger",
+    "price": 9.99,
+    "currency": "USD",
+    "description": "A delicious burger made with fresh ingredients.",
+    "ingredients": [
+      "beef",
+      "cheese",
+      "onion"
+    ],
+    "extras": [
+      "coleslaw",
+      "mushrooms",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.7,
+    "reviews": [
+      {
+        "user": "user5a",
+        "rating": 4.1,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user5b",
+        "rating": 3.8,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Pasta Special 6",
+    "category": "Pasta",
+    "price": 15.31,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "fish",
+      "pasta",
+      "beans"
+    ],
+    "extras": [
+      "jalapenos",
+      "double meat",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.6,
+    "reviews": [
+      {
+        "user": "user6a",
+        "rating": 4.0,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user6b",
+        "rating": 3.3,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Dessert Special 7",
+    "category": "Dessert",
+    "price": 13.5,
+    "currency": "USD",
+    "description": "A delicious dessert made with fresh ingredients.",
+    "ingredients": [
+      "rice",
+      "shrimp",
+      "pepper"
+    ],
+    "extras": [
+      "jalapenos",
+      "mushrooms",
+      "spicy sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.6,
+    "reviews": [
+      {
+        "user": "user7a",
+        "rating": 4.6,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user7b",
+        "rating": 3.7,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "African Dish Special 8",
+    "category": "African Dish",
+    "price": 8.11,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "pasta",
+      "rice",
+      "cheese"
+    ],
+    "extras": [
+      "jalapenos",
+      "extra cheese",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.9,
+    "reviews": [
+      {
+        "user": "user8a",
+        "rating": 4.9,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user8b",
+        "rating": 3.0,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Pizza Special 9",
+    "category": "Pizza",
+    "price": 23.34,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "fish",
+      "cheese",
+      "rice"
+    ],
+    "extras": [
+      "spicy sauce",
+      "jalapenos",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.8,
+    "reviews": [
+      {
+        "user": "user9a",
+        "rating": 4.1,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user9b",
+        "rating": 3.6,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Rice Bowl Special 10",
+    "category": "Rice Bowl",
+    "price": 13.55,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "cheese",
+      "pasta"
+    ],
+    "extras": [
+      "double meat",
+      "spicy sauce",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.9,
+    "reviews": [
+      {
+        "user": "user10a",
+        "rating": 4.6,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user10b",
+        "rating": 3.5,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Pizza Special 11",
+    "category": "Pizza",
+    "price": 23.93,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "lettuce",
+      "shrimp",
+      "pasta"
+    ],
+    "extras": [
+      "extra cheese",
+      "garlic dip",
+      "jalapenos"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.0,
+    "reviews": [
+      {
+        "user": "user11a",
+        "rating": 3.9,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user11b",
+        "rating": 4.2,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Dessert Special 12",
+    "category": "Dessert",
+    "price": 22.22,
+    "currency": "USD",
+    "description": "A delicious dessert made with fresh ingredients.",
+    "ingredients": [
+      "fish",
+      "chicken",
+      "lettuce"
+    ],
+    "extras": [
+      "coleslaw",
+      "bbq sauce",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.9,
+    "reviews": [
+      {
+        "user": "user12a",
+        "rating": 4.3,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user12b",
+        "rating": 4.9,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Rice Bowl Special 13",
+    "category": "Rice Bowl",
+    "price": 24.26,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "pepper",
+      "onion"
+    ],
+    "extras": [
+      "fried egg",
+      "bbq sauce",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.6,
+    "reviews": [
+      {
+        "user": "user13a",
+        "rating": 3.9,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user13b",
+        "rating": 3.3,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Rice Bowl Special 14",
+    "category": "Rice Bowl",
+    "price": 20.81,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "fish",
+      "cheese"
+    ],
+    "extras": [
+      "coleslaw",
+      "jalapenos",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.0,
+    "reviews": [
+      {
+        "user": "user14a",
+        "rating": 4.6,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user14b",
+        "rating": 3.7,
+        "comment": "Good value for money."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Pizza Special 15",
+    "category": "Pizza",
+    "price": 9.59,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "pasta",
+      "shrimp"
+    ],
+    "extras": [
+      "fried egg",
+      "extra cheese",
+      "mushrooms"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user": "user15a",
+        "rating": 4.4,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user15b",
+        "rating": 4.4,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Burger Special 16",
+    "category": "Burger",
+    "price": 7.29,
+    "currency": "USD",
+    "description": "A delicious burger made with fresh ingredients.",
+    "ingredients": [
+      "beans",
+      "shrimp",
+      "cheese"
+    ],
+    "extras": [
+      "garlic dip",
+      "mushrooms",
+      "spicy sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.8,
+    "reviews": [
+      {
+        "user": "user16a",
+        "rating": 4.4,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user16b",
+        "rating": 4.0,
+        "comment": "Would order again."
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Pasta Special 17",
+    "category": "Pasta",
+    "price": 15.2,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "chicken",
+      "beef",
+      "cheese"
+    ],
+    "extras": [
+      "bbq sauce",
+      "spicy sauce",
+      "garlic dip"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.7,
+    "reviews": [
+      {
+        "user": "user17a",
+        "rating": 3.8,
+        "comment": "Not bad but could be better."
+      },
+      {
+        "user": "user17b",
+        "rating": 3.6,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Grill Special 18",
+    "category": "Grill",
+    "price": 21.51,
+    "currency": "USD",
+    "description": "A delicious grill made with fresh ingredients.",
+    "ingredients": [
+      "lettuce",
+      "pepper",
+      "chicken"
+    ],
+    "extras": [
+      "fried egg",
+      "mushrooms",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.4,
+    "reviews": [
+      {
+        "user": "user18a",
+        "rating": 4.8,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user18b",
+        "rating": 4.8,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Dessert Special 19",
+    "category": "Dessert",
+    "price": 5.77,
+    "currency": "USD",
+    "description": "A delicious dessert made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "shrimp",
+      "rice"
+    ],
+    "extras": [
+      "mushrooms",
+      "coleslaw",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user": "user19a",
+        "rating": 4.0,
+        "comment": "Would order again."
+      },
+      {
+        "user": "user19b",
+        "rating": 4.2,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Pasta Special 20",
+    "category": "Pasta",
+    "price": 16.28,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "shrimp",
+      "onion",
+      "cheese"
+    ],
+    "extras": [
+      "double meat",
+      "fried egg",
+      "spicy sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.8,
+    "reviews": [
+      {
+        "user": "user20a",
+        "rating": 4.1,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user20b",
+        "rating": 3.7,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Drink Special 21",
+    "category": "Drink",
+    "price": 22.9,
+    "currency": "USD",
+    "description": "A delicious drink made with fresh ingredients.",
+    "ingredients": [
+      "pasta",
+      "fish",
+      "cheese"
+    ],
+    "extras": [
+      "jalapenos",
+      "garlic dip",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.4,
+    "reviews": [
+      {
+        "user": "user21a",
+        "rating": 4.0,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user21b",
+        "rating": 3.9,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "African Dish Special 22",
+    "category": "African Dish",
+    "price": 8.46,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "shrimp",
+      "onion",
+      "cheese"
+    ],
+    "extras": [
+      "fried egg",
+      "jalapenos",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.9,
+    "reviews": [
+      {
+        "user": "user22a",
+        "rating": 4.3,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user22b",
+        "rating": 4.2,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Grill Special 23",
+    "category": "Grill",
+    "price": 7.05,
+    "currency": "USD",
+    "description": "A delicious grill made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "pasta",
+      "fish"
+    ],
+    "extras": [
+      "spicy sauce",
+      "double meat",
+      "garlic dip"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.2,
+    "reviews": [
+      {
+        "user": "user23a",
+        "rating": 4.7,
+        "comment": "Not bad but could be better."
+      },
+      {
+        "user": "user23b",
+        "rating": 3.0,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Sushi Special 24",
+    "category": "Sushi",
+    "price": 22.03,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "shrimp",
+      "chicken"
+    ],
+    "extras": [
+      "mushrooms",
+      "extra cheese",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.6,
+    "reviews": [
+      {
+        "user": "user24a",
+        "rating": 4.3,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user24b",
+        "rating": 3.6,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Sushi Special 25",
+    "category": "Sushi",
+    "price": 18.68,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "rice",
+      "cheese",
+      "beans"
+    ],
+    "extras": [
+      "jalapenos",
+      "garlic dip",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.5,
+    "reviews": [
+      {
+        "user": "user25a",
+        "rating": 4.0,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user25b",
+        "rating": 3.5,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Grill Special 26",
+    "category": "Grill",
+    "price": 13.89,
+    "currency": "USD",
+    "description": "A delicious grill made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "onion",
+      "fish"
+    ],
+    "extras": [
+      "extra cheese",
+      "double meat",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.6,
+    "reviews": [
+      {
+        "user": "user26a",
+        "rating": 4.0,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user26b",
+        "rating": 4.6,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Pizza Special 27",
+    "category": "Pizza",
+    "price": 13.62,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "pepper",
+      "beans",
+      "shrimp"
+    ],
+    "extras": [
+      "avocado",
+      "spicy sauce",
+      "extra cheese"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.5,
+    "reviews": [
+      {
+        "user": "user27a",
+        "rating": 3.7,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user27b",
+        "rating": 4.6,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Drink Special 28",
+    "category": "Drink",
+    "price": 22.22,
+    "currency": "USD",
+    "description": "A delicious drink made with fresh ingredients.",
+    "ingredients": [
+      "beef",
+      "fish",
+      "onion"
+    ],
+    "extras": [
+      "extra cheese",
+      "spicy sauce",
+      "garlic dip"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user28a",
+        "rating": 4.8,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user28b",
+        "rating": 4.9,
+        "comment": "Would order again."
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Pasta Special 29",
+    "category": "Pasta",
+    "price": 10.19,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "rice",
+      "shrimp",
+      "tomato"
+    ],
+    "extras": [
+      "fried egg",
+      "garlic dip",
+      "extra cheese"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.3,
+    "reviews": [
+      {
+        "user": "user29a",
+        "rating": 3.5,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user29b",
+        "rating": 3.7,
+        "comment": "Would order again."
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Rice Bowl Special 30",
+    "category": "Rice Bowl",
+    "price": 15.86,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "shrimp",
+      "rice",
+      "onion"
+    ],
+    "extras": [
+      "mushrooms",
+      "bbq sauce",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.9,
+    "reviews": [
+      {
+        "user": "user30a",
+        "rating": 3.7,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user30b",
+        "rating": 4.4,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Sushi Special 31",
+    "category": "Sushi",
+    "price": 22.81,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "chicken",
+      "cheese",
+      "beans"
+    ],
+    "extras": [
+      "spicy sauce",
+      "garlic dip",
+      "extra cheese"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.7,
+    "reviews": [
+      {
+        "user": "user31a",
+        "rating": 4.3,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user31b",
+        "rating": 3.4,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Sushi Special 32",
+    "category": "Sushi",
+    "price": 16.82,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "shrimp",
+      "fish",
+      "lettuce"
+    ],
+    "extras": [
+      "fried egg",
+      "avocado",
+      "mushrooms"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 5.0,
+    "reviews": [
+      {
+        "user": "user32a",
+        "rating": 3.9,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user32b",
+        "rating": 3.6,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Drink Special 33",
+    "category": "Drink",
+    "price": 14.79,
+    "currency": "USD",
+    "description": "A delicious drink made with fresh ingredients.",
+    "ingredients": [
+      "pasta",
+      "lettuce",
+      "fish"
+    ],
+    "extras": [
+      "coleslaw",
+      "bbq sauce",
+      "extra cheese"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.7,
+    "reviews": [
+      {
+        "user": "user33a",
+        "rating": 3.7,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user33b",
+        "rating": 3.1,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Dessert Special 34",
+    "category": "Dessert",
+    "price": 5.58,
+    "currency": "USD",
+    "description": "A delicious dessert made with fresh ingredients.",
+    "ingredients": [
+      "pasta",
+      "cheese",
+      "tomato"
+    ],
+    "extras": [
+      "extra cheese",
+      "coleslaw",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user34a",
+        "rating": 4.9,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user34b",
+        "rating": 4.4,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Salad Special 35",
+    "category": "Salad",
+    "price": 19.21,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "lettuce",
+      "fish",
+      "rice"
+    ],
+    "extras": [
+      "extra cheese",
+      "coleslaw",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.3,
+    "reviews": [
+      {
+        "user": "user35a",
+        "rating": 4.9,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user35b",
+        "rating": 3.7,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Sushi Special 36",
+    "category": "Sushi",
+    "price": 9.75,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "fish",
+      "chicken",
+      "pasta"
+    ],
+    "extras": [
+      "garlic dip",
+      "fried egg",
+      "extra cheese"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.8,
+    "reviews": [
+      {
+        "user": "user36a",
+        "rating": 3.7,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user36b",
+        "rating": 3.7,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Rice Bowl Special 37",
+    "category": "Rice Bowl",
+    "price": 15.62,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "rice",
+      "fish",
+      "pasta"
+    ],
+    "extras": [
+      "jalapenos",
+      "garlic dip",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.9,
+    "reviews": [
+      {
+        "user": "user37a",
+        "rating": 3.7,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user37b",
+        "rating": 3.4,
+        "comment": "Good value for money."
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "name": "African Dish Special 38",
+    "category": "African Dish",
+    "price": 5.86,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "pepper",
+      "chicken"
+    ],
+    "extras": [
+      "garlic dip",
+      "mushrooms",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user38a",
+        "rating": 4.3,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user38b",
+        "rating": 3.4,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Sushi Special 39",
+    "category": "Sushi",
+    "price": 23.78,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "rice",
+      "shrimp",
+      "pepper"
+    ],
+    "extras": [
+      "double meat",
+      "spicy sauce",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.0,
+    "reviews": [
+      {
+        "user": "user39a",
+        "rating": 3.6,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user39b",
+        "rating": 4.8,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Drink Special 40",
+    "category": "Drink",
+    "price": 10.08,
+    "currency": "USD",
+    "description": "A delicious drink made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "chicken",
+      "pepper"
+    ],
+    "extras": [
+      "mushrooms",
+      "extra cheese",
+      "jalapenos"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user": "user40a",
+        "rating": 4.6,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user40b",
+        "rating": 4.5,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Rice Bowl Special 41",
+    "category": "Rice Bowl",
+    "price": 21.78,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "fish",
+      "beans",
+      "beef"
+    ],
+    "extras": [
+      "coleslaw",
+      "jalapenos",
+      "mushrooms"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.0,
+    "reviews": [
+      {
+        "user": "user41a",
+        "rating": 4.8,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user41b",
+        "rating": 3.6,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Rice Bowl Special 42",
+    "category": "Rice Bowl",
+    "price": 10.16,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "beans",
+      "pasta",
+      "fish"
+    ],
+    "extras": [
+      "extra cheese",
+      "garlic dip",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.6,
+    "reviews": [
+      {
+        "user": "user42a",
+        "rating": 4.0,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user42b",
+        "rating": 3.9,
+        "comment": "Would order again."
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Pizza Special 43",
+    "category": "Pizza",
+    "price": 14.97,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "pepper",
+      "rice",
+      "beans"
+    ],
+    "extras": [
+      "coleslaw",
+      "garlic dip",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 5.0,
+    "reviews": [
+      {
+        "user": "user43a",
+        "rating": 4.5,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user43b",
+        "rating": 3.9,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Dessert Special 44",
+    "category": "Dessert",
+    "price": 15.5,
+    "currency": "USD",
+    "description": "A delicious dessert made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "pasta",
+      "onion"
+    ],
+    "extras": [
+      "extra cheese",
+      "bbq sauce",
+      "spicy sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user": "user44a",
+        "rating": 3.8,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user44b",
+        "rating": 4.9,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Rice Bowl Special 45",
+    "category": "Rice Bowl",
+    "price": 17.36,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "pepper",
+      "onion",
+      "beef"
+    ],
+    "extras": [
+      "garlic dip",
+      "coleslaw",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.9,
+    "reviews": [
+      {
+        "user": "user45a",
+        "rating": 4.6,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user45b",
+        "rating": 5.0,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Pasta Special 46",
+    "category": "Pasta",
+    "price": 5.25,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "chicken",
+      "lettuce",
+      "cheese"
+    ],
+    "extras": [
+      "avocado",
+      "spicy sauce",
+      "jalapenos"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.6,
+    "reviews": [
+      {
+        "user": "user46a",
+        "rating": 4.9,
+        "comment": "Would order again."
+      },
+      {
+        "user": "user46b",
+        "rating": 4.0,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Sushi Special 47",
+    "category": "Sushi",
+    "price": 20.09,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "chicken",
+      "shrimp",
+      "pasta"
+    ],
+    "extras": [
+      "spicy sauce",
+      "bbq sauce",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.2,
+    "reviews": [
+      {
+        "user": "user47a",
+        "rating": 4.6,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user47b",
+        "rating": 3.0,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Salad Special 48",
+    "category": "Salad",
+    "price": 10.43,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "pasta",
+      "shrimp",
+      "pepper"
+    ],
+    "extras": [
+      "fried egg",
+      "coleslaw",
+      "jalapenos"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.7,
+    "reviews": [
+      {
+        "user": "user48a",
+        "rating": 4.0,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user48b",
+        "rating": 5.0,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Dessert Special 49",
+    "category": "Dessert",
+    "price": 9.65,
+    "currency": "USD",
+    "description": "A delicious dessert made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "lettuce",
+      "pasta"
+    ],
+    "extras": [
+      "coleslaw",
+      "mushrooms",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user": "user49a",
+        "rating": 4.7,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user49b",
+        "rating": 3.0,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Pizza Special 50",
+    "category": "Pizza",
+    "price": 20.38,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "pasta",
+      "beef"
+    ],
+    "extras": [
+      "avocado",
+      "extra cheese",
+      "spicy sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.6,
+    "reviews": [
+      {
+        "user": "user50a",
+        "rating": 3.6,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user50b",
+        "rating": 3.2,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Salad Special 51",
+    "category": "Salad",
+    "price": 15.88,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "fish",
+      "rice",
+      "pasta"
+    ],
+    "extras": [
+      "garlic dip",
+      "double meat",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.5,
+    "reviews": [
+      {
+        "user": "user51a",
+        "rating": 3.9,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user51b",
+        "rating": 4.8,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "name": "African Dish Special 52",
+    "category": "African Dish",
+    "price": 16.59,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "lettuce",
+      "rice",
+      "shrimp"
+    ],
+    "extras": [
+      "spicy sauce",
+      "jalapenos",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.3,
+    "reviews": [
+      {
+        "user": "user52a",
+        "rating": 4.3,
+        "comment": "Would order again."
+      },
+      {
+        "user": "user52b",
+        "rating": 4.4,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Sushi Special 53",
+    "category": "Sushi",
+    "price": 13.03,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "pepper",
+      "rice"
+    ],
+    "extras": [
+      "avocado",
+      "mushrooms",
+      "jalapenos"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.8,
+    "reviews": [
+      {
+        "user": "user53a",
+        "rating": 4.3,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user53b",
+        "rating": 4.6,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Pasta Special 54",
+    "category": "Pasta",
+    "price": 12.19,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "shrimp",
+      "lettuce",
+      "fish"
+    ],
+    "extras": [
+      "spicy sauce",
+      "extra cheese",
+      "jalapenos"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.3,
+    "reviews": [
+      {
+        "user": "user54a",
+        "rating": 4.4,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user54b",
+        "rating": 3.3,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Burger Special 55",
+    "category": "Burger",
+    "price": 12.24,
+    "currency": "USD",
+    "description": "A delicious burger made with fresh ingredients.",
+    "ingredients": [
+      "lettuce",
+      "fish",
+      "cheese"
+    ],
+    "extras": [
+      "garlic dip",
+      "jalapenos",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user55a",
+        "rating": 4.7,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user55b",
+        "rating": 3.1,
+        "comment": "Good value for money."
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Pasta Special 56",
+    "category": "Pasta",
+    "price": 20.8,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "beans",
+      "pasta",
+      "beef"
+    ],
+    "extras": [
+      "coleslaw",
+      "avocado",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.7,
+    "reviews": [
+      {
+        "user": "user56a",
+        "rating": 4.9,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user56b",
+        "rating": 3.9,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Salad Special 57",
+    "category": "Salad",
+    "price": 6.82,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "beans",
+      "beef",
+      "chicken"
+    ],
+    "extras": [
+      "avocado",
+      "jalapenos",
+      "extra cheese"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.7,
+    "reviews": [
+      {
+        "user": "user57a",
+        "rating": 4.0,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user57b",
+        "rating": 4.1,
+        "comment": "Good value for money."
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "name": "Salad Special 58",
+    "category": "Salad",
+    "price": 7.05,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "beans",
+      "beef"
+    ],
+    "extras": [
+      "extra cheese",
+      "mushrooms",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.9,
+    "reviews": [
+      {
+        "user": "user58a",
+        "rating": 3.9,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user58b",
+        "rating": 4.2,
+        "comment": "Good value for money."
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Dessert Special 59",
+    "category": "Dessert",
+    "price": 19.49,
+    "currency": "USD",
+    "description": "A delicious dessert made with fresh ingredients.",
+    "ingredients": [
+      "shrimp",
+      "beef",
+      "chicken"
+    ],
+    "extras": [
+      "extra cheese",
+      "bbq sauce",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.6,
+    "reviews": [
+      {
+        "user": "user59a",
+        "rating": 4.1,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user59b",
+        "rating": 3.3,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Pizza Special 60",
+    "category": "Pizza",
+    "price": 19.02,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "tomato",
+      "fish"
+    ],
+    "extras": [
+      "garlic dip",
+      "double meat",
+      "mushrooms"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.5,
+    "reviews": [
+      {
+        "user": "user60a",
+        "rating": 3.7,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user60b",
+        "rating": 3.9,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Sushi Special 61",
+    "category": "Sushi",
+    "price": 14.97,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "onion",
+      "cheese"
+    ],
+    "extras": [
+      "extra cheese",
+      "avocado",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.9,
+    "reviews": [
+      {
+        "user": "user61a",
+        "rating": 3.7,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user61b",
+        "rating": 4.9,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Pasta Special 62",
+    "category": "Pasta",
+    "price": 13.77,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "pasta",
+      "beans",
+      "shrimp"
+    ],
+    "extras": [
+      "jalapenos",
+      "double meat",
+      "mushrooms"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.5,
+    "reviews": [
+      {
+        "user": "user62a",
+        "rating": 4.8,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user62b",
+        "rating": 4.6,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "name": "African Dish Special 63",
+    "category": "African Dish",
+    "price": 17.95,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "shrimp",
+      "pasta"
+    ],
+    "extras": [
+      "garlic dip",
+      "avocado",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.9,
+    "reviews": [
+      {
+        "user": "user63a",
+        "rating": 5.0,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user63b",
+        "rating": 4.4,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Rice Bowl Special 64",
+    "category": "Rice Bowl",
+    "price": 8.74,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "chicken",
+      "pasta"
+    ],
+    "extras": [
+      "bbq sauce",
+      "extra cheese",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user64a",
+        "rating": 3.9,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user64b",
+        "rating": 4.2,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "name": "Drink Special 65",
+    "category": "Drink",
+    "price": 10.55,
+    "currency": "USD",
+    "description": "A delicious drink made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "pepper",
+      "cheese"
+    ],
+    "extras": [
+      "bbq sauce",
+      "double meat",
+      "spicy sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.6,
+    "reviews": [
+      {
+        "user": "user65a",
+        "rating": 3.8,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user65b",
+        "rating": 5.0,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Salad Special 66",
+    "category": "Salad",
+    "price": 19.7,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "shrimp",
+      "cheese",
+      "fish"
+    ],
+    "extras": [
+      "spicy sauce",
+      "double meat",
+      "mushrooms"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.6,
+    "reviews": [
+      {
+        "user": "user66a",
+        "rating": 4.1,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user66b",
+        "rating": 4.4,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Grill Special 67",
+    "category": "Grill",
+    "price": 12.8,
+    "currency": "USD",
+    "description": "A delicious grill made with fresh ingredients.",
+    "ingredients": [
+      "chicken",
+      "shrimp",
+      "pasta"
+    ],
+    "extras": [
+      "bbq sauce",
+      "garlic dip",
+      "jalapenos"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.6,
+    "reviews": [
+      {
+        "user": "user67a",
+        "rating": 4.5,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user67b",
+        "rating": 5.0,
+        "comment": "Would order again."
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Grill Special 68",
+    "category": "Grill",
+    "price": 16.8,
+    "currency": "USD",
+    "description": "A delicious grill made with fresh ingredients.",
+    "ingredients": [
+      "rice",
+      "tomato",
+      "onion"
+    ],
+    "extras": [
+      "garlic dip",
+      "mushrooms",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.4,
+    "reviews": [
+      {
+        "user": "user68a",
+        "rating": 4.4,
+        "comment": "Not bad but could be better."
+      },
+      {
+        "user": "user68b",
+        "rating": 3.3,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Grill Special 69",
+    "category": "Grill",
+    "price": 10.15,
+    "currency": "USD",
+    "description": "A delicious grill made with fresh ingredients.",
+    "ingredients": [
+      "lettuce",
+      "chicken",
+      "fish"
+    ],
+    "extras": [
+      "coleslaw",
+      "avocado",
+      "mushrooms"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.3,
+    "reviews": [
+      {
+        "user": "user69a",
+        "rating": 4.7,
+        "comment": "Not bad but could be better."
+      },
+      {
+        "user": "user69b",
+        "rating": 3.2,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Dessert Special 70",
+    "category": "Dessert",
+    "price": 6.76,
+    "currency": "USD",
+    "description": "A delicious dessert made with fresh ingredients.",
+    "ingredients": [
+      "shrimp",
+      "lettuce",
+      "beef"
+    ],
+    "extras": [
+      "spicy sauce",
+      "jalapenos",
+      "mushrooms"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.7,
+    "reviews": [
+      {
+        "user": "user70a",
+        "rating": 4.0,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user70b",
+        "rating": 4.6,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "name": "African Dish Special 71",
+    "category": "African Dish",
+    "price": 10.64,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "beans",
+      "pepper",
+      "beef"
+    ],
+    "extras": [
+      "double meat",
+      "fried egg",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.8,
+    "reviews": [
+      {
+        "user": "user71a",
+        "rating": 4.0,
+        "comment": "Not bad but could be better."
+      },
+      {
+        "user": "user71b",
+        "rating": 3.0,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "name": "African Dish Special 72",
+    "category": "African Dish",
+    "price": 22.62,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "pepper",
+      "tomato",
+      "lettuce"
+    ],
+    "extras": [
+      "spicy sauce",
+      "coleslaw",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.7,
+    "reviews": [
+      {
+        "user": "user72a",
+        "rating": 4.1,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user72b",
+        "rating": 4.0,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "name": "Pasta Special 73",
+    "category": "Pasta",
+    "price": 8.8,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "lettuce",
+      "rice",
+      "onion"
+    ],
+    "extras": [
+      "spicy sauce",
+      "double meat",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.6,
+    "reviews": [
+      {
+        "user": "user73a",
+        "rating": 4.5,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user73b",
+        "rating": 5.0,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Sushi Special 74",
+    "category": "Sushi",
+    "price": 5.78,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "pepper",
+      "shrimp"
+    ],
+    "extras": [
+      "spicy sauce",
+      "fried egg",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.7,
+    "reviews": [
+      {
+        "user": "user74a",
+        "rating": 4.6,
+        "comment": "Not bad but could be better."
+      },
+      {
+        "user": "user74b",
+        "rating": 4.0,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Sushi Special 75",
+    "category": "Sushi",
+    "price": 19.59,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "pepper",
+      "rice",
+      "onion"
+    ],
+    "extras": [
+      "double meat",
+      "spicy sauce",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user75a",
+        "rating": 4.6,
+        "comment": "Would order again."
+      },
+      {
+        "user": "user75b",
+        "rating": 4.1,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "name": "Dessert Special 76",
+    "category": "Dessert",
+    "price": 24.67,
+    "currency": "USD",
+    "description": "A delicious dessert made with fresh ingredients.",
+    "ingredients": [
+      "rice",
+      "beef",
+      "onion"
+    ],
+    "extras": [
+      "extra cheese",
+      "avocado",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.7,
+    "reviews": [
+      {
+        "user": "user76a",
+        "rating": 4.2,
+        "comment": "Exceeded my expectations."
+      },
+      {
+        "user": "user76b",
+        "rating": 3.9,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "name": "Pasta Special 77",
+    "category": "Pasta",
+    "price": 23.08,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "pepper",
+      "beef",
+      "rice"
+    ],
+    "extras": [
+      "extra cheese",
+      "bbq sauce",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user77a",
+        "rating": 4.3,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user77b",
+        "rating": 3.9,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "name": "African Dish Special 78",
+    "category": "African Dish",
+    "price": 7.2,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "cheese",
+      "pasta"
+    ],
+    "extras": [
+      "mushrooms",
+      "spicy sauce",
+      "jalapenos"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user": "user78a",
+        "rating": 4.5,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user78b",
+        "rating": 3.7,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "name": "Salad Special 79",
+    "category": "Salad",
+    "price": 21.17,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "beans",
+      "tomato",
+      "beef"
+    ],
+    "extras": [
+      "mushrooms",
+      "double meat",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.0,
+    "reviews": [
+      {
+        "user": "user79a",
+        "rating": 3.6,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user79b",
+        "rating": 4.6,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Pasta Special 80",
+    "category": "Pasta",
+    "price": 24.72,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "beans",
+      "chicken",
+      "fish"
+    ],
+    "extras": [
+      "coleslaw",
+      "garlic dip",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.7,
+    "reviews": [
+      {
+        "user": "user80a",
+        "rating": 3.6,
+        "comment": "Not bad but could be better."
+      },
+      {
+        "user": "user80b",
+        "rating": 4.2,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "name": "Rice Bowl Special 81",
+    "category": "Rice Bowl",
+    "price": 18.34,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "pasta",
+      "shrimp",
+      "rice"
+    ],
+    "extras": [
+      "fried egg",
+      "spicy sauce",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.4,
+    "reviews": [
+      {
+        "user": "user81a",
+        "rating": 5.0,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user81b",
+        "rating": 5.0,
+        "comment": "Would order again."
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "name": "Drink Special 82",
+    "category": "Drink",
+    "price": 6.33,
+    "currency": "USD",
+    "description": "A delicious drink made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "rice",
+      "pepper"
+    ],
+    "extras": [
+      "spicy sauce",
+      "extra cheese",
+      "garlic dip"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.9,
+    "reviews": [
+      {
+        "user": "user82a",
+        "rating": 4.6,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user82b",
+        "rating": 4.8,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "name": "African Dish Special 83",
+    "category": "African Dish",
+    "price": 16.01,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "pasta",
+      "shrimp",
+      "beans"
+    ],
+    "extras": [
+      "jalapenos",
+      "mushrooms",
+      "garlic dip"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user": "user83a",
+        "rating": 5.0,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user83b",
+        "rating": 5.0,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "name": "African Dish Special 84",
+    "category": "African Dish",
+    "price": 12.84,
+    "currency": "USD",
+    "description": "A delicious african dish made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "chicken",
+      "beef"
+    ],
+    "extras": [
+      "fried egg",
+      "spicy sauce",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.4,
+    "reviews": [
+      {
+        "user": "user84a",
+        "rating": 4.8,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user84b",
+        "rating": 4.2,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Rice Bowl Special 85",
+    "category": "Rice Bowl",
+    "price": 19.97,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "fish",
+      "lettuce",
+      "beans"
+    ],
+    "extras": [
+      "fried egg",
+      "jalapenos",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.4,
+    "reviews": [
+      {
+        "user": "user85a",
+        "rating": 3.8,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user85b",
+        "rating": 4.7,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "name": "Pizza Special 86",
+    "category": "Pizza",
+    "price": 22.98,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "beef",
+      "pepper"
+    ],
+    "extras": [
+      "extra cheese",
+      "double meat",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user86a",
+        "rating": 4.0,
+        "comment": "Absolutely delicious!"
+      },
+      {
+        "user": "user86b",
+        "rating": 3.3,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Grill Special 87",
+    "category": "Grill",
+    "price": 5.08,
+    "currency": "USD",
+    "description": "A delicious grill made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "pasta",
+      "fish"
+    ],
+    "extras": [
+      "jalapenos",
+      "bbq sauce",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user87a",
+        "rating": 4.9,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user87b",
+        "rating": 3.2,
+        "comment": "Absolutely delicious!"
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Drink Special 88",
+    "category": "Drink",
+    "price": 18.44,
+    "currency": "USD",
+    "description": "A delicious drink made with fresh ingredients.",
+    "ingredients": [
+      "chicken",
+      "tomato",
+      "onion"
+    ],
+    "extras": [
+      "bbq sauce",
+      "coleslaw",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user88a",
+        "rating": 4.9,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user88b",
+        "rating": 3.9,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Sushi Special 89",
+    "category": "Sushi",
+    "price": 20.2,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "shrimp",
+      "rice"
+    ],
+    "extras": [
+      "mushrooms",
+      "bbq sauce",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.5,
+    "reviews": [
+      {
+        "user": "user89a",
+        "rating": 4.5,
+        "comment": "Super filling and flavorful."
+      },
+      {
+        "user": "user89b",
+        "rating": 4.3,
+        "comment": "Very tasty and fresh."
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Pizza Special 90",
+    "category": "Pizza",
+    "price": 9.17,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "rice",
+      "cheese"
+    ],
+    "extras": [
+      "spicy sauce",
+      "garlic dip",
+      "extra cheese"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.6,
+    "reviews": [
+      {
+        "user": "user90a",
+        "rating": 3.9,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user90b",
+        "rating": 3.1,
+        "comment": "Would order again."
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Salad Special 91",
+    "category": "Salad",
+    "price": 15.85,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "rice",
+      "chicken",
+      "pepper"
+    ],
+    "extras": [
+      "coleslaw",
+      "extra cheese",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.0,
+    "reviews": [
+      {
+        "user": "user91a",
+        "rating": 4.7,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user91b",
+        "rating": 4.8,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Grill Special 92",
+    "category": "Grill",
+    "price": 10.24,
+    "currency": "USD",
+    "description": "A delicious grill made with fresh ingredients.",
+    "ingredients": [
+      "chicken",
+      "fish",
+      "onion"
+    ],
+    "extras": [
+      "spicy sauce",
+      "mushrooms",
+      "jalapenos"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.5,
+    "reviews": [
+      {
+        "user": "user92a",
+        "rating": 4.8,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user92b",
+        "rating": 4.7,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Salad Special 93",
+    "category": "Salad",
+    "price": 9.82,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "cheese",
+      "beef",
+      "tomato"
+    ],
+    "extras": [
+      "coleslaw",
+      "garlic dip",
+      "mushrooms"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.5,
+    "reviews": [
+      {
+        "user": "user93a",
+        "rating": 4.8,
+        "comment": "Not bad but could be better."
+      },
+      {
+        "user": "user93b",
+        "rating": 4.2,
+        "comment": "Exceeded my expectations."
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Pasta Special 94",
+    "category": "Pasta",
+    "price": 15.03,
+    "currency": "USD",
+    "description": "A delicious pasta made with fresh ingredients.",
+    "ingredients": [
+      "pepper",
+      "pasta",
+      "shrimp"
+    ],
+    "extras": [
+      "avocado",
+      "mushrooms",
+      "coleslaw"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.9,
+    "reviews": [
+      {
+        "user": "user94a",
+        "rating": 3.7,
+        "comment": "Not bad but could be better."
+      },
+      {
+        "user": "user94b",
+        "rating": 4.1,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Salad Special 95",
+    "category": "Salad",
+    "price": 6.13,
+    "currency": "USD",
+    "description": "A delicious salad made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "lettuce",
+      "shrimp"
+    ],
+    "extras": [
+      "coleslaw",
+      "mushrooms",
+      "double meat"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.4,
+    "reviews": [
+      {
+        "user": "user95a",
+        "rating": 3.6,
+        "comment": "Would order again."
+      },
+      {
+        "user": "user95b",
+        "rating": 4.3,
+        "comment": "Best I've had in a while!"
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Burger Special 96",
+    "category": "Burger",
+    "price": 9.1,
+    "currency": "USD",
+    "description": "A delicious burger made with fresh ingredients.",
+    "ingredients": [
+      "pepper",
+      "beef",
+      "pasta"
+    ],
+    "extras": [
+      "jalapenos",
+      "bbq sauce",
+      "spicy sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user": "user96a",
+        "rating": 3.5,
+        "comment": "Best I've had in a while!"
+      },
+      {
+        "user": "user96b",
+        "rating": 3.6,
+        "comment": "Would order again."
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "name": "Rice Bowl Special 97",
+    "category": "Rice Bowl",
+    "price": 8.37,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "fish",
+      "cheese",
+      "onion"
+    ],
+    "extras": [
+      "mushrooms",
+      "fried egg",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.1,
+    "reviews": [
+      {
+        "user": "user97a",
+        "rating": 4.1,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user97b",
+        "rating": 3.4,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "name": "Rice Bowl Special 98",
+    "category": "Rice Bowl",
+    "price": 18.12,
+    "currency": "USD",
+    "description": "A delicious rice bowl made with fresh ingredients.",
+    "ingredients": [
+      "onion",
+      "pepper",
+      "rice"
+    ],
+    "extras": [
+      "mushrooms",
+      "coleslaw",
+      "avocado"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.2,
+    "reviews": [
+      {
+        "user": "user98a",
+        "rating": 4.3,
+        "comment": "Very tasty and fresh."
+      },
+      {
+        "user": "user98b",
+        "rating": 4.6,
+        "comment": "Not bad but could be better."
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Pizza Special 99",
+    "category": "Pizza",
+    "price": 9.79,
+    "currency": "USD",
+    "description": "A delicious pizza made with fresh ingredients.",
+    "ingredients": [
+      "shrimp",
+      "pepper",
+      "pasta"
+    ],
+    "extras": [
+      "coleslaw",
+      "spicy sauce",
+      "bbq sauce"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 3.7,
+    "reviews": [
+      {
+        "user": "user99a",
+        "rating": 5.0,
+        "comment": "Would order again."
+      },
+      {
+        "user": "user99b",
+        "rating": 3.3,
+        "comment": "Good value for money."
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "name": "Sushi Special 100",
+    "category": "Sushi",
+    "price": 11.94,
+    "currency": "USD",
+    "description": "A delicious sushi made with fresh ingredients.",
+    "ingredients": [
+      "tomato",
+      "beans",
+      "cheese"
+    ],
+    "extras": [
+      "bbq sauce",
+      "garlic dip",
+      "fried egg"
+    ],
+    "options": {
+      "size": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "spice_level": [
+        "mild",
+        "medium",
+        "hot"
+      ]
+    },
+    "rating": 4.3,
+    "reviews": [
+      {
+        "user": "user100a",
+        "rating": 3.9,
+        "comment": "Good value for money."
+      },
+      {
+        "user": "user100b",
+        "rating": 3.9,
+        "comment": "Super filling and flavorful."
+      }
+    ]
+  }
+]

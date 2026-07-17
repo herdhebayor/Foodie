@@ -47,6 +47,10 @@ export default async function RootLayout({ children }) {
     
     
           <html lang="en">
+            <head>
+            </head>
+            
+
             <body
               className={`${playfair.variable} ${poppins.variables} antialiased`}
             >

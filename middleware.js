@@ -1,6 +1,6 @@
 import { withAuth } from "next-auth/middleware";
 
-console.log("🔥 MIDDLEWARE LOADED");
+
 
 export default withAuth(
   function middleware(req) {

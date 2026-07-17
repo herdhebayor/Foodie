@@ -14,8 +14,6 @@ export default async function getOrderById(orderId) {
     user: userId, 
   }).lean();
 
-  console.log(order)
-
   if (!order) return null;
 
   return JSON.parse(JSON.stringify(order));

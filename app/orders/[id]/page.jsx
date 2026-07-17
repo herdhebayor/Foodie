@@ -1,61 +1,135 @@
-import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import { cache } from 'react';
 import getOrderById from '@/app/actions/getOrderById';
+import { resolveImageSrc } from '@/utils/resolveImageSrc';
+import Link from 'next/link';
+import { FaChevronLeft } from "react-icons/fa";
+import { getSessionUser } from '@/utils/getSessionUser';
+import { getUser } from '@/app/actions/getUser';
+import DelBtn from '@/components/DelBtn'
 
 async function fetchOrder(id) {
   return await getOrderById(id);
 }
 
+async function fetchUser() {
+  return await getUser();
+}
+
 const getCachedOrder = cache(fetchOrder);
 export default async function OrderDetails({ params }) {
-   const {id} = await params;
+  const { id } = await params;
   const order = await getCachedOrder(id);
+  console.log('order:', order);
 
-  console.log('order details', order);
+  const getCachedUser = cache(fetchUser);
+    const session = getSessionUser();
+  
+    const [dbUser] = await Promise.all([
+      getCachedUser(),
+    ]);
 
   if (!order) {
-    return <p>Order not found</p>;
+    return <div className='flex min-h-screen items-center justify-center px-4 py-20 text-slate-600'>Order not found</div>;
   }
 
+  if (!dbUser) {
+    return (
+      <div className='flex min-h-screen items-center justify-center bg-white px-4 pt-20 py-16'>
+        <div className='w-full max-w-xl md:rounded-4xl border border-gray-100 bg-white p-8 text-center shadow-lg'>
+          <h1 className='text-2xl font-bold text-slate-900'>You need to be logged in to view this page</h1>
+          <p className='mt-2 text-sm text-slate-500'>Sign in to access your profile, saved favorites, and recent orders.</p>
+          <Link href='/login' className='mt-6 inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-semibold text-white'>Login</Link>
+        </div>
+      </div>
+    );
+  }
+
+  if(order.user !== dbUser._id){
+    return (
+      <div className='flex min-h-screen bg-white flex-col items-center justify-center px-4 py-20 text-slate-600'>
+        <h2 className="text-xl font-bold">You are not authorized to view this order</h2>
+        <Link href={`/profile/user/${dbUser._id}`} className='ml-2 inline-flex items-center gap-1 mt-4 rounded-xl shadow-sm w-fit px-4 py-3 text-orange-600 hover:text-orange-700'>
+          <FaChevronLeft /> Back to orders
+        </Link>
+      </div>
+     )
+  }
+  
+
   return (
-    <div className="container mx-auto p-6 space-y-6">
-      <h1 className="text-2xl flex items-center font-bold">
-        Order Details
-        <span className={`px-1 text-sm text-gray-500 ml-4 rounded-md ${order.status ==='pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'}`}>
-          {order.status}...
-        </span>
-      </h1>
-
-      <div className="border p-4 rounded">
-        <p><b>Name:</b> {order.receiver}</p>
-        <p><b>Phone:</b> {order.phone}</p>
-        <p><b>Address:</b> {order.deliveryAddress}</p>
-      </div>
-
-      {/* Items */}
-      <div className="border p-4 rounded">
-        <h2 className="font-semibold mb-3">Items</h2>
-
-        {order.items.map((item, i) => (
-          <div key={i} className="flex justify-between items-center border-b py-2">
-            <span className="flex items-center">
-              <img src={`/images/${item.image}`} alt={item.name} className="w-10 h-10 object-cover rounded mr-3 inline-block"/>
-              {item.name} × {item.quantity}
-            </span>
-            <span>₦{item.purchasePrice}</span>
+    <div className='min-h-screen bg-white px-4 py-16 pt-25 md:pt-30 md:px-8'>
+      <div className='mx-auto realtive rounded-4xl border border-gray-100 bg-white p-6 shadow-xl md:p-8'>
+        <Link href={`/orders`} className=' inline-flex items-center mb-10 gap-2 text-sm font-medium text-orange-600 hover:text-orange-700'>
+          <FaChevronLeft /> Back to orders
+        </Link>
+        <div className='flex flex-col gap-3 md:flex-row md:items-center md:justify-between'>
+          <div>
+            <p className='text-sm font-semibold uppercase tracking-[0.25em] text-orange-600'>Order details</p>
+            <h1 className='text-2xl font-bold text-slate-900'>Order id:{order._id?.slice(-6)}</h1>
           </div>
-        ))}
-      </div>
+          <span className={`rounded-full px-3 py-1 text-sm font-semibold ${order.status === 'pending' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'}`}>
+            {order.status}
+          </span>
+        </div>
 
-      {/* Summary */}
-      <div className="border p-4 rounded space-y-1">
-        <p>Subtotal: ₦{order.subtotal}</p>
-        <p>Tax: ₦{order.tax}</p>
-        <p>Delivery Fee: ₦{order.deliveryFee}</p>
+        <div className='mt-6 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]'>
+          <div className='rounded-3xl border border-gray-100 bg-gray-50 p-5'>
+            <h2 className='text-lg font-semibold text-slate-900'>Delivery info</h2>
+            <div className='mt-4 space-y-2 text-sm text-slate-600'>
+              <p><span className='font-semibold text-slate-900'>Name:</span> {order.receiver}</p>
+              <p><span className='font-semibold text-slate-900'>Phone:</span> {order.phone}</p>
+              <p><span className='font-semibold text-slate-900'>Address:</span> {order.deliveryAddress}</p>
+            </div>
+          </div>
 
-        <p className="font-bold text-lg">
-          Total: ₦{order.totalAmount}
-        </p>
+          <div className='rounded-3xl border border-gray-100 bg-orange-50 p-5'>
+            <h2 className='text-lg font-semibold text-slate-900'>Summary</h2>
+            <div className='mt-4 space-y-2 text-sm text-slate-600'>
+              <div className='flex items-center justify-between'><span>Subtotal</span><span className='font-semibold text-slate-900'>&#x20A6;{order.subtotal.toLocaleString('en-US')}</span></div>
+              <div className='flex items-center justify-between'><span>Tax</span><span className='font-semibold text-slate-900'>&#x20A6;{order.tax.toLocaleString('en-US')}</span></div>
+              <div className='flex items-center justify-between'><span>Delivery fee</span><span className='font-semibold text-slate-900'>&#x20A6;{order.deliveryFee.toLocaleString('en-US')}</span></div>
+              <div className='flex items-center justify-between border-t border-dashed pt-3 text-base font-semibold text-slate-900'><span>Total</span><span>&#x20A6;{order.totalAmount.toLocaleString('en-US')}</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div className='mt-6 rounded-3xl border border-gray-100 bg-white p-5'>
+          <h2 className='text-lg font-semibold text-slate-900'>Items</h2>
+          <div className='mt-4 space-y-3'>
+            {order.items?.map((item, index) => (
+              <div key={index} className='flex items-center justify-between gap-3 rounded-2xl border border-gray-100 bg-gray-50 px-4 py-3'>
+                <div className='flex items-center gap-3'>
+                  <div className='h-20 w-20 overflow-hidden rounded-xl'>
+                    <Image src={resolveImageSrc(item.image)} alt={item.name} width={48} height={48} className='h-full w-full object-cover' />
+                  </div>
+                  <div>
+                    <p className='font-semibold text-slate-900'>{item.name}</p>
+                    <p className='text-sm text-slate-500'>Qty: {item.quantity}</p>
+                    <p className='text-sm text-slate-500'>Size: {item?.size || 'normal'}</p>
+                    <p className='text-sm text-slate-500'>Spice: {item?.spiceLevel || 'normal'}</p>
+                    <div className='mt-1 flex flex-wrap gap-2'>
+                      {item.removeIngredients?.length > 0 && item.removeIngredients.map((ing, index) => (
+                        <span key={index} className='rounded-full bg-orange-50 px-2.5 py-1 text-xs font-medium text-orange-600'>
+                          {ing}
+                        </span>
+                      ))}
+                    </div>
+                    <div className='mt-1 flex flex-wrap gap-2'>
+                      {item.extras?.length > 0 && item.extras.map((extra, eIndex) => (
+                        <span key={eIndex} className='rounded-full bg-orange-50 px-2.5 py-1 text-xs font-medium text-orange-600'>
+                          {extra.name}
+                        </span>
+                      ))}
+                    </div>
+                    <p className='font-semibold text-slate-900'>&#x20A6;{item.purchasePrice.toLocaleString('en-US')}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <DelBtn order={order} page={true}/>
       </div>
     </div>
   );

@@ -1,90 +1,98 @@
-'use client'
+ 'use client'
 
 import React,{useState, useEffect} from 'react'
 import ProductCard from './ProductCard'
-import {data } from '@/Product'
+import {data } from '@/foodie_products'
 import Link from 'next/link'
-import { toast } from 'react-toastify'
+import Image from 'next/image';
 import { useGlobalContext } from '@/context/GlobalContext'
-import { IoCartOutline } from "react-icons/io5";
+import { FaArrowRightLong  } from "react-icons/fa6";
+import { BiCustomize } from "react-icons/bi";
 
 function Features() {
 
-    const {cart, setCart}= useGlobalContext()
-    const [btnDisabled, setBtnDisabled]= useState(false)
+    const { setSelectedCategory}= useGlobalContext()
 
-    const handleAddToCart = ()=>{
-        const itemExist = cart.find(p => p.id === product.id)
-        if(itemExist){
-          alert('item allready add to cart')
-        }
-        const newProduct = {
-          id: product.id,
-          image: product.image,
-          name:product.name,
-          quantity: 1,
-          extras: [],
-          totalPrice:product.price ,
-        }
-    
-        setCart(prev => [...prev, newProduct])
-        setBtnDisabled(true)
-        toast.success('item added to cart')
-      }
 
-    console.log('data', data)
-   const shuffledProduct = data.products.sort(() => Math.random() - 1)
-	const recentProducts = shuffledProduct.slice(0, 6)
+    const recentProducts = data.products.slice(0, 6)
   return (
-    <div className='relative z-2 w-screen bg-gray-100 min-h-screen'>
-        <div className='container mx-auto block px-4 md:px-10 py-10'>
-            <section className='flex flex-col justify-center text-slate-900 '>
-                <h2 className='text-3xl font-bold text-center mb-6'>Our Featured Dishes</h2>
-                <div className='flex flex-wrap items-center justify-center gap-4'>
+    <div className='relative z-2 w-full bg-white min-h-screen overflow-x-hidden'>
+        <div className='md:container-xl lg:container mx-auto block px-0 md:px-8 lg:px-10 py-4'>
+            <section className='py-10 text-slate-900'>
+                <div className='flex justify-between items-center mb-4'>
+                    <h2 className='text-lg md:text-xl font-bold'>Explore our category</h2>
+                    <Link href={'/menu'} className='text-orange-600 text-sm md:text-base flex items-center gap-2 font-bold hover:text-orange-700'>
+                        View All <FaArrowRightLong className='ml-1'/>
+                    </Link>
+                </div>
+                    <div className="flex snap-x snap-mandatory ml-2 md:ml-0 snap-center overflow-x-scroll gap-4 p-4 md:rounded-xl md:shadow-lg">
+                    <Link href='/menu' onClick={()=> setSelectedCategory('Burger')} className='flex flex-col gap-1 p-4 justify-center min-h-35 min-w-50 min-w-50 md:min-w-55 rounded-xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
+                        <Image src='/images/chicken_burger.jpg' alt='Burger' width={80} height={80} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-lg'/>
+                        <p className='w-full text-center text-sm'>Burger</p>
+                    </Link>
+
+                    <Link href='/menu' onClick={()=> setSelectedCategory('Pizza')} className='flex flex-col gap-1 p-4 justify-center min-h-35 min-w-50 md:min-w-55 rounded-xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
+                        <Image src='/images/pepperoni-pizza.jpg' alt='Pizza' width={80} height={80} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-lg'/>
+                        <p className='w-full text-center text-sm'>Pizza</p>
+                    </Link>
+
+                    <Link href='/menu' onClick={()=> setSelectedCategory('Drinks')} className='flex flex-col gap-1 p-4 justify-center min-h-35 min-w-50 md:min-w-55 rounded-xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
+                        <Image src='/images/oreo-milkshake.jpg' alt='Milkshakes' width={80} height={80} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-lg'/>
+                        <p className='w-full text-center text-sm'>Milkshakes</p>
+                    </Link>
+
+                    <Link href='/menu' onClick={()=> setSelectedCategory('Dessert')} className='flex flex-col gap-1 p-4 justify-center min-h-35 min-w-50 md:min-w-55 rounded-xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
+                        <Image src='/images/chocolate_cake_slice.jpg' alt='Dessert' width={80} height={80} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-lg'/>
+                        <p className='w-full text-center text-sm'>Dessert</p>
+                    </Link>
+
+                    <Link href='/menu' onClick={()=> setSelectedCategory('Wrap')} className='flex flex-col gap-1 p-4 justify-center min-h-35 min-w-50 md:min-w-55 rounded-xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
+                        <Image src='/images/bbq-chicken.jpg' alt='BBQ grills' width={80} height={80} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-lg'/>
+                        <p className='w-full text-center text-sm'>BBQ grills</p>
+                    </Link>
+
+                    <Link href='/menu' onClick={()=> setSelectedCategory('All')} className='flex flex-col gap-1 p-4 justify-center min-h-35 min-w-50 md:min-w-55 rounded-xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
+                        <BiCustomize className='w-12 h-12 sm:w-16 sm:h-16 mx-auto'/>
+                        <p className='w-full text-center text-sm'>More</p>
+                    </Link>
+                </div>
+            </section>
+            <section className='flex flex-col justify-center text-slate-900 my-10'>
+                <div className='flex items-center justify-between mb-6 px-4 md:px-0'>
+                    <h2 className='md:text-xl text-lg font-bold'>Popular From Today</h2>
+                <Link href={'/menu'} className='text-orange-600 text-sm md:text-base flex items-center gap-2 font-bold hover:text-orange-700'>
+                    View All <FaArrowRightLong className='ml-1'/>
+                </Link>
+                </div>
+                
+                <div className='flex gap-4 md:gap-6 overflow-x-auto py-4 px-2 ml-2 md:ml-0 md:p-4 snap-x snap-mandatory '>
                     {recentProducts.map((item) => (
-                        <div key={item.id} className='text-sm w-35 hover:shadow-2xl  md:w-45 items-center bg-white p-2 rounded-md'>
-                            <Link href={`/menu/${item.id}`}>
-                                <img src={`/images/${item.image}`} className='w-fit h-25 md:h-30 mb-4  mx-auto' alt='product'/>
-                            </Link>
-                                <div className='flex flex-col space-y-3 text-slate-900'>
-                                    <p className='font-bold line-clamp-1'>{item.name}</p>
-                                    <p className='text-sm line-clamp-2'>{item.description}</p>
-                                    <div className='bg-green-50 flex justify-between items-center p-1'>
-                                        <h2 className='md:text-lg font-bold'>${item.price}</h2>
-                                        <button onClick={handleAddToCart} disabled={btnDisabled} className='bg-slate-900 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed text-green-50 h-full p-1 text-center'><IoCartOutline className='text-xl md:text-2xl text-green-500'/></button>
-                                    </div>
-                                </div>
-                            
-                        </div>
+                        <Link href={`/menu/${item.id}`} key={item.id} className='min-w-40 md:min-w-50 snap-center snap-always flex justify-center'>
+                                <ProductCard product={item}/>
+                        </Link>
                     ))}
                     
                 </div>
-                <Link href={'/menu'} className='bg-slate-900 mx-auto mt-6 text-green-50 px-4 py-2 rounded-md'>
-                    View Full Menu
-                </Link>
-            </section>
-            <section className='flex flex-col text-slate-900 justify-center mt-10'>
-                    {/* Service section */}
-                    <h2 className='text-3xl font-bold text-center mb-6 mt-10'>Why Choose Us?</h2>
-                    <div className='flex flex-col md:flex-row items-center justify-center gap-6'>
-                        <div className='flex flex-col items-center text-center gap-4'>
-                            <img src='/images/freshIng.jpg' className='w-auto h-50' alt='fresh'/>
-                            <h3 className='font-bold text-lg'>Fresh Ingredients</h3>
-                            <p className='text-sm text-gray-500 w-100'>We use only the freshest ingredients to prepare our dishes, ensuring a delicious and healthy meal every time.</p>
-                        </div>
-                        <div className='flex flex-col items-center text-center gap-4'>
-                            <img src='/images/delivery.jpg' className='w-auto h-50' alt='delivery'/>
-                            <h3 className='font-bold text-lg'>Fast Delivery</h3>
-                            <p className='text-sm text-gray-500 w-100'>Our efficient delivery system ensures that your food arrives hot and on time, every time.</p>
-                        </div>
-                        <div className='flex flex-col items-center text-center gap-4'>
-                            <img src='/images/quality.jpg' className='w-auto h-50' alt='quality'/>
-                            <h3 className='font-bold text-lg'>Quality Service</h3>
-                            <p className='text-sm text-gray-500 w-100'>Our friendly and professional staff are dedicated to providing you with the best dining experience possible.</p>
-                        </div>
+                </section>
+                <section className='px-2 md:px-0'>
+                <div className="bg-orange-600 rounded-xl relative flex justify-around items-center gap-8 lg:justify-between p-6 pb-10 lg:px-10">
+                    <div className='flex flex-col w-1/2'>
+                        <h3 className='text-sm font-bold mb-1 text-white p-2 md:p-3 px-4 bg-orange-400 rounded-lg w-fit'>Special Offers</h3>
+                        <p className='md:text-5xl text-3xl font-bold'>Enjoy free delivery on orders above 
+                            <span className="text-4xl md:text-6xl text-slate-900"> 20K</span>
+                        </p>
                     </div>
-            </section>
-
+                    <div className='w-1/2 min-w-fit h-full'>
+                        <div className='flex items-center justify-center w-full h-full '>
+                            <Image src='/images/veggie_burger.jpg' alt='Special Offer' width={500} height={500} className=' object-cover w-full h-full min-h-30 md:min-h-50 '/>
+                        </div>
+                        
+                    </div>
+                    <Link href='/menu' className="px-8 py-3 cursor-pointer bg-white hover:bg-zinc-50 duration-150 ease-in-out shadow-xl border border-gray-300 rounded-lg flex items-center text-slate-900 font-bold absolute right-1/3 bottom-6">
+                            Order Now <FaArrowRightLong className='text-orange-600 ml-2'/>
+                    </Link>
+                </div>
+                </section>
         </div>
       
     </div>

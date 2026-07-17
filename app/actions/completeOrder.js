@@ -4,6 +4,7 @@ import connectDB from "@/database";
 import { getSessionUser } from "@/utils/getSessionUser";
 import Order from "@/models/orderModel";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 
 
@@ -34,9 +35,12 @@ export async function completeOrder(formData) {
       name: item.name,
       image: item.image,
       quantity: item.quantity || 1,
-      purchasePrice: item.totalPrice || item.price,
+      purchasePrice: item.totalPrice ,
+      spiceLevel: item.spiceLevel,
+      size:item.size,
       price: item.price,
       extras: item.extras || [],
+      removeIngredients:item.removeIngredients || []
     }));
 
     const orderData = {
@@ -53,20 +57,26 @@ export async function completeOrder(formData) {
       totalAmount: Number(formData.get("totalAmount") || 0),
       deliveryTime: formData.get("deliveryTime"),
       status: "pending",
+      reviews:[]
     };
 
     const newOrder = await Order.create(orderData);
 
-    // ✅ RETURN PLAIN OBJECT ONLY
+    // Create an unread notification message for the user
+    await (await import("@/app/actions/sendOrderPlacedNotification")).sendOrderPlacedNotification({
+      body: `Your order "${newOder._id}" has been placed successfully. Tarck your order from here`,
+      orderId: newOrder._id,
+    });
+
+
+
+
     return {
       success: true,
       message: "Order placed successfully!",
       orderId: newOrder._id.toString(),
     };
-     
   } catch (error) {
-    console.error("Order error:", error);
-
     return {
       success: false,
       error: "Failed to place order",

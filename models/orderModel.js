@@ -63,7 +63,25 @@ const OrderSchema = new Schema(
             type: String,
             enum: ['pending', 'confirmed', 'out for delivery', 'delivered', 'cancelled'],
             default: 'pending'
-        }
+        },
+		reviews:[{
+					user: {
+						type: mongoose.Schema.Types.ObjectId,
+						ref: 'User',
+						required: true,
+					},
+					comment:{
+						type:String,
+						default:'',
+						required:true
+					},
+					rating:{
+						type:Number,
+						default:1,
+						required: true,
+					}
+					
+				}]
 	},
 	{ timestamps: true }
 )

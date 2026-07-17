@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap'); */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -26,7 +28,60 @@
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-poppins), sans-serif;
+  overflow-x: hidden;
 }
+
+.bg-ambient-orange {
+  background: radial-gradient(circle at top, rgba(249, 115, 22, 0.16), transparent 45%);
+}
+
+.bg-ambient-orange-strong {
+  background: radial-gradient(circle at top, rgba(249, 115, 22, 0.18), transparent 55%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Hide default scrollbars (scrolling still works) */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Container scales to 100% width */
+.Toastify__toast-container {
+  @apply !w-full !max-w-none !p-4;
+}
+
+/* Base styles for all cards */
+.Toastify__toast {
+  @apply !text-white !rounded-md !shadow-md !w-full !mx-auto;
+}
+
+/* Success State Override */
+.Toastify__toast--success {
+  @apply !bg-green-600;
+}
+.Toastify__progress-bar--success {
+  @apply !bg-green-300;
+}
+
+/* Error State Override */
+.Toastify__toast--error {
+  @apply !bg-red-600;
+}
+.Toastify__progress-bar--error {
+  @apply !bg-red-300;
+}
+
+
