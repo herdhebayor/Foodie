@@ -210,7 +210,7 @@ function Menu() {
                   No dishes match your search yet. Try a different keyword or category.
                 </div>
               ) : (
-                <div className='grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]  place-items-center md:gap-6'>
+                <div className='grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]  place-items-center md:gap-6'>
                   {regularProducts.length > 0 ? regularProducts.map((product) => (
                     <Link className='cursor-pointer' href={`/menu/${product.id}`} key={product.id}>
                       <ProductCard product={product} />
