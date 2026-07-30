@@ -1,23 +1,34 @@
-
-import { getUser } from '@/app/actions/getUser'
 import { updateUser } from '@/app/actions/updateUser'
-import { cache } from 'react'
+import { cookies } from 'next/headers'
 import Link from 'next/link'
+import { getApiUrl } from '@/utils/apiUrl'
 
-async function fetchUser() {
-  return await getUser()
+function getCookieHeader() {
+  return cookies().getAll().map((cookie) => `${cookie.name}=${cookie.value}`).join('; ');
 }
 
-async function EditProfile() {
-  const getCachedUser = cache(fetchUser)
+async function fetchUser() {
+  const response = await fetch(getApiUrl('/api/user/getUser'), {
+    cache: 'no-store',
+    headers: {
+      cookie: getCookieHeader(),
+    },
+  });
+  if (!response.ok) return null;
+  const json = await response.json();
+  return json.success ? json.user : null;
+}
 
-  const [dbUser] = await Promise.all([getCachedUser()])
+async function EditProfile({ params }) {
+  const dbUser = await fetchUser()
+
+  const callbackUrl = `/profile/user/${params.id}/edit-profile`;
 
   if (!dbUser) {
     return (
       <div className='w-screen h-screen flex flex-col justify-center items-center bg-white px-6'>
-        <h2 className="text-2xl font-bold text-slate-900">User Not Found</h2>
-        <Link href='/login' className='px-4 rounded-lg mt-4 py-3 text-white bg-orange-500 hover:bg-orange-600'>
+        <h2 className="text-2xl font-bold text-slate-900">Looks like you've been logged out of your account</h2>
+        <Link href={`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`} className='bg-orange-500 px-6 py-3 rounded-lg text-center text-white hover:bg-orange-600'>
           Login to continue
         </Link>
       </div>

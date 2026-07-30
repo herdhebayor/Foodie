@@ -5,6 +5,7 @@ import deleteUser from '@/app/actions/deleteUser'
 import { useSession } from 'next-auth/react'
 import Loading from '@/components/Loading'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const msgs = [
     {
@@ -47,14 +48,15 @@ function page() {
     }
 
     const {data:session, status} = useSession()
-    console.log(session.user)
+    const pathname = usePathname()
+    console.log(session?.user)
 
     if(!session || !session?.user?.id){
         return <div className =" w-screen h-screen bg-white flex flex-col justify-center items-center">
             <h2 className='text-2xl font-bold text-slate-900'>
                 No user found
             </h2>
-            <Link href='/login' className="min-w-30 px-4 py-3 text-white mb-5 bg-orange-500 hover:bg-orange-600 shadow-sm w-fit rounded-lg">
+            <Link href={`/login?callbackUrl=${encodeURIComponent(pathname)}`} className="min-w-30 px-4 py-3 text-white mb-5 bg-orange-500 hover:bg-orange-600 shadow-sm w-fit rounded-lg">
                 Log in to continue
             </Link>
         </div>

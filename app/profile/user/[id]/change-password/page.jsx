@@ -20,8 +20,8 @@ function ChangePassword() {
     const {data: session} = useSession()
     if(!session || !session.user.id){
       return ( <div className='w-screen bg-white h-screen text-slate-900 flex flex-col justify-center items-center '>
-            <h2 className='text-2xl font-bold'>No user is found</h2>
-            <Link href='/login' className='px-4 py-3 rounded-xl mt-4 text-white bg-orange-500 hover:bg-orange-600'>Login to continue</Link>
+            <h2 className='text-2xl font-bold'>No user is found, Signup to create an account with us</h2>
+            <Link href='/register' className='px-4 py-3 rounded-xl mt-4 text-white bg-orange-500 hover:bg-orange-600'>Create account</Link>
         </div>)
     }
 

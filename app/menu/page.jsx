@@ -15,13 +15,14 @@ import { useGlobalContext } from '@/context/GlobalContext';
 const categoryOptions = [
   { id: 'all', label: 'All', icon: MdOutlineRestaurantMenu },
   { id: 'Burger', label: 'Burgers', icon: CiBurger },
-  { id: 'Wrap', label: 'Wraps', icon: GiSandwich },
-  { id: 'Rice Bowl', label: 'Rice Bowls', icon: FaBowlFood },
+  { id: 'Wraps', label: 'Wraps', icon: GiSandwich },
+  { id: 'Snacks', label: 'Snacks', icon: FaBowlFood },
   { id: 'Dessert', label: 'Desserts', icon: MdCake },
   { id: 'Pizza', label: 'Pizza', icon: FaPizzaSlice },
   { id: 'Chicken', label: 'Chickens', icon: GiChickenOven },
   { id: 'Drinks', label: 'Drinks', icon: GiSodaCan },
-  { id: 'Fries', label: 'Fries', icon: GiSodaCan },
+  { id: 'Sides', label: 'Sides', icon: GiSodaCan },
+  { id: 'BBQ_&_Grills', label: 'BBQ & Grills', icon: GiSodaCan },
 ]
 
 function Menu() {
@@ -32,7 +33,7 @@ function Menu() {
   const productName = products.map(product => (product.name) )
    
 
-  const getCategoryLabel = (product) => product?.category?.name ?? product?.category ?? 'Featured'
+  const getCategoryLabel = (product) => product?.category?.name 
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState('featured')
 
@@ -41,22 +42,22 @@ function Menu() {
 
     const result = products.filter((product) => {
       const matchesCategory = selectedCategory === 'all' || getCategoryLabel(product) === selectedCategory
-      const haystack = `${product.name} ${product.description} ${getCategoryLabel(product)}`.toLowerCase()
+      const haystack = `${product.name.toLowerCase()} ${product.description.toLowerCase()} ${getCategoryLabel(product)}`
       const matchesSearch = !query || haystack.includes(query)
 
       return matchesCategory && matchesSearch
     })
 
     return result.sort((a, b) => {
-      if (sortBy === 'price-low') return a.price - b.price
-      if (sortBy === 'price-high') return b.price - a.price
-      if (sortBy === 'rating') return (b.rating || 0) - (a.rating || 0)
+      if (sortBy === 'price-low') return a.pricing.basePrice - b.pricing.basePrice
+      if (sortBy === 'price-high') return b.pricing.basePrice - a.pricing.basePrice
+      if (sortBy === 'rating') return (b.reviewStats.averageRating || 0) - (a.reviewStats.averageRating || 0)
       return Number(b.featured) - Number(a.featured)
     })
   }, [products, searchQuery, selectedCategory, sortBy])
 
   const featuredProducts = filteredProducts.filter((product) => product.badges?.find(b => b === 'Featured ')).slice(0, 3)
-  const regularProducts = filteredProducts.filter((product) => !product.featured)
+  const regularProducts = filteredProducts.filter((product) => !product.badges?.find(b => b !== 'featured'))
 
   return (
     <div className='min-h-screen w-full bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.15),transparent_55%)] bg-gray-50 py-25 text-slate-900'>
@@ -144,7 +145,7 @@ function Menu() {
                         setSelectedCategory(category.id)
                         setShowMenuCategory(false)
                       }}
-                      className={`flex items-center rounded-xl px-3 py-2 text-left text-sm ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-gray-100'}`}
+                      className={`flex items-center cursor-pointer rounded-xl px-3 py-2 text-left text-sm ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-gray-100'}`}
                     >
                       <Icon className='mr-2 text-base' />
                       {category.label}
@@ -166,7 +167,7 @@ function Menu() {
                     key={category.id}
                     type='button'
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`flex items-center rounded-full border px-3 py-2 text-sm whitespace-nowrap ${isActive ? 'border-orange-500 bg-orange-50 text-orange-600' : 'border-gray-200 bg-white text-slate-700'}`}
+                    className={`flex items-center cursor-pointer rounded-full border px-3 py-2 text-sm whitespace-nowrap ${isActive ? 'border-orange-500 bg-orange-50 text-orange-600' : 'border-gray-200 bg-white text-slate-700'}`}
                   >
                     <Icon className='mr-2' />
                     {category.label}
@@ -176,7 +177,7 @@ function Menu() {
             </div>
 
             {featuredProducts.length > 0 && (
-              <section className='mb-6 rounded-2xl bg-white p-4 sm:p-2 shadow-sm'>
+              <section className='mb-6 rounded-2xl bg-white p-4 md:p-6 shadow-sm'>
                 <div className='mb-4 flex items-center justify-between'>
                   <div>
                     <h2 className='text-lg font-bold'>Popular picks</h2>
@@ -187,9 +188,9 @@ function Menu() {
                     Top rated
                   </div>
                 </div>
-                <div className='grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 place-items-center lg:gap-6'>
+                <div className='grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 place-items-center'>
                   {featuredProducts.map((product) => (
-                    <Link className='cursor-pointer' href={`/menu/${product.id}`} key={product.id}>
+                    <Link className='cursor-pointer max-150 md:max-w-200' href={`/menu/${product.id}`} key={product.id}>
                       <ProductCard product={product} />
                     </Link>
                   ))}
@@ -197,7 +198,7 @@ function Menu() {
               </section>
             )}
 
-            <section className='rounded-2xl bg-white p-4 sm:p-2 shadow-sm'>
+            <section className='rounded-2xl bg-white p-4 md:p-6 shadow-sm'>
               <div className='mb-4 flex items-center justify-between'>
                 <div>
                   <h2 className='text-lg font-bold'>Full menu</h2>
@@ -210,13 +211,13 @@ function Menu() {
                   No dishes match your search yet. Try a different keyword or category.
                 </div>
               ) : (
-                <div className='grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-4 md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]  place-items-center md:gap-6'>
+                <div className='grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4 md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]  place-items-center '>
                   {regularProducts.length > 0 ? regularProducts.map((product) => (
-                    <Link className='cursor-pointer' href={`/menu/${product.id}`} key={product.id}>
+                    <Link className='cursor-pointer max-w-150 md:max-w-200' href={`/menu/${product.id}`} key={product.id}>
                       <ProductCard product={product} />
                     </Link>
                   )) : filteredProducts.map((product) => (
-                    <Link className='cursor-pointer' href={`/menu/${product.id}`} key={product.id}>
+                    <Link className='cursor-pointer max-w-150 md:max-w-200' href={`/menu/${product.id}`} key={product.id}>
                       <ProductCard product={product} />
                     </Link>
                   ))}

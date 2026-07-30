@@ -17,7 +17,7 @@ export default function Onboarding() {
   useEffect(() => {
     if (loading) return <Loading/>; // Wait for session to load
     if (!user) {
-      router.push('/login')
+      router.push(`/login?callbackUrl=${encodeURIComponent('/onboarding')}`)
       return
     }
     

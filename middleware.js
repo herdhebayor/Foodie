@@ -23,7 +23,7 @@ export default withAuth(
         
          if (!token) {
             return Response.redirect(
-              new URL("/login", req.url)
+              new URL(`/login?callbackUrl=${encodeURIComponent(req.nextUrl.pathname)}`, req.url)
             );
           }
 

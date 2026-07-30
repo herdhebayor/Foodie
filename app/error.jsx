@@ -4,8 +4,10 @@
 
 import Link from 'next/link'
 import { FaExclamationCircle } from 'react-icons/fa'
+import { useRouter } from 'next/navigation'
 
 const ErrorPage = ({ error }) => {
+	const Router = useRouter()
 	return (
 		<section className='bg-white min-h-screen pt-25 grow'>
 			<div className='container m-auto py-24'>
@@ -18,16 +20,18 @@ const ErrorPage = ({ error }) => {
 							Something went wrong
 						</h1>
 						<p className='text-slate-500 text-xl mb-10'>{error.toString()}</p>
-						{error === "You've been logged out, log in to continue" 
-						?<Link
-							href='/login'
-							className='bg-orange-700 hover:bg-orange-800 text-white font-bold py-3 px-6 rounded-lg'
-						>Log in</Link>
-						:<Link
-							href='/'
-							className='bg-orange-700 hover:bg-orange-800 text-white font-bold py-3 px-6 rounded-lg'
-						>Go Home</Link>
-						}
+						
+						:<div className='flex justify-center gap-4'>
+						<button
+							onClick={() => Router.push('/')}
+							className='bg-orange-500 hover:bg-orange-600 cursor-pointer outline-0 text-white font-bold py-3 px-6 rounded-xl'
+						>Go Home</button>
+						<button
+							onClick={() => Router.back()}
+							className='bg-gray-700 cursor-pointer hover:bg-gray-800 outline-0 text-white font-bold py-3 px-6 rounded-xl'
+						>Go Back</button>
+						</div>
+						
 					</div>
 				</div>
 			</div>

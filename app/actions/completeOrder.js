@@ -3,8 +3,6 @@
 import connectDB from "@/database";
 import { getSessionUser } from "@/utils/getSessionUser";
 import Order from "@/models/orderModel";
-import { redirect } from "next/navigation";
-import { toast } from "react-toastify";
 
 
 
@@ -64,17 +62,15 @@ export async function completeOrder(formData) {
 
     // Create an unread notification message for the user
     await (await import("@/app/actions/sendOrderPlacedNotification")).sendOrderPlacedNotification({
-      body: `Your order "${newOder._id}" has been placed successfully. Tarck your order from here`,
-      orderId: newOrder._id,
+      body: `Your order "${newOrder._id}" has been placed successfully. Tarck your order from here`,
+      messageId:newOrder._id,
+      messageType:'order',
     });
-
-
 
 
     return {
       success: true,
       message: "Order placed successfully!",
-      orderId: newOrder._id.toString(),
     };
   } catch (error) {
     return {

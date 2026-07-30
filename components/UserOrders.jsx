@@ -41,9 +41,9 @@ function UserOrders({ orders }) {
                   <p className="text-sm text-slate-500">Total</p>
                   <p className="text-lg font-semibold text-slate-900">&#x20A6;{order.totalAmount.toLocaleString("en-US")}</p>
                 </div>
-                <div className="flex flex-col items-center md:items-end h-full gap-4 md:flex-row">
-                  <Link href={`/orders/${order._id}`} className="rounded-full border border-orange-100 px-3 py-1 text-sm w-30 font-semibold text-orange-600 transition hover:bg-orange-50">
-                    View details
+                <div className="flex flex-col items-center md:items-end h-full gap-4 xl:flex-row">
+                  <Link href={`/orders/${order._id}`} className="rounded-full border border-orange-100 px-6 py-1 text-sm w-fit font-semibold text-orange-600 transition hover:bg-orange-50">
+                    View 
                   </Link>
                   <DelBtn order={order} page={false}/>
                 </div>

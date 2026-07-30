@@ -1,4 +1,4 @@
-'use client'
+ 'use client'
 import React, { useEffect, useState } from 'react'
 
 import { useGlobalContext } from '@/context/GlobalContext';
@@ -6,11 +6,14 @@ import Toast from '@/components/Toast'
 import { FaRegHeart, FaHeart} from "react-icons/fa";
 import { likedProduct } from '@/app/actions/likeProduct';
 import unlikedProduct from '@/app/actions/unlikeProduct';
-import getUserLikedProduct from '@/app/actions/getUserLikedProduct';
 import { useSession } from 'next-auth/react';
+import { getApiUrl } from '@/utils/apiUrl';
 
 async function fetchLikedProducts() {
-  return await getUserLikedProduct();
+  const response = await fetch(getApiUrl('/api/user/getUserLikedProduct'));
+  if (!response.ok) return [];
+  const data = await response.json();
+  return data.success ? data.likedProducts : [];
 }
 
 function LikeBtn({ product }) {
@@ -74,7 +77,7 @@ function LikeBtn({ product }) {
 
                 if (!session?.user?.id) {
                   setShowToast(true)
-                  setToastType('info')
+                  setToastType('error')
                   setToastMessage('Log in to add favorite products')
                   return
                 }
@@ -105,7 +108,7 @@ function LikeBtn({ product }) {
 
                 if (!session?.user?.id) {
                   setShowToast(true)
-                  setToastType('info')
+                  setToastType('error')
                   setToastMessage('Log in to add favorite products')
                   return
                 }

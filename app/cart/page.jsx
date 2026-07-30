@@ -151,7 +151,7 @@ function Cart() {
                             <div className='w-150 p-6 py-10 relative flex flex-col justify-center space-y-4 rounded-xl bg-white '>
                                 <h2 className="text-2xl text-center font-bold w-full mb-4">You're Not Logged In</h2>
                                 <p className='text-center'>{message}</p>
-                                <Link onClick={()=>setLoginErr(false)} href='/login' className="px-8 w-fit min-w-30 py-3 bg-orange-600 text-white cursor-pointer rounded-xl mx-auto hover:bg-orange-500">Login</Link>
+                                <Link onClick={()=>setLoginErr(false)} href='/login?callbackUrl=%2Fcart' className="px-8 w-fit min-w-30 py-3 bg-orange-600 text-white cursor-pointer rounded-xl mx-auto hover:bg-orange-500">Login</Link>
                                 <button onClick={()=>setLoginErr(false)} className='absolute cursor-pointer right-5 top-5 w-fit font-bold text-2xl'><IoMdClose/></button>
                             </div>
                         </div>

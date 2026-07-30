@@ -13,10 +13,15 @@ import ButtonLoading from './ButtonLoading';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MdLogin, MdLogout } from "react-icons/md";
-import getUserMessages from '@/app/actions/getUserMessages';
 import Toast from '@/components/Toast'
+import { getApiUrl } from '@/utils/apiUrl';
 
-
+async function fetchUserMessages() {
+  const response = await fetch(getApiUrl('/api/user/getUserMessages'));
+  if (!response.ok) return [];
+  const json = await response.json();
+  return json.success ? json.messages : [];
+}
 
 function Navbar() {
 const [messages, setMessages] = useState([])
@@ -43,7 +48,7 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
           async function load() {
             try {
               setLoading(true);
-              const res = await getUserMessages();
+              const res = await fetchUserMessages();
               if (!mounted) return;
               setMessages(Array.isArray(res) ? res : [])
             } catch (e) {
@@ -78,7 +83,7 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
 
   
   return (
-    <div className="fixed top-0 text-sm flex bg-white backdrop-blur-md text-slate-900 font-semibold justify-center w-full left-0 z-100 py-4 md:pb-6 shadow-lg">
+    <div className="fixed top-0 text-sm flex bg-white backdrop-blur-md text-slate-900 font-semibold justify-center w-full left-0 z-50 py-4 md:pb-6 shadow-lg">
       <div className="w-full mx-auto flex items-center justify-between gap-3 px-4 sm:px-6">
         {/* //Web Logo */}
         <Link href='/' className="font-display text-xl md:text-[2vw] font-bold flex justify-center items-center">
@@ -92,20 +97,14 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
               <Link className={`${pathName === '/menu' ? 'text-orange-600 border-b-2 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out`} href="/menu">Menu</Link>
               <Link className={`${pathName === '/about_us' ? 'text-orange-600 border-b-2 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out`} href="/about_us">About Us</Link>
             </div>
-            <div className={`${pathName === '/cart' ? 'text-orange-600 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out relative`}>
-            <Link href="/cart">
-              <FiShoppingCart size={20}/>
-            </Link>
-            {cart.length > 0 && <span className="absolute -top-2 -right-2 p-1 h-4 w-4 flex text-white items-center justify-center text-xs bg-orange-600 rounded-full">{cart.length}</span>}
-          </div>
+            
           
           {
             session && (
               <>
                 <div className=" relative hover:text-green-400">
                     <Link href="/notification" className={`${pathName === '/notification' ? 'text-orange-600 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out flex items-center relative`}>
-                    <IoIosNotificationsOutline className="md:text-3xl sm:block hidden text-2xl"/>
-                    <span className="sm:hidden block">Notification</span>
+                    <span >Inbox</span>
                     </Link>
                     {messages.filter((m) => m.read === false).length > 0 && <span className="absolute -top-1 -right-1 h-0 w-0 border-3 border-red-500 rounded-full"></span>}
                 </div>
@@ -113,23 +112,25 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
               </>
             )
           }
+          <div className={`${pathName === '/cart' ? 'text-orange-600 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out relative`}>
+            <Link href="/cart">
+              <FiShoppingCart size={20}/>
+            </Link>
+            {cart.length > 0 && <span className="absolute -top-2 -right-2 p-1 h-4 w-4 flex text-white items-center justify-center text-xs bg-orange-600 rounded-full">{cart.length}</span>}
+          </div> 
         </div>
       
         {/* User */}
         <div className="flex  items-center gap-4 sm:gap-6">
           <div className="flex md:hidden items-center gap-4 mr-6">
-            <div className={`${pathName === '/cart' ? 'text-orange-600 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out relative`}>
-            <Link href="/cart">
-              <FiShoppingCart size={20}/>
-            </Link>
-            {cart.length > 0 && <span className="absolute -top-2 -right-2 p-1 h-4 w-4 flex text-white items-center justify-center text-xs bg-orange-600 rounded-full">{cart.length}</span>}
-            </div>
-            <div className=" relative hover:text-green-400">
+            
+            { session && <div className=" relative hover:text-green-400">
                     <Link href="/notification" className={`${pathName === '/notification' ? 'text-orange-600 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out flex items-center relative`}>
-                    <IoIosNotificationsOutline className="md:text-3xl text-2xl"/>
+                    Inbox
                     </Link>
                     {messages.filter((m) => m.read === false).length > 0 && <span className="absolute -top-1 -right-1 h-0 w-0 border-3 border-red-500 rounded-full"></span>}
               </div>
+            }
           </div>
             {
               session ? (
@@ -149,13 +150,19 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
             ):(
             //Login button
             <div className=" hidden md:flex items-center gap-2">
-              <Link href="/register" className="px-2 py-1.5 sm:px-3 sm:py-2 bg-orange-600 text-zinc-50 hover:text-md duration-150 ease-in border border-orange-500 text-xs sm:text-sm rounded-xl cursor-pointer"> Register </Link>
-              <Link href="/login" className="px-2 py-1.5 sm:px-3 sm:py-2 border border-orange-600 text-orange-600 text-xs sm:text-sm rounded-xl cursor-pointer">
+              <Link href={`/register?callbackUrl=${encodeURIComponent(pathName)}`} className="px-2 py-1.5 sm:px-3 sm:py-2 bg-orange-600 text-zinc-50 hover:text-md duration-150 ease-in border border-orange-500 text-xs sm:text-sm rounded-xl cursor-pointer"> Register </Link>
+              <Link href={`/login?callbackUrl=${encodeURIComponent(pathName)}`} className="px-2 py-1.5 sm:px-3 sm:py-2 border border-orange-600 text-orange-600 text-xs sm:text-sm rounded-xl cursor-pointer">
                 <span className='hidden sm:block'>Signin</span> <MdLogin size={18} className='sm:hidden block'/>
               </Link>
             </div>
             )
             }
+            <div className={`${pathName === '/cart' ? 'text-orange-600 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out relative`}>
+            <Link href="/cart">
+              <FiShoppingCart size={20}/>
+            </Link>
+            {cart.length > 0 && <span className="absolute -top-2 -right-2 p-1 h-4 w-4 flex text-white items-center justify-center text-xs bg-orange-600 rounded-full">{cart.length}</span>}
+            </div>
 
             <button
             type="button"
@@ -167,7 +174,7 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
             </button>
         </div>
       </div>
-      {showToast && <Toast/>}
+      <Toast/>
 
       {isMobileMenuOpen && (
         <div className="absolute top-full right-5 duration-300 transition-all p-3 ease-in-out  mt-2 w-[50%] rounded-2xl max-w-80 bg-white px-4 py-4 shadow-lg  md:hidden">
@@ -185,8 +192,8 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
               </>
             ) : (
               <div className="flex flex-col gap-2 pt-2">
-                <Link href="/register" onClick={closeMobileMenu} className="rounded-xl bg-orange-600 px-4 py-3 text-center text-white">Register</Link>
-                <Link href="/login" onClick={closeMobileMenu} className="rounded-xl border border-orange-600 px-3 py-3 text-center text-orange-600">Sign in</Link>
+                <Link href={`/register?callbackUrl=${encodeURIComponent(pathName)}`} onClick={closeMobileMenu} className="rounded-xl bg-orange-600 px-4 py-3 text-center text-white">Register</Link>
+                <Link href={`/login?callbackUrl=${encodeURIComponent(pathName)}`} onClick={closeMobileMenu} className="rounded-xl border border-orange-600 px-3 py-3 text-center text-orange-600">Sign in</Link>
               </div>
             )}
             {session && (

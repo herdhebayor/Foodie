@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
-import Toast from '@/components/Toast';
 import { useGlobalContext } from '@/context/GlobalContext';
 import { useUser } from '@/hooks/useUser';
 import { completeOrder } from '../actions/completeOrder';
@@ -29,7 +28,7 @@ function Checkout() {
       setShowToast(true)
       setToastMessage('User not logged in')
       setToastType('error')
-      router.replace('/login');
+      router.replace('/login?callbackUrl=%2Fcheckout');
     }else if (session && !user?.profileCompleted) {
       router.push('/onboarding');
     }
@@ -172,7 +171,6 @@ function Checkout() {
           </div>
         </div>
       </div>
-      <Toast/>
     </div>
   );
 }

@@ -1,6 +1,12 @@
-- [x] Update menu grid to use CSS Grid auto-fit in app/menu/page.jsx
-  - [x] Replace featured products grid-cols-* with grid-cols-[repeat(auto-fit,minmax(220px,1fr))]
-  - [x] Replace full menu grid-cols-* with grid-cols-[repeat(auto-fit,minmax(220px,1fr))]
-  - [x] Keep existing gap and place-items-center
+# Migration: userService → API fetch calls
 
+## Completed Steps
+- [x] Analyze codebase and understand current patterns
+- [x] User approves plan
+
+## Implementation Steps
+- [x] **Step 1**: Update `app/profile/user/[id]/page.jsx` — Replace direct userService imports with API fetch calls
+- [x] **Step 2**: Update `app/orders/page.jsx` — Replace direct userService imports with API fetch calls
+- [x] **Step 3**: Update `app/orders/[id]/page.jsx` — Replace direct userService imports with API fetch calls
+- [x] **Step 4**: Verify all files compile and run correctly — Build running successfully (no errors reported)
 

@@ -4,7 +4,7 @@ import connectDB from "@/database";
 import { getSessionUser } from "@/utils/getSessionUser";
 import Message from "@/models/messageModel";
 
-export async function sendOrderPlacedNotification({ body, orderId }) {
+export async function sendOrderPlacedNotification({ body, messageType }) {
   await connectDB();
 
   const sessionUser = await getSessionUser();
@@ -15,8 +15,7 @@ export async function sendOrderPlacedNotification({ body, orderId }) {
   await Message.create({
     user: sessionUser.userId,
     body: body || "Your order has been placed! View it in your orders.",
-    orderId,
-    messageType:'order',
+    messageType,
     read: false,
   });
 

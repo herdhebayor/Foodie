@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { registerUser } from "@/app/actions/registerNewUser";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import ButtonLoading from "@/components/ButtonLoading";
 import Toast from '@/components/Toast'
@@ -20,6 +20,7 @@ export default function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false)
     const { setShowToast, setToastMessage,setToastType } = useGlobalContext()
     const router = useRouter();
+  const pathname = usePathname();
   const { data: session, status } = useSession();
 
   useEffect(() => {
@@ -77,7 +78,7 @@ export default function RegisterForm() {
         setBtnDisabled(true)
         setGoogleLoading(true)
       const res = await signIn("google", {
-        callbackUrl: "/",
+        callbackUrl: (typeof window !== 'undefined') ? `${window.location.origin}/onboarding` : '/onboarding',
       });
       if(res.error){
         setError(res.error.message)
@@ -156,7 +157,7 @@ export default function RegisterForm() {
                       {googleLoading? <ButtonLoading /> : <><FcGoogle size={30} className='mr-4'/> Signin with Google</>}
                   </button>
 
-                  <p className='text-md text-gray-400 mt-6 mx-auto'>Don&apos;t have an account <span onClick={()=> router.push('/login')} className='text-blue-500 underline cursor-pointer'>Login</span></p>
+                  <p className='text-md text-gray-400 mt-6 mx-auto'>Don&apos;t have an account <span onClick={()=> router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`)} className='text-blue-500 underline cursor-pointer'>Login</span></p>
               </div>
             </div>
             <div className='bg-orange-500 md:flex w-[70%] hidden h-screen overflow-hidden'>

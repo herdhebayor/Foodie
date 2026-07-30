@@ -1,36 +1,54 @@
+
 import Image from 'next/image';
-import { cache } from 'react';
-import getOrderById from '@/app/actions/getOrderById';
 import { resolveImageSrc } from '@/utils/resolveImageSrc';
 import Link from 'next/link';
 import { FaChevronLeft } from "react-icons/fa";
-import { getSessionUser } from '@/utils/getSessionUser';
-import { getUser } from '@/app/actions/getUser';
 import DelBtn from '@/components/DelBtn'
+import { cookies } from 'next/headers';
+import { getApiUrl } from '@/utils/apiUrl';
 
-async function fetchOrder(id) {
-  return await getOrderById(id);
+async function getCookieHeader() {
+  const cookieStore = await cookies();
+  return cookieStore.getAll().map((cookie) => `${cookie.name}=${cookie.value}`).join('; ');
 }
 
 async function fetchUser() {
-  return await getUser();
+  const response = await fetch(getApiUrl('/api/user/getUser'), {
+    cache: 'no-store',
+    headers: { cookie: await getCookieHeader() },
+  });
+  if (!response.ok) return null;
+  const json = await response.json();
+  return json.success ? json.user : null;
 }
 
-const getCachedOrder = cache(fetchOrder);
+async function fetchOrders() {
+  const response = await fetch(getApiUrl('/api/user/getUserOrders'), {
+    cache: 'no-store',
+    headers: { cookie: await getCookieHeader() },
+  });
+  if (!response.ok) return [];
+  const json = await response.json();
+  return json.success ? json.orders : [];
+}
+
 export default async function OrderDetails({ params }) {
   const { id } = await params;
-  const order = await getCachedOrder(id);
-  console.log('order:', order);
+  const [orders, dbUser] = await Promise.all([
+    fetchOrders(),
+    fetchUser(),
+  ]);
 
-  const getCachedUser = cache(fetchUser);
-    const session = getSessionUser();
-  
-    const [dbUser] = await Promise.all([
-      getCachedUser(),
-    ]);
+
+  const order = orders.find((order)=> order._id === id)
 
   if (!order) {
-    return <div className='flex min-h-screen items-center justify-center px-4 py-20 text-slate-600'>Order not found</div>;
+    return <div className=' min-h-screen w-screen bg-white items-center justify-center px-4 py-20 text-slate-600'>
+      <span>Can not find the order you're looking for</span>
+      <Link href={'/orders'} className='ml-2 inline-flex items-center gap-1 mt-4 rounded-xl shadow-sm w-fit px-4 py-3 bg-orange-600 hover:bg-orange-700'>
+          <FaChevronLeft /> Back to orders
+        </Link>
+      </div>;
   }
 
   if (!dbUser) {
@@ -39,7 +57,7 @@ export default async function OrderDetails({ params }) {
         <div className='w-full max-w-xl md:rounded-4xl border border-gray-100 bg-white p-8 text-center shadow-lg'>
           <h1 className='text-2xl font-bold text-slate-900'>You need to be logged in to view this page</h1>
           <p className='mt-2 text-sm text-slate-500'>Sign in to access your profile, saved favorites, and recent orders.</p>
-          <Link href='/login' className='mt-6 inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-semibold text-white'>Login</Link>
+          <Link href={`/login?callbackUrl=${encodeURIComponent(`/orders/${id}`)}`} className='mt-6 inline-flex rounded-full bg-orange-600 px-5 py-3 text-sm font-semibold text-white'>Login</Link>
         </div>
       </div>
     );
@@ -49,7 +67,7 @@ export default async function OrderDetails({ params }) {
     return (
       <div className='flex min-h-screen bg-white flex-col items-center justify-center px-4 py-20 text-slate-600'>
         <h2 className="text-xl font-bold">You are not authorized to view this order</h2>
-        <Link href={`/profile/user/${dbUser._id}`} className='ml-2 inline-flex items-center gap-1 mt-4 rounded-xl shadow-sm w-fit px-4 py-3 text-orange-600 hover:text-orange-700'>
+        <Link href={'/orders'} className='ml-2 inline-flex items-center gap-1 mt-4 rounded-xl shadow-sm w-fit px-4 py-3 text-orange-600 hover:text-orange-700'>
           <FaChevronLeft /> Back to orders
         </Link>
       </div>
@@ -60,7 +78,7 @@ export default async function OrderDetails({ params }) {
   return (
     <div className='min-h-screen bg-white px-4 py-16 pt-25 md:pt-30 md:px-8'>
       <div className='mx-auto realtive rounded-4xl border border-gray-100 bg-white p-6 shadow-xl md:p-8'>
-        <Link href={`/orders`} className=' inline-flex items-center mb-10 gap-2 text-sm font-medium text-orange-600 hover:text-orange-700'>
+        <Link href={'/orders'} className=' inline-flex cursor-pointer items-center mb-10 gap-2 text-sm font-medium text-orange-600 hover:text-orange-700'>
           <FaChevronLeft /> Back to orders
         </Link>
         <div className='flex flex-col gap-3 md:flex-row md:items-center md:justify-between'>
@@ -129,7 +147,7 @@ export default async function OrderDetails({ params }) {
             ))}
           </div>
         </div>
-        <DelBtn order={order} page={true}/>
+        <DelBtn order={order} page={false}/>
       </div>
     </div>
   );

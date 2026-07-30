@@ -8,7 +8,7 @@ import { MdDeliveryDining, MdLocationPin } from "react-icons/md";
 // bg-[url('/images/image-bg.jpg)]
 function Hero() {
   return (
-    <div style={{backgroundImage:"url('/images/image-bg.jpg')"}} className="  bg-cover flex justify-center h-screen max-h-150  text-white w-full overflow-hidden">
+    <div style={{backgroundImage:"url('/images/image-bg.jpg')"}} className="  bg-cover flex justify-center h-screen max-h-180  text-white w-full overflow-hidden">
       <div className=' bg-black/50  mx-auto px-4   md:px-10 flex  pt-20 py-10  w-full h-full'>
         <div className='md:container-xl lg:container w-full flex flex-col-reverse relative md:flex-row  md:justify-between gap-8 justify-left oveflow-hidden md:pt-8'>
           <div className='flex flex-col justify-end w-[80%] md:w-[60%] space-y-4 py-4 px-0 sm:px-2'>

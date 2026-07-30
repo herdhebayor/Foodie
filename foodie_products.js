@@ -1106,8 +1106,8 @@ export const data = {
       description:
         "Our Chocolate Malt Milkshake is prepared fresh with premium chocolate ice cream, rich malt powder, and fresh milk for the ultimate classic diner beverage experience.",
       category: {
-        id: "cat_drink",
-        name: "Drinks",
+        id: "cat_dessert",
+        name: "Dessert",
       },
       pricing: {
         currency: "NGN",
@@ -1964,7 +1964,7 @@ export const data = {
         "Our Peri Peri Chicken is succulent flame-grilled chicken marinated overnight in an authentic, zesty peri peri spice blend. Prepared fresh at The Grill Hub using premium quality ingredients, it's a favourite among regular customers and pairs beautifully with any of our fresh sides or cold drinks.",
       category: {
         id: "cat_chickens",
-        name: "Chickens",
+        name: "Chicken",
       },
       restaurant: {
         id: "rest_009",
@@ -2114,12 +2114,12 @@ export const data = {
         {
           id: "var_beef",
           name: "Beef Suya",
-          priceModifier: 0,
+          price: 0,
         },
         {
           id: "var_chicken",
           name: "Chicken Suya",
-          priceModifier: 200,
+          price: 200,
         },
       ],
       extras: [
@@ -2228,12 +2228,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Size",
-          priceModifier: 2400,
+          price: 2400,
         },
         {
           id: "var_large",
           name: "Large Size",
-          priceModifier: 3200,
+          price: 3200,
         },
       ],
       extras: [
@@ -2361,12 +2361,12 @@ export const data = {
         {
           id: "var_standard",
           name: "Standard Cup (150ml)",
-          priceModifier: 2600,
+          price: 2600,
         },
         {
           id: "var_large",
           name: "Large Cup (300ml)",
-          priceModifier: 3800,
+          price: 3800,
         },
       ],
       extras: [
@@ -2485,12 +2485,12 @@ export const data = {
         {
           id: "var_standard",
           name: "Standard Size",
-          priceModifier: 2000,
+          price: 2000,
         },
         {
           id: "var_jumbo",
           name: "Jumbo Size",
-          priceModifier: 2600,
+          price: 2600,
         },
       ],
       extras: [
@@ -2609,12 +2609,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Bottle (500ml)",
-          priceModifier: 2500,
+          price: 2500,
         },
         {
           id: "var_large",
           name: "Sharing Size Bottle (1L)",
-          priceModifier: 3700,
+          price: 3700,
         },
       ],
       extras: [
@@ -2736,12 +2736,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Portion",
-          priceModifier: 2300,
+          price: 2300,
         },
         {
           id: "var_large",
           name: "Large Sharing Portion",
-          priceModifier: 3000,
+          price: 3000,
         },
       ],
       extras: [
@@ -2864,12 +2864,12 @@ export const data = {
         {
           id: "var_standard_pack",
           name: "Standard Box (Ideal for 1-2)",
-          priceModifier: 6500,
+          price: 6500,
         },
         {
           id: "var_party_pack",
           name: "Mega Party Platter (Double Quantity)",
-          priceModifier: 11500,
+          price: 11500,
         },
       ],
       extras: [
@@ -2954,8 +2954,8 @@ export const data = {
       description:
         "Satisfy your sweet tooth with our signature Vanilla Milkshake, blended fresh to order at Sweet Treats Kitchen. Crafted with rich vanilla bean ice cream, whole milk, and pure vanilla extract, this beverage is whipped until perfectly thick and frothy, then finished with a generous dollop of fresh whipped cream. It is delivered in insulated thermal packaging with ice packs to ensure it arrives ice-cold and refreshing.",
       category: {
-        id: "cat_drinks",
-        name: "Drinks",
+        id: "cat_dessert",
+        name: "Dessert",
       },
       pricing: {
         currency: "NGN",
@@ -2975,12 +2975,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Size (400ml)",
-          priceModifier: 2400,
+          price: 2400,
         },
         {
           id: "var_large",
           name: "Large Size (600ml)",
-          priceModifier: 3200,
+          price: 3200,
         },
       ],
       extras: [
@@ -3095,12 +3095,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Cup (500ml)",
-          priceModifier: 1900,
+          price: 1900,
         },
         {
           id: "var_large",
           name: "Jumbo Cup (750ml)",
-          priceModifier: 2500,
+          price: 2500,
         },
       ],
       extras: [
@@ -3207,12 +3207,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Bowl (350g)",
-          priceModifier: 1700,
+          price: 1700,
         },
         {
           id: "var_large",
           name: "Large Sharing Bowl (700g)",
-          priceModifier: 2900,
+          price: 2900,
         },
       ],
       extras: [
@@ -3335,12 +3335,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Portion",
-          priceModifier: 850,
+          price: 850,
         },
         {
           id: "var_large",
           name: "Large Sharing Portion",
-          priceModifier: 1300,
+          price: 1300,
         },
       ],
       extras: [
@@ -3535,12 +3535,12 @@ export const data = {
         {
           id: "var_6_pcs",
           name: "6 Pieces Box",
-          priceModifier: 1600,
+          price: 1600,
         },
         {
           id: "var_12_pcs",
           name: "12 Pieces Sharing Box",
-          priceModifier: 3000,
+          price: 3000,
         },
       ],
       extras: [
@@ -3664,12 +3664,12 @@ export const data = {
         {
           id: "var_eva",
           name: "Eva Water (75cl)",
-          priceModifier: 600,
+          price: 600,
         },
         {
           id: "var_eva-2",
           name: "Eva water (1L)",
-          priceModifier: 1200,
+          price: 1200,
         },
       ],
       extras: [],
@@ -3752,12 +3752,12 @@ export const data = {
         {
           id: "var_single",
           name: "Single Pastry",
-          priceModifier: 2600,
+          price: 2600,
         },
         {
           id: "var_box_of_3",
           name: "Box of 3 Pastries",
-          priceModifier: 7200,
+          price: 7200,
         },
       ],
       extras: [
@@ -3868,12 +3868,12 @@ export const data = {
         {
           id: "var_single",
           name: "Single Egg Roll",
-          priceModifier: 850,
+          price: 850,
         },
         {
           id: "var_pack_of_3",
           name: "Value Pack of 3",
-          priceModifier: 2700,
+          price: 2700,
         },
       ],
       extras: [
@@ -3975,12 +3975,12 @@ export const data = {
         {
           id: "var_regular_10pcs",
           name: "Regular Bucket (10 Pieces)",
-          priceModifier: 9900,
+          price: 9900,
         },
         {
           id: "var_large_15pcs",
           name: "Large Bucket (15 Pieces)",
-          priceModifier: 12850,
+          price: 12850,
         },
       ],
       extras: [
@@ -4118,12 +4118,12 @@ export const data = {
         {
           id: "var_standard_10pcs",
           name: "Standard Portion (10 Pieces)",
-          priceModifier: 1700,
+          price: 1700,
         },
         {
           id: "var_sharing_20pcs",
           name: "Sharing Portion (20 Pieces)",
-          priceModifier: 3300,
+          price: 3300,
         },
       ],
       extras: [
@@ -4244,12 +4244,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Size (10 inch)",
-          priceModifier: 8500,
+          price: 8500,
         },
         {
           id: "var_large",
           name: "Large Size (12 inch)",
-          priceModifier: 12500,
+          price: 12500,
         },
       ],
       extras: [
@@ -4384,12 +4384,12 @@ export const data = {
         {
           id: "var_regular_500ml",
           name: "Regular Bottle (500ml)",
-          priceModifier: 3000,
+          price: 3000,
         },
         {
           id: "var_large_750ml",
           name: "Large Bottle (750ml)",
-          priceModifier: 4200,
+          price: 4200,
         },
       ],
       extras: [
@@ -4502,12 +4502,12 @@ export const data = {
         {
           id: "var_regular_500ml",
           name: "Regular Bottle (500ml)",
-          priceModifier: 2500,
+          price: 2500,
         },
         {
           id: "var_large_750ml",
           name: "Large Bottle (750ml)",
-          priceModifier: 3500,
+          price: 3500,
         },
       ],
       extras: [
@@ -4614,12 +4614,12 @@ export const data = {
         {
           id: "var_2_pcs",
           name: "Standard Box (2 Pieces)",
-          priceModifier: 4800,
+          price: 4800,
         },
         {
           id: "var_4_pcs",
           name: "Jumbo Box (4 Pieces)",
-          priceModifier: 8500,
+          price: 8500,
         },
       ],
       extras: [
@@ -4751,7 +4751,7 @@ export const data = {
         "Savor our Deluxe Chicken Shawarma Wrap, a premium handcrafted favorite made fresh daily at The Burger Spot. Packed with seasoned, grilled chicken breast strips, crisp shredded cabbage, sweet carrots, and juicy tomatoes, everything is generously drizzled with our signature creamy garlic mayo and a touch of sweet chili sauce. Tightly rolled in a soft flour tortilla and lightly toasted for a satisfying crunch, it is wrapped in foil to arrive hot and intact.",
       category: {
         id: "cat_wrap",
-        name: "Wrap",
+        name: "Wraps",
       },
       pricing: {
         currency: "NGN",
@@ -4768,12 +4768,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Size Wrap",
-          priceModifier: 4600,
+          price: 4600,
         },
         {
           id: "var_large",
           name: "Jumbo Size Wrap",
-          priceModifier: 6000,
+          price: 6000,
         },
       ],
       extras: [
@@ -4907,12 +4907,12 @@ export const data = {
         {
           id: "var_regular",
           name: "Regular Single Patty",
-          priceModifier: 5500,
+          price: 5500,
         },
         {
           id: "var_large",
           name: "Jumbo Double Patty",
-          priceModifier: 6500,
+          price: 6500,
         },
       ],
       extras: [
@@ -5068,12 +5068,12 @@ export const data = {
         {
           id: "var_cb_8p",
           name: "8 Pieces (Standard)",
-          priceModifier: 12500,
+          price: 12500,
         },
         {
           id: "var_cb_12p",
           name: "12 Pieces (Large)",
-          priceModifier: 18500,
+          price: 18500,
         },
       ],
       extras: [
@@ -5187,7 +5187,7 @@ export const data = {
         "Our Big Bang Chicken Wrap is loaded with tender, flame-grilled chicken breast strips, melted shredded mozzarella, crisp lettuce, juicy tomatoes, and our signature spicy sweet chili explosion sauce, all wrapped up and toasted in a soft flour tortilla.",
       category: {
         id: "cat_wrap",
-        name: "Wrap",
+        name: "Wraps",
       },
       pricing: {
         currency: "NGN",
@@ -5206,17 +5206,17 @@ export const data = {
         {
           id: "var_wrap_regular",
           name: "Standard (No hot-dog)",
-          priceModifier: 4600,
+          price: 4600,
         },
         {
           id: "var_wrap_medium",
           name: "Plus One Hot-Dog",
-          priceModifier: 5800,
+          price: 5800,
         },
         {
           id: "var_wrap_large",
           name: "Plus Two Hot-Dogs",
-          priceModifier: 7000,
+          price: 7000,
         },
       ],
       extras: [
@@ -5343,12 +5343,12 @@ export const data = {
         {
           id: "var_sm_regular",
           name: "Regular (500ml)",
-          priceModifier: 3500,
+          price: 3500,
         },
         {
           id: "var_sm_large",
           name: "Large (700ml)",
-          priceModifier: 4700,
+          price: 4700,
         },
       ],
       extras: [
@@ -5443,7 +5443,7 @@ export const data = {
         "Our Garden Chicken Salad Wrap blends light, tender shredded seasoned chicken breast with sliced cucumbers, garden tomatoes, sweet corn, and a splash of low-fat herb dressing, securely rolled into a toasted wheat flatbread wrap.",
       category: {
         id: "cat_wrap",
-        name: "Wrap",
+        name: "Wraps",
       },
       pricing: {
         currency: "NGN",
@@ -5463,17 +5463,17 @@ export const data = {
         {
           id: "var_csw_regular",
           name: "Standard (No hot-dog)",
-          priceModifier: 5500,
+          price: 5500,
         },
         {
           id: "var_csw_medium",
           name: "Plus One Hot-Dog",
-          priceModifier: 6700,
+          price: 6700,
         },
         {
           id: "var_csw_large",
           name: "Plus Two Hot-Dogs",
-          priceModifier: 7900,
+          price: 7900,
         },
       ],
       extras: [
@@ -5615,17 +5615,17 @@ export const data = {
         {
           id: "var_ic_vanilla",
           name: "Classic Vanilla Bean",
-          priceModifier: 8500,
+          price: 8500,
         },
         {
           id: "var_ic_chocolate",
           name: "Belgian Double Chocolate",
-          priceModifier: 8500,
+          price: 8500,
         },
         {
           id: "var_ic_caramel",
           name: "Salted Caramel Swirl",
-          priceModifier: 9000,
+          price: 9000,
         },
       ],
       extras: [
@@ -5759,8 +5759,8 @@ export const data = {
       description:
         "Our Gourmet Oreo Milkshake is mixed to creamy perfection using premium whole-milk dairy soft serve, a generous helping of real crushed Oreo cookies, and vanilla bean extract. Topped with a mountain of fresh whipped cream and an extra Oreo crumble layer.",
       category: {
-        id: "cat_Milkshakes",
-        name: "Milkshakes",
+        id: "cat_dessert",
+        name: "Dessert",
       },
       pricing: {
         currency: "NGN",
@@ -5780,17 +5780,17 @@ export const data = {
         {
           id: "var_ms_oreo",
           name: "Classic Oreo Double Blend",
-          priceModifier: 6000,
+          price: 6000,
         },
         {
           id: "var_ms_strawberry",
           name: "Strawberry Shortcake Blend",
-          priceModifier: 6000,
+          price: 6000,
         },
         {
           id: "var_ms_caramel",
           name: "Salted Caramel Crunch Blend",
-          priceModifier: 6400,
+          price: 6400,
         },
       ],
       extras: [
@@ -5944,17 +5944,17 @@ export const data = {
         {
           id: "var_sun_van_choc",
           name: "Vanilla & Chocolate Mix",
-          priceModifier: 6500,
+          price: 6500,
         },
         {
           id: "var_sun_double_straw",
           name: "Double Strawberry Bliss",
-          priceModifier: 6500,
+          price: 6500,
         },
         {
           id: "var_sun_caramel_crunch",
           name: "Salted Caramel Special",
-          priceModifier: 7000,
+          price: 7000,
         },
       ],
       extras: [
@@ -6109,12 +6109,12 @@ export const data = {
         {
           id: "var_gc_half",
           name: "Half Chicken Platters",
-          priceModifier: 12500,
+          price: 12500,
         },
         {
           id: "var_gc_full",
           name: "Full Chicken Platter",
-          priceModifier: 16000,
+          price: 16000,
         },
       ],
       extras: [
@@ -6270,12 +6270,12 @@ export const data = {
         {
           id: "var_cf_medium",
           name: "Medium Whole Fish",
-          priceModifier: 14500,
+          price: 14500,
         },
         {
           id: "var_cf_large",
           name: "Jumbo Whole Fish",
-          priceModifier: 18000,
+          price: 18000,
         },
       ],
       extras: [
@@ -6431,12 +6431,12 @@ export const data = {
         {
           id: "var_cw_12p",
           name: "Standard Pack (12 Wings)",
-          priceModifier: 12500,
+          price: 12500,
         },
         {
           id: "var_cw_18p",
           name: "Jumbo Party Pack (18 Wings)",
-          priceModifier: 17000,
+          price: 17000,
         },
       ],
       extras: [
@@ -6596,12 +6596,12 @@ export const data = {
         {
           id: "var_ic_medium",
           name: "Medium Cup (450ml)",
-          priceModifier: 4500,
+          price: 4500,
         },
         {
           id: "var_ic_large",
           name: "Large Cup (600ml)",
-          priceModifier: 5500,
+          price: 5500,
         },
       ],
       extras: [
@@ -6758,12 +6758,12 @@ export const data = {
         {
           id: "var_pz_medium",
           name: "Medium (10 inch)",
-          priceModifier: 11500,
+          price: 11500,
         },
         {
           id: "var_pz_large",
           name: "Large (14 inch)",
-          priceModifier: 15500,
+          price: 15500,
         },
       ],
       extras: [
@@ -6906,12 +6906,12 @@ export const data = {
         {
           id: "var_sb_single",
           name: "Single Suya Patty (Standard)",
-          priceModifier: 11500,
+          price: 11500,
         },
         {
           id: "var_sb_double",
           name: "Double Suya Patty Stack",
-          priceModifier: 15000,
+          price: 15000,
         },
       ],
       extras: [
@@ -7074,12 +7074,12 @@ export const data = {
         {
           id: "var_mp_medium",
           name: "Medium (10 inch)",
-          priceModifier: 9500,
+          price: 9500,
         },
         {
           id: "var_mp_large",
           name: "Large (14 inch)",
-          priceModifier: 13000,
+          price: 13000,
         },
       ],
       extras: [
@@ -7228,12 +7228,12 @@ export const data = {
         {
           id: "var_wings_6p",
           name: "Standard Pack (6 Pieces)",
-          priceModifier: 8700,
+          price: 8700,
         },
         {
           id: "var_wings_10p",
           name: "Large Pack (10 Pieces)",
-          priceModifier: 3000,
+          price: 3000,
         },
       ],
       extras: [
@@ -7388,12 +7388,12 @@ export const data = {
         {
           id: "var_bbqp_medium",
           name: "Medium (10 inch)",
-          priceModifier: 0,
+          price: 0,
         },
         {
           id: "var_bbqp_large",
           name: "Large (14 inch)",
-          priceModifier: 4500,
+          price: 4500,
         },
       ],
       extras: [
@@ -7528,12 +7528,12 @@ export const data = {
         {
           id: "var_shp_medium",
           name: "Medium (10 inch)",
-          priceModifier: 12500,
+          price: 12500,
         },
         {
           id: "var_shp_large",
           name: "Large (14 inch)",
-          priceModifier: 17000,
+          price: 17000,
         },
       ],
       extras: [
@@ -7667,12 +7667,12 @@ export const data = {
         {
           id: "var_db_standard",
           name: "Standard Platter",
-          priceModifier: 11000,
+          price: 11000,
         },
         {
           id: "var_db_xl",
           name: "Large Platter (With Extra Large Fries)",
-          priceModifier: 14500,
+          price: 14500,
         },
       ],
       extras: [
@@ -7807,12 +7807,12 @@ export const data = {
         {
           id: "var_coke_pet",
           name: "Standard PET Bottle (50cl)",
-          priceModifier: 600,
+          price: 600,
         },
         {
           id: "var_coke_can",
           name: "Sleek Aluminum Can (33cl)",
-          priceModifier: 800,
+          price: 800,
         },
       ],
       extras: [],
@@ -8330,12 +8330,12 @@ export const data = {
         {
           id: "var_coke_pet",
           name: "Standard PET Bottle (50cl)",
-          priceModifier: 600,
+          price: 600,
         },
         {
           id: "var_coke_can",
           name: "Sleek Aluminum Can (33cl)",
-          priceModifier: 800,
+          price: 800,
         },
       ],
       extras: [],
@@ -8470,12 +8470,12 @@ export const data = {
         {
           id: "var_or_standard",
           name: "Standard Sharing Box",
-          priceModifier: 2500,
+          price: 2500,
         },
         {
           id: "var_or_jumbo",
           name: "Jumbo Party Box",
-          priceModifier: 4500,
+          price: 4500,
         },
       ],
       extras: [
@@ -8609,12 +8609,12 @@ export const data = {
         {
           id: "var_mp_single",
           name: "Single Large Meat Pie",
-          priceModifier: 2500,
+          price: 2500,
         },
         {
           id: "var_mp_pair",
           name: "Twin Pack (2 Meat Pies)",
-          priceModifier: 4800,
+          price: 4800,
         },
       ],
       extras: [
@@ -8753,12 +8753,12 @@ export const data = {
         {
           id: "var_size_regular",
           name: "Regular Size",
-          priceModifier: 6000,
+          price: 6000,
         },
         {
           id: "var_size_large",
           name: "Large Sharing Size",
-          priceModifier: 8500,
+          price: 8500,
         },
       ],
       extras: [
@@ -8964,8 +8964,8 @@ export const data = {
       description:
         "Our signature Classic Thick Milkshake is the ultimate sweet treat. Made by blending premium dairy ice cream with fresh whole milk and your choice of flavor profiles. Prepared fresh to order at Sweet Tooth, it is served thick, chilled, and perfectly balanced for the ultimate dessert experience.",
       category: {
-        id: "cat_drink",
-        name: "Drinks",
+        id: "cat_dessert",
+        name: "Dessert",
       },
       pricing: {
         currency: "NGN",
@@ -9503,7 +9503,7 @@ export const data = {
         "Our signature Grilled Beef Wrap features juicy, thinly sliced beef strips marinated in local aromatic spices. Grilled to perfection and wrapped tightly in a soft, warm flour tortilla with fresh onions, crunchy cabbage, sweet bell peppers, and a rich garlic cream sauce. Prepared fresh daily at Sweet Tooth.",
       category: {
         id: "cat_wrap",
-        name: "Wrap",
+        name: "Wraps",
       },
       pricing: {
         currency: "NGN",
@@ -10026,7 +10026,7 @@ export const data = {
         "Our signature Classic Beef Burritos are prepared with tender, slow-cooked shredded beef flank seasoned with authentic Mexican spices. Rolled tightly in a large flour tortilla with seasoned rice, savory black beans, melted cheddar cheese, and fresh pico de gallo. Grilled fresh to order at Sweet Tooth for the ultimate hearty meal experience.",
       category: {
         id: "cat_wrap",
-        name: "Wrap",
+        name: "Wraps",
       },
       pricing: {
         currency: "NGN",
@@ -10161,12 +10161,12 @@ export const data = {
         {
           id: "var_nestle",
           name: "Eva Water (60cl)",
-          priceModifier: 500,
+          price: 500,
         },
         {
           id: "var_nestle-2",
           name: "Nestlé Pure Life (1.5L)",
-          priceModifier: 1000,
+          price: 1000,
         },
       ],
       extras: [],

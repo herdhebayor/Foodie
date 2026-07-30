@@ -17,7 +17,7 @@ function OrderSuccess() {
       setShowToast(true),
       setToastType('error')
       setToastMessage('You are not logged in')
-      router.replace('/login');
+      router.replace('/login?callbackUrl=%2Forder-success');
       return;
     }
 

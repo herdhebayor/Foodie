@@ -25,7 +25,7 @@ function ProductCard({ product }) {
 
   return (
     <div className='group w-full overflow-hidden md:rounded-3xl rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl lg:w-50'>
-      <div className='relative h-26 overflow-hidden bg-linear-to-br from-orange-50 to-amber-100 md:h-30'>
+      <div className='relative h-30 overflow-hidden bg-linear-to-br from-orange-50 to-amber-100 md:h-36'>
         <Image
           src={imageSrc}
           width={240}

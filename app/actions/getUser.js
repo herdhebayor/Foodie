@@ -14,6 +14,9 @@ export async function getUser() {
   }
 
   const dbUser = await User.findById(session?.userId).lean();
+  if(!dbUser){
+    throw new Error('User not found')
+  }
 
   return JSON.parse(JSON.stringify(dbUser));
 }

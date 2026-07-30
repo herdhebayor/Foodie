@@ -9,9 +9,9 @@ const MessageSchema = new Schema({
 	body:{
 		type:String
 	},
-	orderId:{
+	messageId:{
 		type: Schema.Types.ObjectId
-	},
+	}, 
 	messageType:{
 		type:String,
 		required:true,
