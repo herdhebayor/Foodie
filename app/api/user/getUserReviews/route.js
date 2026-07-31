@@ -6,9 +6,10 @@ export async function GET() {
     const reviews = await getUserReview();
     return NextResponse.json({ success: true, reviews });
   } catch (error) {
+    const status = error.message === 'Unauthorized' ? 401 : 500;
     return NextResponse.json(
-      { success: false, error: error.message || "Unable to load messages" },
-      { status: 500 },
+      { success: false, error: error.message || "Unable to load reviews" },
+      { status },
     );
   }
 }

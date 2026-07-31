@@ -61,7 +61,7 @@ function Menu() {
 
   return (
     <div className='min-h-screen w-full bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.15),transparent_55%)] bg-gray-50 py-25 text-slate-900'>
-      <div className='lg:container md:container-xl mx-auto px-4 sm:px-2 md:px-8'>
+      <div className='xl:container  mx-auto px-4 sm:px-2 md:px-8'>
         <div className='mb-6 rounded-3xl bg-linear-to-r from-orange-500 to-amber-400 p-6 text-white shadow-lg'>
           <div className='flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
             <div>

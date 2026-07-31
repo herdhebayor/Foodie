@@ -22,7 +22,7 @@ async function fetchUser() {
 async function EditProfile({ params }) {
   const dbUser = await fetchUser()
 
-  const callbackUrl = `/profile/user/${params.id}/edit-profile`;
+  const callbackUrl = '/profile/edit-profile';
 
   if (!dbUser) {
     return (

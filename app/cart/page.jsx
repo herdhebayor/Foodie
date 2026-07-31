@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { IoMdClose } from "react-icons/io";
 
 function Cart() {
-    const {cart,setCart, cartLoading, showToast, setToastMessage,setShowToast,setToastType} = useGlobalContext()
+    const {cart,setCart, cartLoading, setToastMessage,setShowToast,setToastType} = useGlobalContext()
     const [loginErr, setLoginErr] = useState(false)
     const [profileErr, setProfileErr] = useState(false)
     const [message, setMessage] = useState('')
@@ -24,13 +24,16 @@ function Cart() {
 
     console.log(cart)
 
-     const calculateItemTotal = () => {
-        const total = cart.reduce((sum, e) => sum + e.totalPrice, 0)
+    const calculateItemTotal = () => {
+        const total = cart.reduce((sum, item) => sum + (Number(item?.totalPrice) || 0), 0)
         return total
     }
-    const Tax = Math.round(calculateItemTotal * 0.1)
-    const delivery = 500
-    const Total = calculateItemTotal() + delivery + Tax ;
+
+    const subtotal = calculateItemTotal()
+    const tax = Math.round(subtotal * 0.1)
+    const delivery = '500 - 1,400'
+    const total1 = subtotal + tax + 500
+    const total2 = subtotal + tax + 1400
 
     //Checkout cart
     const handleCheckoutCart = async () => {
@@ -73,8 +76,8 @@ function Cart() {
         </div>)
         }
   return (
-    <div className='w-screen min-h-screen pt-25 py-16  bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.15),transparent_80%)] bg-gray-50'>
-        <div className='container h-full bg-white rounded-2xl shadow-lg mx-auto'>
+    <div className='w-screen min-h-screen pt-25 md:pt-30 py-16 md:px-10 px-0  bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.15),transparent_80%)] bg-gray-50'>
+        <div className='xl:container h-full bg-white rounded-2xl shadow-lg mx-auto'>
         <div className='m-auto min-h-screen  flex  items-start'>
             <div className='flex md:flex-row flex-col md:gap-10 md:px-15 px-4  w-screen'>
                 {/* main cart */}
@@ -96,49 +99,56 @@ function Cart() {
                 </div>
 
                 {/* Aside */}
-                <div className='md:w-100 w-full p-6  flex items-center sticky top-0 h-fit justify-center md:border-l-0 md:border-t-0'>
-                    <div className='container h-full px-4 rounded-md'>
-                        <h1 className='text-3xl text-slate-900 font-bold text-center mb-4'>Summary</h1>
+                <div className='md:w-100 w-full p-6 flex items-center sticky top-0 h-fit justify-center md:border-l-0 md:border-t-0'>
+                    <div className='container h-full rounded-2xl border border-orange-100 bg-orange-50/70 p-4 shadow-sm'>
+                        <h1 className='mb-4 text-center text-2xl font-bold text-slate-900'>Order Summary</h1>
 
-                        <div className='w-full border text-sm  text-gray-300 p-4 border-gray-300 rounded-xl'>
-                            <div className='p-4 space-y-1 border-b-2 border-dotted'>
-                                <p className='flex justify-between items-center'>
-                                    Total items
-                                    <span className='text-slate-900 font-bold'>{cart.length}</span>
+                        <div className='w-full rounded-2xl border border-orange-100 bg-white p-4 text-sm text-slate-600'>
+                            <div className='space-y-2 border-b border-dashed border-slate-200 pb-4'>
+                                <p className='flex items-center justify-between'>
+                                    <span>Total items</span>
+                                    <span className='font-semibold text-slate-900'>{cart.length}</span>
                                 </p>
-                                <p className='flex justify-between items-center'>
-                                    Sub Total
-                                    <span className='text-slate-900 font-bold'>&#x20A6;{calculateItemTotal().toLocaleString('en-US')}</span>
+                                <p className='flex items-center justify-between'>
+                                    <span>Sub total</span>
+                                    <span className='font-semibold text-slate-900'>₦{subtotal.toLocaleString('en-US')}</span>
                                 </p>
-                                <p className='flex justify-between items-center'>
-                                    Delivery 
-                                    <span className='text-slate-900 font-bold'>&#x20A6;{delivery}</span>
+                                <p className='flex items-center justify-between'>
+                                    <span>Delivery fee</span>
+                                    <span className='font-semibold text-slate-900'>₦{delivery}</span>
                                 </p>
-                            </div>
-                            <div className='p-4 space-y-1 border-b-2 border-dotted'>
-                                <p className='flex justify-between items-center'>
-                                    Tax 
-                                    <span className='text-slate-900 font-bold'>&#x20A6;{Tax}</span>
-                                </p>
-                                <p className='flex justify-between items-center'>
-                                    Discount 
-                                    <span className='text-slate-900 font-bold'>&#x20A6;5</span>
-                                </p>
-                                <p className='flex justify-between items-center'>
-                                    Total Balance 
-                                    <span className='text-slate-900 font-bold'>&#x20A6;{Total}</span>
-                                </p>
-                            </div>
-                            <div className='p-4 space-y-1'>
-                                <p className='flex justify-between items-center'>
-                                    Delivery Time
-                                    <span className='text-slate-900 font-bold'>40 min</span>
+                                <p className='flex items-center justify-between'>
+                                    <span>Service tax</span>
+                                    <span className='font-semibold text-slate-900'>10%</span>
                                 </p>
                             </div>
 
+                            <div className='space-y-2 border-b border-dashed border-slate-200 py-4'>
+                                <p className='flex items-center justify-between text-base'>
+                                    <span className='font-semibold text-slate-800'>Estimated total</span>
+                                    <span className='font-bold text-slate-900'>₦{`${total1.toLocaleString('en-US')} - ${total2.toLocaleString('en-US')}`}</span>
+                                </p>
+                            </div>
+
+                            <div className='space-y-3 pt-4'>
+                                <div className='rounded-xl bg-orange-50 p-3'>
+                                    <p className='font-semibold text-slate-800'>Delivery window</p>
+                                    <p className='mt-1 text-sm text-slate-600'>Your order is expected within 40 minutes after checkout.</p>
+                                </div>
+
+                                <div className='rounded-xl bg-slate-50 p-3'>
+                                    <p className='font-semibold text-slate-800'>Payment</p>
+                                    <p className='mt-1 text-sm text-slate-600'>Pay on delivery or through the secure checkout flow after you confirm your order.</p>
+                                </div>
+
+                                <div className='rounded-xl bg-emerald-50 p-3'>
+                                    <p className='font-semibold text-emerald-700'>Need help?</p>
+                                    <p className='mt-1 text-sm text-slate-600'>Contact support if your meal is delayed or if you need to change your order.</p>
+                                </div>
+                            </div>
                         </div>
 
-                        <button onClick={handleCheckoutCart} className='w-full mt-6 rounded-lg cursor-pointer hover:bg-orange-700 shadow-md px-4 py-3 bg-orange-600 text-white'>
+                        <button onClick={handleCheckoutCart} className='mt-6 w-full rounded-lg bg-orange-600 px-4 py-3 font-semibold text-white shadow-md transition hover:bg-orange-700'>
                             Checkout cart
                         </button>
                     </div>
@@ -174,7 +184,6 @@ function Cart() {
                 }
             </div>
         </div>
-        <Toast />
         </div>
 
       

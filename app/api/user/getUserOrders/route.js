@@ -6,9 +6,10 @@ export async function GET() {
     const orders = await getCurrentUserOrders();
     return NextResponse.json({ success: true, orders });
   } catch (error) {
+    const status = error.message === 'Unauthorized' ? 401 : 500;
     return NextResponse.json(
       { success: false, error: error.message || 'Unable to load orders' },
-      { status: 500 }
+      { status }
     );
   }
 }

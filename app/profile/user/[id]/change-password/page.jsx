@@ -59,7 +59,7 @@ function ChangePassword() {
     }
   return (
     <div className='w-screen h-screen bg-white flex px-8 text-slate-900 justify-center items-center relative'>
-        <Link href={`/profile/user/${session?.user.id}`} className='p-2 px-4 absolute top-25 left-5 md:left-10 rounded-2xl border border-orange-600 flex gap-1 items-center'><FaArrowLeft/> Go back </Link>
+        <Link href='/profile' className='p-2 px-4 absolute top-25 left-5 md:left-10 rounded-2xl border border-orange-600 flex gap-1 items-center'><FaArrowLeft/> Go back </Link>
 
         {status?.type && (
           <div

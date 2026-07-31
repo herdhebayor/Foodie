@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import Footer from "@/components/Footer"
+import CookieConsent from "@/components/CookieConsent";
 import { Playfair_Display, Poppins } from 'next/font/google';
 
 
@@ -58,6 +59,7 @@ export default async function RootLayout({ children }) {
                   <GlobalProvider>
                     <Navbar/>
                     {children}
+                    <CookieConsent />
                     <ToastContainer
                             position='top-right'
                             autoClose={4000}

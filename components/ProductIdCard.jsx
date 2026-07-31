@@ -214,7 +214,7 @@ function ProductIdCard({ product }) {
                 <h1 className='text-3xl font-bold text-slate-900'>{product.name}</h1>
                 <p className='mt-2 text-sm leading-6 text-slate-500'>{product.description}</p>
               </div>
-              {<LikeBtn product={product}/>}
+              <LikeBtn product={product}/>
             </div>
 
             <div className='mt-5 flex flex-wrap items-center gap-3'>

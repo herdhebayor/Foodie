@@ -8,18 +8,21 @@ import User from "@/models/userModel";
 export const authOptions = {
   session: {
     strategy: "jwt",
-     maxAge: 30 * 24 * 60 * 60,
+    maxAge: 60 * 60,
+  },
+  jwt: {
+    maxAge: 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
-    // ✅ GOOGLE LOGIN
+    // GOOGLE LOGIN
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     
 
-    // ✅ EMAIL LOGIN
+    //  EMAIL LOGIN
     CredentialsProvider({
       name: "credentials",
       credentials: {
@@ -58,7 +61,7 @@ export const authOptions = {
   ],
 
   callbacks: {
-    // ✅ GOOGLE AUTO REGISTER
+    //  GOOGLE AUTO REGISTER
     async signIn({ user, account, profile }) {
       if (account.provider === "google") {
         await connectDB();
@@ -120,7 +123,7 @@ export const authOptions = {
       return token;
     },
 
-    // ✅ EXPOSE FULL SESSION
+    //  EXPOSE FULL SESSION
     async session({ session, token }) {
       session.user = {
         id: token.id,

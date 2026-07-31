@@ -6,9 +6,10 @@ export async function GET() {
     const messages = await getCurrentUserMessages();
     return NextResponse.json({ success: true, messages });
   } catch (error) {
+    const status = error.message === 'Unauthorized' ? 401 : 500;
     return NextResponse.json(
       { success: false, error: error.message || 'Unable to load messages' },
-      { status: 500 }
+      { status }
     );
   }
 }

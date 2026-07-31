@@ -98,7 +98,6 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
               <Link className={`${pathName === '/about_us' ? 'text-orange-600 border-b-2 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out`} href="/about_us">About Us</Link>
             </div>
             
-          
           {
             session && (
               <>
@@ -108,7 +107,7 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
                     </Link>
                     {messages.filter((m) => m.read === false).length > 0 && <span className="absolute -top-1 -right-1 h-0 w-0 border-3 border-red-500 rounded-full"></span>}
                 </div>
-                <Link href={`/profile/user/${session.user.id}`} className={`${pathName.includes('profile') ? 'text-orange-600 border-b-2 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out`}>Profile</Link>
+                <Link href='/profile' className={`${pathName.includes('profile') ? 'text-orange-600 border-b-2 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out`}>Profile</Link>
               </>
             )
           }
@@ -124,20 +123,20 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
         <div className="flex  items-center gap-4 sm:gap-6">
           <div className="flex md:hidden items-center gap-4 mr-6">
             
-            { session && <div className=" relative hover:text-green-400">
+            {/* { session && <div className=" relative hover:text-green-400">
                     <Link href="/notification" className={`${pathName === '/notification' ? 'text-orange-600 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out flex items-center relative`}>
                     Inbox
                     </Link>
                     {messages.filter((m) => m.read === false).length > 0 && <span className="absolute -top-1 -right-1 h-0 w-0 border-3 border-red-500 rounded-full"></span>}
               </div>
-            }
+            } */}
           </div>
             {
               session ? (
               <div className="flex gap-4 items-center">
                 { 
                   <div className="relative">
-                    <Link href={`/profile/user/${session.user.id}`} className="cursor-pointer">
+                    <Link href='/profile' className="cursor-pointer">
                         {profileImg ? <Image src={profileImg} width={32} height={32} unoptimized className="md:w-6 md:h-6 w-5 h-5 rounded-full object-cover" alt="user"/> : <div className='bg-indigo-500 text-white rounded-full p-2 md:p-3'> <FaRegUser size={20}/> </div>}
                     </Link>
                     
@@ -156,8 +155,9 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
               </Link>
             </div>
             )
+
             }
-            <div className={`${pathName === '/cart' ? 'text-orange-600 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 ease-in-out relative`}>
+            <div className={`${pathName === '/cart' ? 'text-orange-600 font-bold border-orange-600' : 'hover:text-orange-600'} duration-300 block md:hidden ease-in-out relative`}>
             <Link href="/cart">
               <FiShoppingCart size={20}/>
             </Link>
@@ -185,10 +185,10 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
             {session ? (
               <>
                 <Link href="/notification" onClick={closeMobileMenu} className={`${pathName === '/notification' ? 'text-orange-600 font-bold' : 'hover:text-orange-600'} flex px-2 py-2relative rounded-lg`}>
-                  Notifications 
+                  Inbox 
                   {messages.filter((m) => m.read === false).length > 0 && (<span className=" w-4 h-4 text-xs text-white flex items-center ml-1 -mt-1 p-1 bg-red-500 rounded-full">{messages.filter((m) => m.read === false).length}</span>) }
                 </Link>
-                <Link href={`/profile/user/${session.user.id}`} onClick={closeMobileMenu} className="px-2 py-2 rounded-lg hover:text-orange-600">Profile</Link>
+                <Link href='/profile' onClick={closeMobileMenu} className="px-2 py-2 rounded-lg hover:text-orange-600">Profile</Link>
               </>
             ) : (
               <div className="flex flex-col gap-2 pt-2">

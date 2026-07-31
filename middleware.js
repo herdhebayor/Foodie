@@ -27,6 +27,12 @@ export default withAuth(
             );
           }
 
+        if (token.exp && token.exp * 1000 < Date.now()) {
+          return Response.redirect(
+            new URL(`/login?callbackUrl=${encodeURIComponent(req.nextUrl.pathname)}`, req.url)
+          );
+        }
+
         // 👑 Admin protection
         if (pathname.startsWith("/admin")) {
           return token.role === "admin";

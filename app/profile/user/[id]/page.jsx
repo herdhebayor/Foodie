@@ -16,6 +16,8 @@ import {IoIosNotifications} from 'react-icons/io'
 import {TbLockPassword} from 'react-icons/tb'
 import { cookies } from 'next/headers';
 import { getApiUrl } from '@/utils/apiUrl';
+import { redirect } from 'next/navigation';
+import Loading from '@/components/Loading';
 
 async function getCookieHeader() {
   const cookieStore = await cookies();
@@ -64,17 +66,27 @@ async function fetchUserReviews() {
   return data.success ? data.reviews : [];
 }
 
-export default async function UserProfile({ searchParams }) {
-  const [dbUser, orders, likedProducts, reviews] = await Promise.all([
+export default async function UserProfile({ params }) {
+  const resolvedParams = await params;
+  const callbackUrl = `/profile/user/${resolvedParams?.id || ''}`;
+
+  const results = await Promise.allSettled([
     fetchUser(),
     fetchOrders(),
     fetchLikedProducts(),
     fetchUserReviews(),
   ]);
 
-  const params = await searchParams || {};
+  const [dbUserResult, ordersResult, likedProductsResult, reviewsResult] = results;
+  const dbUser = dbUserResult.status === 'fulfilled' ? dbUserResult.value : null;
+  const orders = ordersResult.status === 'fulfilled' ? ordersResult.value : [];
+  const likedProducts = likedProductsResult.status === 'fulfilled' ? likedProductsResult.value : [];
+  const reviews = reviewsResult.status === 'fulfilled' ? reviewsResult.value : [];
+  const hasDataError = results.some((result) => result.status === 'rejected');
 
-  const callbackUrl = `/profile/user/${params.id}`;
+  if (resolvedParams?.id && dbUser && String(resolvedParams.id) !== String(dbUser._id)) {
+    redirect('/profile');
+  }
 
   if (!dbUser ) {
     return (
@@ -91,11 +103,15 @@ export default async function UserProfile({ searchParams }) {
 
   const userOrders = orders.filter(order => String(order.user) === String(dbUser._id));
 
-  
-
   return (
     <div className='min-h-screen bg-white pt-15  md:pt-20'>
       <div className='mx-auto overflow-hidden bg-white shadow-xl'>
+        {hasDataError && (
+          <div className='border-b border-amber-200 bg-amber-50 px-6 py-3 text-sm text-amber-800 md:px-8'>
+            Some profile data could not be loaded. Please refresh the page or try again in a moment.
+          </div>
+        )}
+
         <div className='bg-gradient-to-r from-orange-500 to-amber-400 px-6 py-8 md:py-10 text-white md:px-8'>
           <div className='flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between'>
             <div className='flex items-center gap-4'>
@@ -138,14 +154,14 @@ export default async function UserProfile({ searchParams }) {
             <div className='flex flex-col gap-2'>
               <Link href='/orders' className='flex cursor-pointer items-center gap-3 rounded-2xl hover:bg-white px-3 py-3 text-sm font-semibold text-slate-700 hover:shadow-sm'><LuShoppingBag size={18} /> Orders</Link>
               <Link href='/favorites' className='flex cursor-pointer items-center gap-3 rounded-2xl p-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><FaRegHeart size={18} /> Favorites</Link>
-              <Link href={`/profile/user/${dbUser._id}/edit-profile`} className='flex cursor-pointer items-center gap-3 rounded-2xl p-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><IoSettingsOutline size={18} /> Settings</Link> 
+              <Link href='/profile/edit-profile' className='flex cursor-pointer items-center gap-3 rounded-2xl p-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><IoSettingsOutline size={18} /> Settings</Link> 
               <Link href='/reviews' className='flex cursor-pointer items-center gap-3 rounded-2xl p-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><FaRegStar size={18} /> Reviews</Link>
               <Link href='notification' className='flex cursor-pointer items-center gap-3 rounded-2xl p-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><CiMail size={18} /> Inbox</Link>
               <div className='flex cursor-pointer items-center gap-3 rounded-2xl p-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><CiInboxIn size={18} /> Suggestions</div>
               <Link href='faq' className='flex cursor-pointer items-center gap-3 rounded-2xl p-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><FaQuestion size={18} /> FAQ</Link>
               <div className='flex cursor-pointer items-center gap-3 rounded-2xl p-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><AiOutlineExclamationCircle size={18} /> Help</div>
                 {LogoutBtn && <LogoutBtn />}
-              <Link href={`profile/user/${dbUser._id}/delete-account`} className='mt-3 flex cursor-pointer items-center gap-3 rounded-2xl px-3 py-3 text-sm font-semibold text-red-500 hover:bg-red-50'><MdDeleteOutline size={18} /> Delete account</Link>
+              <Link href='/profile/delete-account' className='mt-3 flex cursor-pointer items-center gap-3 rounded-2xl px-3 py-3 text-sm font-semibold text-red-500 hover:bg-red-50'><MdDeleteOutline size={18} /> Delete account</Link>
               
             </div>
           </aside>
@@ -167,11 +183,11 @@ export default async function UserProfile({ searchParams }) {
 
                   <div className="flex flex-col md:hidde gap-4 text-slate-900 text-sm">
                   
-                  <Link href={`/profile/user/${dbUser._id}/edit-profile`} className='w-full flex items-center gap-2 min-w-30 duration-300 ease-in-out transition-all  p-2 hover:text-orange-600 '>
+                  <Link href='/profile/edit-profile' className='w-full flex items-center gap-2 min-w-30 duration-300 ease-in-out transition-all  p-2 hover:text-orange-600 '>
                     <IoSettingsOutline size={18} />
                     Edit Profile
                   </Link>
-                  <Link href={`/profile/user/${dbUser._id}/change-password`} className='w-full flex items-center gap-2 min-w-30 duration-300 ease-in-out transition-all  p-2 hover:text-orange-600 '>
+                  <Link href='/profile/change-password' className='w-full flex items-center gap-2 min-w-30 duration-300 ease-in-out transition-all  p-2 hover:text-orange-600 '>
                     <TbLockPassword size={18}/>
                     Change Password
                   </Link>
@@ -265,7 +281,7 @@ export default async function UserProfile({ searchParams }) {
               <div className='flex cursor-pointer items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><FaQuestion size={18} /> FAQ</div>
               <div className='flex cursor-pointer items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-slate-600 hover:bg-white hover:shadow-sm'><AiOutlineExclamationCircle size={18} /> Help</div>
               {LogoutBtn && <LogoutBtn />}
-              <Link href={`/profile/user/${dbUser._id}/delete-account`} className='mt-3 flex cursor-pointer items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-red-700 hover:bg-red-100 bg-red-50'><MdDeleteOutline size={18} /> Delete account</Link>
+              <Link href='/profile/delete-account' className='mt-3 flex cursor-pointer items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-red-700 hover:bg-red-100 bg-red-50'><MdDeleteOutline size={18} /> Delete account</Link>
               
             </div>
             </section>

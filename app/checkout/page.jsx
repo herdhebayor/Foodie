@@ -56,7 +56,12 @@ function Checkout() {
   };
 
   const subtotal = cart.reduce((sum, item) => sum + (item.totalPrice || 0), 0);
-  const deliveryFee = 500;
+  const deliveryFee = ()=> {
+    if (subtotal > 20000){
+      return 500
+    }
+    return 0
+  };
   const tax = Math.round(subtotal * 0.1);
   const discount = 0;
   const grandTotal = subtotal + deliveryFee + tax - discount;
