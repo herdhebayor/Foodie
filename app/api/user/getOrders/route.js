@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
-import getOrders from "@/app/actions/getUserOrders";
-import { toast } from "react-toastify";
+import { getCurrentUserOrders } from "@/lib/userService";
 import { getCorsHeaders, corsOptionsResponse } from "@/utils/cors";
 
 export async function GET() {
   try {
-    const orders = await getOrders();
+    const orders = await getCurrentUserOrders();
 
     return NextResponse.json(
       {
@@ -14,13 +13,12 @@ export async function GET() {
       },
       { headers: getCorsHeaders() }
     );
-
   } catch (error) {
-    toast.error("Orders API error:", error);
+    const status = error.message === "Unauthorized" ? 401 : 500;
 
     return NextResponse.json(
-      { success: false, error: error.message },
-      { status: 500, headers: getCorsHeaders() }
+      { success: false, error: error.message || "Unable to load orders" },
+      { status, headers: getCorsHeaders() }
     );
   }
 }

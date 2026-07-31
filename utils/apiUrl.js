@@ -1,3 +1,5 @@
+const isBrowser = () => typeof window !== 'undefined' && window.location?.origin;
+
 export function getApiUrl(path = '') {
   if (typeof path !== 'string') {
     throw new Error('API path must be a string');
@@ -13,24 +15,22 @@ export function getApiUrl(path = '') {
     ? normalizedPath
     : `api/${normalizedPath}`;
 
-  // 1) Explicitly configured API/domain base (e.g. an external API host).
-  const configuredBase =
-    process.env.NEXT_PUBLIC_API_DOMAIN ||
-    process.env.NEXT_PUBLIC_DOMAIN ||
-    process.env.NEXTAUTH_URL;
+  // 1) Client-side: always resolve against the current origin so requests are
+  //    same-origin (no CORS) and auth cookies are sent automatically. Never
+  //    use a hardcoded localhost/domain base in the client bundle.
+  if (isBrowser()) {
+    return `${window.location.origin}/${apiPath}`;
+  }
 
-  if (configuredBase) {
+  // 2) Server-side: optionally use an explicit external API host when one is
+  //    actually configured. A localhost base is never valid in production.
+  const configuredBase = process.env.NEXT_PUBLIC_API_DOMAIN;
+  if (configuredBase && !configuredBase.includes('localhost')) {
     const normalizedBase = configuredBase.replace(/\/+$|\s+/g, '');
     if (normalizedBase.endsWith('/api')) {
       return `${normalizedBase}/${normalizedPath.replace(/^api\/?/, '')}`;
     }
     return `${normalizedBase}/${apiPath}`;
-  }
-
-  // 2) Client-side: resolve against the current origin so all requests are
-  //    same-origin (no CORS) and auth cookies are sent automatically.
-  if (typeof window !== 'undefined' && window.location?.origin) {
-    return `${window.location.origin}/${apiPath}`;
   }
 
   // 3) Server-side (Server Components / Route Handlers): return a relative URL,

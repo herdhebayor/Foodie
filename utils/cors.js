@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
  * defensive measure only. Add any custom/preview domains here as needed.
  */
 const ALLOWED_ORIGINS = [
-  "https://foodie-ruddy-seven.vercel.app/",
+  "https://foodie-ruddy-seven.vercel.app",
   "http://localhost:3000",
 ];
 
