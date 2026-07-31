@@ -1,7 +1,7 @@
 import { updateUser } from '@/app/actions/updateUser';
 import Link from 'next/link';
-import { getApiUrl } from '@/utils/apiUrl';
 import { cookies } from 'next/headers';
+import { getServerApiUrl } from '@/utils/serverApiUrl';
 
 async function getCookieHeader() {
   const cookieStore = await cookies();
@@ -9,7 +9,7 @@ async function getCookieHeader() {
 }
 
 async function fetchUser() {
-  const response = await fetch(getApiUrl('/api/user/getUser'), {
+  const response = await fetch(await getServerApiUrl('/api/user/getUser'), {
     cache: 'no-store',
     headers: { cookie: await getCookieHeader() },
   });
@@ -24,7 +24,12 @@ async function fetchUser() {
 }
 
 export default async function EditProfilePage() {
-  const dbUser = await fetchUser();
+  let dbUser = null;
+  try {
+    dbUser = await fetchUser();
+  } catch (error) {
+    dbUser = null;
+  }
 
   if (!dbUser) {
     return (

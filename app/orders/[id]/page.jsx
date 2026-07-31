@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FaChevronLeft } from "react-icons/fa";
 import DelBtn from '@/components/DelBtn'
 import { cookies } from 'next/headers';
-import { getApiUrl } from '@/utils/apiUrl';
+import { getServerApiUrl } from '@/utils/serverApiUrl';
 
 async function getCookieHeader() {
   const cookieStore = await cookies();
@@ -13,7 +13,7 @@ async function getCookieHeader() {
 }
 
 async function fetchUser() {
-  const response = await fetch(getApiUrl('/api/user/getUser'), {
+  const response = await fetch(await getServerApiUrl('/api/user/getUser'), {
     cache: 'no-store',
     headers: { cookie: await getCookieHeader() },
   });
@@ -23,7 +23,7 @@ async function fetchUser() {
 }
 
 async function fetchOrders() {
-  const response = await fetch(getApiUrl('/api/user/getUserOrders'), {
+  const response = await fetch(await getServerApiUrl('/api/user/getUserOrders'), {
     cache: 'no-store',
     headers: { cookie: await getCookieHeader() },
   });
@@ -34,10 +34,13 @@ async function fetchOrders() {
 
 export default async function OrderDetails({ params }) {
   const { id } = await params;
-  const [orders, dbUser] = await Promise.all([
+  const [ordersResult, userResult] = await Promise.allSettled([
     fetchOrders(),
     fetchUser(),
   ]);
+
+  const orders = ordersResult.status === 'fulfilled' ? ordersResult.value : [];
+  const dbUser = userResult.status === 'fulfilled' ? userResult.value : null;
 
 
   const order = orders.find((order)=> order._id === id)

@@ -11,7 +11,7 @@ import { PiCaretDoubleRightBold } from 'react-icons/pi';
 import { IoIosNotifications } from 'react-icons/io';
 import { TbLockPassword } from 'react-icons/tb';
 import { cookies } from 'next/headers';
-import { getApiUrl } from '@/utils/apiUrl';
+import { getServerApiUrl } from '@/utils/serverApiUrl';
 import UserOrders from '@/components/UserOrders';
 import LogoutBtn from '@/components/LogoutBtn';
 
@@ -21,7 +21,7 @@ async function getCookieHeader() {
 }
 
 async function fetchUser() {
-  const response = await fetch(getApiUrl('/api/user/getUser'), {
+  const response = await fetch(await getServerApiUrl('/api/user/getUser'), {
     cache: 'no-store',
     headers: { cookie: await getCookieHeader() },
   });
@@ -36,7 +36,7 @@ async function fetchUser() {
 }
 
 async function fetchOrders() {
-  const response = await fetch(getApiUrl('/api/user/getUserOrders'), {
+  const response = await fetch(await getServerApiUrl('/api/user/getUserOrders'), {
     cache: 'no-store',
     headers: { cookie: await getCookieHeader() },
   });
@@ -51,7 +51,7 @@ async function fetchOrders() {
 }
 
 async function fetchLikedProducts() {
-  const response = await fetch(getApiUrl('/api/user/getUserLikedProduct'), {
+  const response = await fetch(await getServerApiUrl('/api/user/getUserLikedProduct'), {
     cache: 'no-store',
     headers: { cookie: await getCookieHeader() },
   });
@@ -66,7 +66,7 @@ async function fetchLikedProducts() {
 }
 
 async function fetchUserReviews() {
-  const response = await fetch(getApiUrl('/api/user/getUserReviews'), {
+  const response = await fetch(await getServerApiUrl('/api/user/getUserReviews'), {
     cache: 'no-store',
     headers: { cookie: await getCookieHeader() },
   });
@@ -94,8 +94,6 @@ export default async function ProfilePage() {
   const likedProducts = likedProductsResult.status === 'fulfilled' ? likedProductsResult.value : [];
   const reviews = reviewsResult.status === 'fulfilled' ? reviewsResult.value : [];
   const hasError = results.some((result) => result.status === 'rejected');
-
-  console.log('user', dbUser)
   if (!dbUser) {
     return (
       <div className='flex min-h-screen items-center justify-center bg-white px-4 py-16 pt-20'>

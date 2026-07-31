@@ -2,9 +2,8 @@ import React from 'react'
 import Link from 'next/link';
 import { LuShoppingBag } from "react-icons/lu";
 import UserOrders from '@/components/UserOrders';
-import Loading from '@/components/Loading';
 import { cookies } from 'next/headers';
-import { getApiUrl } from '@/utils/apiUrl';
+import { getServerApiUrl } from '@/utils/serverApiUrl';
 
 async function getCookieHeader() {
   const cookieStore = await cookies();
@@ -12,7 +11,7 @@ async function getCookieHeader() {
 }
 
 async function fetchUser() {
-  const response = await fetch(getApiUrl('/api/user/getUser'), {
+  const response = await fetch(await getServerApiUrl('/api/user/getUser'), {
     cache: 'no-store',
     headers: { cookie: await getCookieHeader() },
   });
@@ -22,7 +21,7 @@ async function fetchUser() {
 }
 
 async function fetchOrders() {
-  const response = await fetch(getApiUrl('/api/user/getUserOrders'), {
+  const response = await fetch(await getServerApiUrl('/api/user/getUserOrders'), {
     cache: 'no-store',
     headers: { cookie: await getCookieHeader() },
   });
@@ -32,12 +31,15 @@ async function fetchOrders() {
 }
 
 async function Orders() {
-  const [dbUser, orders] = await Promise.all([
+  const [userResult, ordersResult] = await Promise.allSettled([
     fetchUser(),
     fetchOrders(),
   ]);
 
-  const userOrders = orders.filter(order => order.user === dbUser._id);
+  const dbUser = userResult.status === 'fulfilled' ? userResult.value : null;
+  const orders = ordersResult.status === 'fulfilled' ? ordersResult.value : [];
+
+  const userOrders = dbUser ? orders.filter(order => order.user === dbUser._id) : [];
 
   if (!dbUser) {
     return (
