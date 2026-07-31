@@ -10,8 +10,7 @@ export function getApiUrl(path = '') {
   const baseUrl =
     process.env.NEXT_PUBLIC_API_DOMAIN ||
     process.env.NEXT_PUBLIC_DOMAIN ||
-    process.env.NEXTAUTH_URL ||
-    'http://localhost:3000';
+    process.env.NEXTAUTH_URL
 
   const normalizedBase = baseUrl.replace(/\/+$|\s+/g, '');
   const normalizedPath = path.replace(/^\/+/, '');
