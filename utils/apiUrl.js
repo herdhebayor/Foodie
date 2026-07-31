@@ -7,10 +7,7 @@ export function getApiUrl(path = '') {
     return path;
   }
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_API_DOMAIN ||
-    process.env.NEXT_PUBLIC_DOMAIN ||
-    process.env.NEXTAUTH_URL
+  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN 
 
   const normalizedBase = baseUrl.replace(/\/+$|\s+/g, '');
   const normalizedPath = path.replace(/^\/+/, '');

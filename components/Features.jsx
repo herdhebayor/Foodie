@@ -75,8 +75,8 @@ function Features() {
                 </div>
                 </section>
                 <section className='px-2 md:px-0'>
-                <div className="bg-orange-600 rounded-xl relative flex justify-around items-center gap-8 lg:justify-between p-6 pb-10 lg:px-10">
-                    <div className='flex flex-col w-1/2 max-w-150'>
+                <div className="bg-orange-600 rounded-xl relative flex justify-around items-center gap-4 md:gap-8 lg:justify-between p-6 pb-10 lg:px-10">
+                    <div className='flex flex-col sm-w-[60%] w-1/2 max-w-150'>
                         <h3 className='text-sm font-bold mb-1 text-white p-2 md:p-3 px-4 lg:px-10 bg-orange-400 rounded-lg w-fit'>Special Offers</h3>
                         <p className='md:text-5xl lg:text-6xl text-3xl font-bold'>Enjoy free delivery on orders above 
                             <span className="text-4xl md:text-6xl lg:text-7xl text-slate-900"> 20K</span>
@@ -88,7 +88,7 @@ function Features() {
                         </div>
                         
                     </div>
-                    <Link href='/menu' className="px-8 lg:px-10 py-3 cursor-pointer bg-white hover:bg-zinc-50 duration-150 ease-in-out shadow-xl border border-gray-300 rounded-lg flex items-center text-slate-900 font-bold absolute right-1/3 bottom-6">
+                    <Link href='/menu' className="px-8 lg:px-10 py-3 cursor-pointer bg-white hover:bg-zinc-50 duration-150 ease-in-out shadow-xl border border-gray-300 rounded-lg flex items-center text-slate-900 font-bold absolute right-1/4 md:right-1/3 bottom-6">
                             Order Now <FaArrowRightLong className='text-orange-600 ml-2'/>
                     </Link>
                 </div>
