@@ -95,6 +95,7 @@ export default async function ProfilePage() {
   const reviews = reviewsResult.status === 'fulfilled' ? reviewsResult.value : [];
   const hasError = results.some((result) => result.status === 'rejected');
 
+  console.log('user', dbUser)
   if (!dbUser) {
     return (
       <div className='flex min-h-screen items-center justify-center bg-white px-4 py-16 pt-20'>

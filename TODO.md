@@ -9,5 +9,5 @@
       Vercel domain so the defensive CORS header is valid).
 - [x] 4. Fix `app/api/user/getOrders/route.js` (remove client-only `react-toastify`
       and align with `getCurrentUserOrders` from `@/lib/userService`).
-- [ ] 5. Verify with `npm run lint` / `npm run build`.
+- [x] 5. Verify with `npm run lint` / `npm run build`.
 
