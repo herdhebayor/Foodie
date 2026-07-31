@@ -26,6 +26,7 @@
      const [fallbackCallbackUrl, setFallbackCallbackUrl] = useState('/')
  
      const callBackUrl = searchParam?.get('callbackUrl') || fallbackCallbackUrl;
+     const sessionExpired = searchParam?.get('sessionExpired') === 'true';
  
      useEffect(() => {
        if (session && session.user) {
@@ -122,6 +123,11 @@
                   <FaUnlockAlt/>
                 </div>
                 <h2 className='text-3xl font-bold text-center mb-10'> Login</h2>
+                {sessionExpired && (
+                  <div className='mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800'>
+                    Your session expired. Please sign in again to continue.
+                  </div>
+                )}
   
                   <div>  
                     <form onSubmit={handleLogin}>

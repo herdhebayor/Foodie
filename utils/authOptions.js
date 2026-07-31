@@ -14,6 +14,18 @@ export const authOptions = {
     maxAge: 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
+  trustHost: true,
+  cookies: {
+    sessionToken: {
+      name: `${process.env.NODE_ENV === 'production' ? '__Secure-' : ''}next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
+  },
   providers: [
     // GOOGLE LOGIN
     GoogleProvider({
@@ -91,7 +103,6 @@ export const authOptions = {
 
     //  STORE DATA IN TOKEN
     async jwt({ token, user }) {
-      
       if (user) {
         token.id = user.id;
         token.username = user.username;
@@ -101,6 +112,10 @@ export const authOptions = {
         token.profileCompleted = user.profileCompleted;
         token.address = user.address;
         token.phone = user.phone;
+      }
+
+      if (token.exp) {
+        token.exp = Math.floor(Date.now() / 1000) + 60 * 60;
       }
 
       // Refresh token data from DB on subsequent calls

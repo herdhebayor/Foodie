@@ -9,6 +9,11 @@ export const getSessionUser = async () => {
 	if (!session || !session.user) {
 		return null
 	}
+
+	if (!session.user.id) {
+		return null
+	}
+
 	return {
 		user: session.user,
 		userId: session.user.id,

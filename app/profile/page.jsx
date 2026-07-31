@@ -99,8 +99,8 @@ export default async function ProfilePage() {
     return (
       <div className='flex min-h-screen items-center justify-center bg-white px-4 py-16 pt-20'>
         <div className='w-full max-w-xl space-y-6 rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm'>
-          <h1 className='text-2xl font-bold text-slate-900'>You need to sign in</h1>
-          <p className='text-sm text-slate-500'>Your profile is protected. Please sign in to view your account.</p>
+          <h1 className='text-2xl font-bold text-slate-900'>Your session has expired</h1>
+          <p className='text-sm text-slate-500'>You were signed out because your session timed out. Please sign in again to continue using your profile.</p>
           <Link href='/login?callbackUrl=/profile' className='inline-flex rounded-lg bg-orange-600 px-6 py-3 text-center text-white hover:bg-orange-700'>
             Login to continue
           </Link>
