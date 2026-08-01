@@ -172,7 +172,7 @@ function Checkout() {
                 <input type='hidden' name='discount' value={discount} />
                 <input type='hidden' name='deliveryFee' value={deliveryFee} />
                 <input type='hidden' name='deliveryTime' value={deliveryTime} />
-                <input type='hidden' name='totalAmount' value={grandTotal} />
+                <input type='hidden' name='totalAmount' value={grandTotal()} />
                 <SubmitButton />
               </form>
             </div>
