@@ -57,14 +57,14 @@ function Checkout() {
 
   const subtotal = cart.reduce((sum, item) => sum + (item.totalPrice || 0), 0);
   const deliveryFee = ()=> {
-    if (subtotal > 20000){
+    if (subtotal < 20000){
       return 500
     }
     return 0
   };
   const tax = Math.round(subtotal * 0.1);
   const discount = 0;
-  const grandTotal = subtotal + deliveryFee + tax - discount;
+  const grandTotal = ()=> ( subtotal + deliveryFee() + tax ) - discount;
   const deliveryTime = '30-45 min';
 
 
@@ -139,7 +139,7 @@ function Checkout() {
                 <div className='flex items-center justify-between'><span>Delivery fee</span><span className='font-semibold text-slate-900'>&#x20A6;{deliveryFee( ).toLocaleString('en-US')}</span></div>
                 <div className='flex items-center justify-between'><span>Tax</span><span className='font-semibold text-slate-900'>&#x20A6;{tax.toLocaleString('en-US')}</span></div>
                 <div className='flex items-center justify-between'><span>Discount</span><span className='font-semibold text-emerald-600'>-&#x20A6;{discount.toLocaleString('en-US')}</span></div>
-                <div className='flex items-center justify-between border-t border-dashed pt-3 text-base font-semibold text-slate-900'><span>Grand total</span><span>&#x20A6;{grandTotal.toLocaleString('en-US')}</span></div>
+                <div className='flex items-center justify-between border-t border-dashed pt-3 text-base font-semibold text-slate-900'><span>Grand total</span><span>&#x20A6;{grandTotal().toLocaleString('en-US')}</span></div>
               </div>
               <div className='mt-4 rounded-2xl bg-orange-50 p-3 text-sm font-medium text-orange-700'>Estimated delivery: {deliveryTime}</div>
             </div>
