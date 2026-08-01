@@ -30,7 +30,7 @@ function Menu() {
   const [showMenuCategory, setShowMenuCategory] = useState(false)
   const {selectedCategory, setSelectedCategory} = useGlobalContext()
 
-  const productName = products.map(product => (product.name) )
+  
    
 
   const getCategoryLabel = (product) => product?.category?.name 

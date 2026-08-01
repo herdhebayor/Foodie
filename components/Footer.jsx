@@ -60,7 +60,7 @@ function Footer(){
                     {/* contact Us */}
                     <div className='text-gray-50 text-sm'>
                         <div>Contact Us</div>
-                        <div>Phone: (123) 456-7890</div>
+                        <div>Phone: (234) 90 230 660 39</div>
                         <div>Opening Hours: Mon - Fri, 9 A.M - 9 P.M</div>
                     </div>
                 </div>

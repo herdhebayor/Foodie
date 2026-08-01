@@ -5,24 +5,20 @@ import { useRouter } from 'next/navigation';
 import CartProduct from '@/components/CartProduct'
 import { useGlobalContext } from '@/context/GlobalContext';
 import Loading from '@/components/Loading';
-import Toast from '@/components/Toast'
-import { useUser } from '@/hooks/useUser';
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import Link from 'next/link'
 import { IoMdClose } from "react-icons/io";
+import { useSession } from 'next-auth/react';
 
-function Cart() {
+export default function Cart() {
     const {cart,setCart, cartLoading, setToastMessage,setShowToast,setToastType} = useGlobalContext()
     const [loginErr, setLoginErr] = useState(false)
     const [profileErr, setProfileErr] = useState(false)
     const [message, setMessage] = useState('')
     
-      
-    
-    const router = useRouter();
-    const {user} = useUser()
 
-    console.log(cart)
+    const router = useRouter();
+    const {data:session} = useSession()
 
     const calculateItemTotal = () => {
         const total = cart.reduce((sum, item) => sum + (Number(item?.totalPrice) || 0), 0)
@@ -38,18 +34,17 @@ function Cart() {
     //Checkout cart
     const handleCheckoutCart = async () => {
         try {
-            if(!user){
+            if(!session || !session.user){
                 // show popup to login login
                 setShowToast(true)
                 setToastType('error')
                 setToastMessage('You are not logged in')
-                setProfileErr(true)
             setLoginErr(true)
             setMessage('Login or create an account to continue')
             return
         }
             
-            if (user?.profileCompleted === false) {
+            if (!session.user?.profileCompleted) {
                 // show popup to complete profile
                 setShowToast(true)
                 setToastType('error')
@@ -76,8 +71,8 @@ function Cart() {
         </div>)
         }
   return (
-    <div className='w-screen min-h-screen pt-25 md:pt-30 py-16 md:px-10 px-0  bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.15),transparent_80%)] bg-gray-50'>
-        <div className='xl:container h-full bg-white rounded-2xl shadow-lg mx-auto'>
+    <div className='w-screen min-h-screen pt-25 md:pt-30 py-16 md:px-10 px-0  bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.15),transparent_80%)] bg-white'>
+        <div className='xl:container h-full bg-white md:rounded-2xl md:shadow-lg mx-auto'>
         <div className='m-auto min-h-screen  flex  items-start'>
             <div className='flex md:flex-row flex-col md:gap-10 md:px-15 px-4  w-screen'>
                 {/* main cart */}
@@ -100,10 +95,10 @@ function Cart() {
 
                 {/* Aside */}
                 <div className='md:w-100 w-full p-6 flex items-center sticky top-0 h-fit justify-center md:border-l-0 md:border-t-0'>
-                    <div className='container h-full rounded-2xl border border-orange-100 bg-orange-50/70 p-4 shadow-sm'>
+                    <div className='md:container w-full rounded-b-xl h-full md:rounded-2xl md:border md:border-orange-100 bg-orange-50/70 p-4 md:shadow-sm'>
                         <h1 className='mb-4 text-center text-2xl font-bold text-slate-900'>Order Summary</h1>
 
-                        <div className='w-full rounded-2xl border border-orange-100 bg-white p-4 text-sm text-slate-600'>
+                        <div className='w-full md:rounded-2xl md:border md:border-orange-100 bg-white p-4 text-sm text-slate-600'>
                             <div className='space-y-2 border-b border-dashed border-slate-200 pb-4'>
                                 <p className='flex items-center justify-between'>
                                     <span>Total items</span>
@@ -148,7 +143,7 @@ function Cart() {
                             </div>
                         </div>
 
-                        <button onClick={handleCheckoutCart} className='mt-6 w-full rounded-lg bg-orange-600 px-4 py-3 font-semibold text-white shadow-md transition hover:bg-orange-700'>
+                        <button onClick={handleCheckoutCart} className='mt-6 w-full cursor-pointer rounded-lg bg-orange-600 px-4 py-3 font-semibold text-white shadow-md transition hover:bg-orange-700'>
                             Checkout cart
                         </button>
                     </div>
@@ -190,5 +185,3 @@ function Cart() {
     </div>
   )
 }
-
-export default Cart

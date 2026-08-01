@@ -136,7 +136,7 @@ function Checkout() {
               <h2 className='text-xl font-semibold text-slate-900'>Payment summary</h2>
               <div className='mt-4 space-y-3 text-sm text-slate-600'>
                 <div className='flex items-center justify-between'><span>Subtotal</span><span className='font-semibold text-slate-900'>&#x20A6;{subtotal.toLocaleString('en-US')}</span></div>
-                <div className='flex items-center justify-between'><span>Delivery fee</span><span className='font-semibold text-slate-900'>&#x20A6;{deliveryFee.toLocaleString('en-US')}</span></div>
+                <div className='flex items-center justify-between'><span>Delivery fee</span><span className='font-semibold text-slate-900'>&#x20A6;{deliveryFee( ).toLocaleString('en-US')}</span></div>
                 <div className='flex items-center justify-between'><span>Tax</span><span className='font-semibold text-slate-900'>&#x20A6;{tax.toLocaleString('en-US')}</span></div>
                 <div className='flex items-center justify-between'><span>Discount</span><span className='font-semibold text-emerald-600'>-&#x20A6;{discount.toLocaleString('en-US')}</span></div>
                 <div className='flex items-center justify-between border-t border-dashed pt-3 text-base font-semibold text-slate-900'><span>Grand total</span><span>&#x20A6;{grandTotal.toLocaleString('en-US')}</span></div>
@@ -148,20 +148,23 @@ function Checkout() {
               <h2 className='text-xl font-semibold text-slate-900'>Delivery details</h2>
               <form action={handleCheckout} className='mt-4 space-y-3 text-slate-900'>
                 <div>
-                  <label className='mb-1 block text-sm font-semibold'>Full name</label>
-                  <input type='text' name='receiver' defaultValue={user?.username || ''} readOnly className='w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none' required />
+                  <label className='mb-1 block text-sm font-semibold pl-3'>Receiver Name</label>
+                  <input type='text' name='receiver' defaultValue={user?.username || ''} className='w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none' required />
                 </div>
-                <div>
-                  <label className='mb-1 block text-sm font-semibold'>Email</label>
+                <div className='hidden'>
+                  <label className='mb-1 block text-sm font-semibold pl-3'>Email</label>
                   <input type='email' name='email' defaultValue={user?.email || ''} readOnly className='w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none' required />
                 </div>
                 <div>
-                  <label className='mb-1 block text-sm font-semibold'>Phone</label>
-                  <input type='tel' name='phone' defaultValue={user?.phone || ''} readOnly className='w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none' required />
+                  <label className='mb-1 block text-sm font-semibold pl-3'>Receiver Phone</label>
+                  <input type='tel' name='phone' defaultValue={user?.phone || ''} className='w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none' required />
+                  <span className='text-xs text-slate-500 leading-0.5 '>
+                    Note: We will call you registered number incase we are not able to reach the number you provide.
+                  </span>
                 </div>
                 <div>
                   <label className='mb-1 block text-sm font-semibold'>Delivery address</label>
-                  <textarea name='address' defaultValue={user?.address || ''} rows='3' className='w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none focus:border-orange-400' required />
+                  <textarea name='address' defaultValue={user?.address || ''} rows='3'  className='w-full rounded- resize-none border border-gray-200 px-4 py-3 outline-none focus:border-orange-400' required />
                 </div>
                 <input type='hidden' name='cartData' value={JSON.stringify(cart)} />
                 <input type='hidden' name='subtotal' value={subtotal} />

@@ -184,10 +184,10 @@ function ProductIdCard({ product }) {
   ]
 
   return (
-    <div className='w-full min-h-screen bg-ambient-orange px-4 py-6 md:px-8 '>
+    <div className='w-full min-h-screen bg-ambient-orange px-0 py-6 md:px-8 '>
       <div className='mx-auto flex max-w-7xl flex-col gap-6'>
         <div className='grid gap-6 lg:grid-cols-[1fr_0.9fr]'>
-          <div className='rounded-4xl border border-orange-100 bg-white p-3 shadow-sm'>
+          <div className='md:rounded-4xl md:border border-orange-100 bg-white p-3 md:shadow-sm'>
             <div className='relative overflow-hidden rounded-3xl bg-orange-50'>
               <Image
                 src={product.images[0]}
@@ -205,7 +205,7 @@ function ProductIdCard({ product }) {
             </div>
           </div>
 
-          <div className='rounded-4xl border border-gray-100 bg-white p-6 shadow-sm'>
+          <div className='md:rounded-4xl md:border md:border-gray-100 bg-white p-6 md:shadow-sm'>
             <div className='flex items-start justify-between gap-4'>
               <div>
                 <div className='mb-3 inline-flex rounded-full bg-orange-50 px-3 py-1 text-sm font-semibold text-orange-600'>
@@ -351,11 +351,12 @@ function ProductIdCard({ product }) {
             >
               Add to cart
             </button>
+            <p className='mt-4 text-slate-600 text-sm mx-auto text-center'>For special delivery please call <span className='text-green-500'>+234 90 230 660 39</span></p>
           </div>
         </div>
 
         <div className='  '>
-          <section className='rounded-4xl border border-gray-100 bg-white p-6 shadow-sm'>
+          <section className='md:rounded-4xl md:border md:border-gray-100 bg-white p-4 md:p-6 md:shadow-sm'>
             <div className='flex items-center justify-between'>
               <div>
                 <h2 className='text-xl font-semibold text-slate-900'>Nutrition & details</h2>
@@ -446,14 +447,31 @@ function ProductIdCard({ product }) {
                 </div>
               
             </div>
+          </section>
 
-            <section className='rounded-4xl border border-gray-100 bg-white p-6 shadow-sm mt-10'>
+          <section className='md:rounded-4xl md:border md:border-gray-100 bg-white p-4 md:p-6 md:shadow-sm'>
+            <div className='flex items-center  justify-between'>
+              <h2 className='text-xl font-semibold text-slate-900'>You may also like</h2>
+              <Link href='/menu' className='flex items-center gap-1 text-sm font-medium text-orange-600'>
+                View all
+                <MdOutlineKeyboardDoubleArrowRight size={15} />
+              </Link>
+            </div>
+            <div className='mt-5 flex overflow-x-scroll snap-x snap-mandatory gap-4'>
+              {suggestedProducts.map((item) => (
+                <Link href={`/menu/${item.id}`} key={item.id} className='min-w-40 max-w-40 md:max-w-50 md:min-w-50 py-4 snap-center cursor-pointer'>
+                  <ProductCard product={item} />
+                </Link>
+              ))}
+            </div>
+          </section>
+          <section className='md:rounded-4xl md:border md:border-gray-100 bg-white p-4 md:shadow-sm mt-10'>
           <div className='flex items-center justify-between'>
             <div>
               <h2 className='text-xl font-semibold text-slate-900'>Customer reviews <span className='text-sm'>({product.reviewStats.totalReviews})</span></h2>
               <p className='text-sm text-slate-500'>What people say after trying this dish.</p>
             </div>
-            <button onClick={()=> setShowReviewForm(true)} type='button' className='flex items-center cursor-pointer gap-2 rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white'>
+            <button onClick={()=> setShowReviewForm(true)} type='button' className='flex items-center cursor-pointer gap-2 rounded-full bg-orange-600 md:px-4 px-2 py-2 md:text-sm text-xs text-white'>
               <FaPlus size={12} />
               Write a review
             </button>
@@ -493,24 +511,6 @@ function ProductIdCard({ product }) {
             })}
           </div>
         </section>
-          </section>
-
-          <section className='rounded-4xl border border-gray-100 bg-white p-4 md:p-6 shadow-sm'>
-            <div className='flex items-center  justify-between'>
-              <h2 className='text-xl font-semibold text-slate-900'>You may also like</h2>
-              <Link href='/menu' className='flex items-center gap-1 text-sm font-medium text-orange-600'>
-                View all
-                <MdOutlineKeyboardDoubleArrowRight size={15} />
-              </Link>
-            </div>
-            <div className='mt-5 flex overflow-x-scroll snap-x snap-mandatory gap-4'>
-              {suggestedProducts.map((item) => (
-                <Link href={`/menu/${item.id}`} key={item.id} className='min-w-40 max-w-40 md:max-w-50 md:min-w-50 py-4 snap-center cursor-pointer'>
-                  <ProductCard product={item} />
-                </Link>
-              ))}
-            </div>
-          </section>
         </div>
 
               {/* Revie container */}

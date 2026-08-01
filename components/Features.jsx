@@ -37,8 +37,8 @@ function Features() {
                     </Link>
 
                     <Link href='/menu' onClick={()=> setSelectedCategory('Drinks')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
-                        <Image src='/images/oreo-milkshake.jpg' alt='Milkshakes' width={150} height={150} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-full'/>
-                        <p className='w-full text-center text-sm'>Milkshakes</p>
+                        <Image src='/images/coke.jpg' alt='Milkshakes' width={150} height={150} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-full'/>
+                        <p className='w-full text-center text-sm'>Drinks</p>
                     </Link>
 
                     <Link href='/menu' onClick={()=> setSelectedCategory('Dessert')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
@@ -46,7 +46,7 @@ function Features() {
                         <p className='w-full text-center text-sm'>Dessert</p>
                     </Link>
 
-                    <Link href='/menu' onClick={()=> setSelectedCategory('Wrap')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
+                    <Link href='/menu' onClick={()=> setSelectedCategory('BBQ_&_Grills')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
                         <Image src='/images/bbq-chicken.jpg' alt='BBQ grills' width={150} height={150} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-full'/>
                         <p className='w-full text-center text-sm'>BBQ grills</p>
                     </Link>
