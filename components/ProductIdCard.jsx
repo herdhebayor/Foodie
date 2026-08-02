@@ -97,7 +97,7 @@ function ProductIdCard({ product }) {
   
   
 
-  const isAddDisabled = cartKey === cartProduct.cartKey;
+  const isAddDisabled = cartKey === cartProduct?.cartKey;
 
 
   const handleSelectExtra = (event, selectedExtra) => {

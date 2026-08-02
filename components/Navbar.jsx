@@ -115,7 +115,7 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
             <Link href="/cart">
               <FiShoppingCart size={20}/>
             </Link>
-            {cart.length > 0 && <span className="absolute -top-2 -right-2 p-1 h-4 w-4 flex text-white items-center justify-center text-xs bg-orange-600 rounded-full">{cart.length}</span>}
+            {cart.length > 0 && <div className="absolute -top-2 -right-3 p-1 h-5 w-5 flex text-white border-3 border-white items-center justify-center text-xs bg-orange-600 rounded-full">{cart.length}</div>}
           </div> 
         </div>
       
@@ -161,7 +161,7 @@ const hideNavBarOnRoute = ['/login', '/register','/onboarding','/checkout','/ord
             <Link href="/cart">
               <FiShoppingCart size={20}/>
             </Link>
-            {cart.length > 0 && <span className="absolute -top-2 -right-2 p-1 h-4 w-4 flex text-white items-center justify-center text-xs bg-orange-600 rounded-full">{cart.length}</span>}
+            {cart.length > 0 && <div className="absolute -top-2 -right-3 p-1 h-5 w-5 border-3 border-white flex text-white items-center justify-center text-xs bg-orange-600 rounded-full">{cart.length}</div>}
             </div>
 
             <button
