@@ -71,15 +71,15 @@ export default function Cart() {
         </div>)
         }
   return (
-    <div className='w-screen min-h-screen pt-25 md:pt-30 py-16 md:px-10 px-0  bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.15),transparent_80%)] bg-white'>
+    <div className='w-screen min-h-screen pt-25 md:pt-30 py-16 md:px-6 px-0  bg-[radial-gradient(circle_at_top,rgba(249,115,22,0.15),transparent_80%)] bg-white'>
         <div className='xl:container h-full bg-white md:rounded-2xl md:shadow-lg mx-auto'>
         <div className='m-auto min-h-screen  flex  items-start'>
-            <div className='flex md:flex-row flex-col md:gap-10 md:px-15 px-4  w-screen'>
+            <div className='flex md:flex-row flex-col md:gap-4 lg:gap-10 lg:px-15 px-4  w-screen'>
                 {/* main cart */}
                 <div className='md:flex-1 w-full py-4 md:py-6 h-fit '>
                     <div className='flex my-8 justify-between text-slate-900 items-center'>
                         <h3 className='text-2xl font-bold'>Cart</h3>
-                        <button onClick={()=>setCart([])} className='text-red-500 flex gap-2'>Clear cart</button>
+                        <button onClick={()=>setCart([])} className='text-red-500 '>Clear cart</button>
                     </div>
                     {
                         !cart ? (<Loading/>):
@@ -169,9 +169,9 @@ export default function Cart() {
                     profileErr && (
                         <div className='fixed top-0 left-0 w-screen h-screen bg-black/50 z-100 flex p-6 text-slate-900 justify-center items-center'>
                             <div className='w-150 p-6 py-10 relative flex flex-col justify-center space-y-4 rounded-xl bg-white '>
-                                <h2 className="text-2xl text-center font-bold w-full mb-4">You're Not Logged In</h2>
+                                <h2 className="text-2xl text-center font-bold w-full mb-4">You profile has not been completed yet</h2>
                                 <p className='text-center'>{message}</p>
-                                <Link onClick={()=>setProfileErr(false)} href='/onbording' className="px-8 w-fit min-w-30 py-3 bg-orange-600 text-white cursor-pointer rounded-xl mx-auto hover:bg-orange-500">Complete Profile</Link>
+                                <Link onClick={()=>setProfileErr(false)} href='/onboarding' className="px-8 w-fit min-w-30 py-3 bg-orange-600 text-white cursor-pointer rounded-xl mx-auto hover:bg-orange-500">Complete Profile</Link>
                                 <button onClick={()=>setProfileErr(false)} className='absolute cursor-pointer right-5 top-5 w-fit font-bold text-2xl'><IoMdClose/></button>
                             </div>
                         </div>

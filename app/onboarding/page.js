@@ -4,56 +4,68 @@ import { addEmailAndPhone } from "../actions/onboarding";
 import { useUser } from '@/hooks/useUser'
 import { useRouter } from "next/navigation";
 import Loading from '@/components/Loading'
-import { updateUser } from "../actions/updateUser";
 import { useGlobalContext } from "@/context/GlobalContext";
 import {useSession} from 'next-auth/react'
+import Toast from '@/components/Toast'
+
 
 export default function Onboarding() {
-  const { user, loading } = useUser()
+  const [sessionLoading, setSessionLoading] = useState(true)
+  const { user} = useUser()
   const router = useRouter()
-  const {setLoginin,logingin,setToastMessage,setShowToast,setToastType} = useGlobalContext()
-  const {data:session}= useSession()
+  const {setToastMessage,setShowToast,setToastType} = useGlobalContext()
+  const {data:session, status, update}= useSession()
 
   useEffect(() => {
-    if (loading) return <Loading/>; // Wait for session to load
-    if (!user) {
+    if (status === 'loading') return;
+    if (session) {setSessionLoading(false)}; 
+    if (!session?.user) {
+      setShowToast(true)
+      setToastMessage('You are not logged in')
+      setToastType('error')
       router.push(`/login?callbackUrl=${encodeURIComponent('/onboarding')}`)
       return
     }
     
-  }, [loading, user, router]);
+  }, [status, session, user, router, setShowToast, setToastMessage, setToastType]);
 
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [error,setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
 
-  const completeSignup = (formData)=>{
+  const completeSignup = async (formData)=>{
+    setSubmitting(true)
   try{
    if(phone === '' || address === ''){
       setError('Input field cannot be empty')
+      setSubmitting(false)
       return
     }
-    addEmailAndPhone(formData)
-    setLoginin(true)
+    const result = await addEmailAndPhone(formData)
+    if (!result?.success) {
+      throw new Error('Could not complete signup. Please try again.')
+    }
+    // Refresh the session JWT so profileCompleted:true is in the cookie
+    await update()
     setPhone('')
     setAddress('')
+    router.push('/')
     }catch(err){
       console.error('Error completing signup:', err);
       setError(err.message || 'An error occurred while completing signup.');
       setShowToast(true);
       setToastMessage(err.message || 'An error occurred while completing signup.');
       setToastType('error');
-      
+      setSubmitting(false)
     }
   }
 
-  if(logingin){
-    return <div className="w-screen h-screen bg-white p-6">
-      <div classname="text-slate-900 h-30 flex justify-center items-center bg-white shadow-lg rounded-lg w-full md:w-120 mx-auto mt-6 border border-gray-200">
-        <p>{`Logingin as ${session.user?.email}`}</p>
-        </div>
-    </div>
+
+  if(sessionLoading){
+    return <Loading/>
   }
+  
 
   return (
     <div className="w-screen h-screen flex items-center overflow-hidden justify-center bg-white px-4">
@@ -79,12 +91,14 @@ export default function Onboarding() {
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
        <button 
+       disabled={submitting}
        className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 w-full rounded-xl cursor-pointer disabled:bg-gray-300 disabled:cursor-not-allowed"
        type="submit">
-         Continue
+         {submitting ? 'Saving...' : 'Continue'}
        </button>
        </form>
      </div>
+     <Toast/>
      </div>
    )
 }

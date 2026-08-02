@@ -28,10 +28,13 @@
      const callBackUrl = searchParam?.get('callbackUrl') || fallbackCallbackUrl;
      const sessionExpired = searchParam?.get('sessionExpired') === 'true';
  
-     useEffect(() => {
-       if (session && session.user) {
-         setLogingin(true) 
-         router.replace(callBackUrl || '/');
+useEffect(() => {
+       if (session?.user) {
+         if (session.user.profileCompleted === false) {
+           router.replace("/onboarding");
+         } else {
+           router.replace(callBackUrl === '/login' || callBackUrl === '/register' ? '/' : callBackUrl)
+         }
        }
      }, [router, session, callBackUrl]);
  
@@ -55,7 +58,7 @@
      const res = await signIn("google", {
        callbackUrl: (typeof window !== 'undefined' && callBackUrl && !/^https?:\/\//i.test(callBackUrl))
          ? `${window.location.origin}${callBackUrl}`
-         : callBackUrl === '/login' ? '/' : callBackUrl,
+         : callBackUrl === '/login' || callBackUrl ==='/register' ? '/' : callBackUrl,
      });
      if(res.error){
        setError(res.error.message)
@@ -115,8 +118,8 @@
       <div className='w-screen h-screen bg-white'>
         <div className='flex justify-between items-center h-full w-full'>
 
-          <div className='text-slate-900 w-full sm:min-w-full md:w-[30%] md:min-w-130  max-w-full h-full flex justify-center items-center '>
-            <div className='p-6 px-10 w-full  md:min-w-120 sm:min-w-full'>
+          <div className='text-slate-900 w-full sm:min-w-full md:w-[30%] md:min-w-100  max-w-full h-full flex justify-center items-center '>
+            <div className='p-6 lg:px-10 w-full  max-w-120 sm:min-w-full'>
               <div className='w-full mx-auto  md:max-w-120 border border-gray-100 shadow-xl  py-4 px-6 sm:px-4 rounded-md'>
  
                 <div className="p-4 rounded-full mx-auto w-fit bg-orange-500 text-white text-4xl">

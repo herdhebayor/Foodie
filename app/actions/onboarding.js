@@ -4,7 +4,6 @@ import connectDB from '@/database'
 import User from '@/models/userModel'
 import { getSessionUser } from '@/utils/getSessionUser'
 import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
 
 export async function addEmailAndPhone(formData) {
   await connectDB()
@@ -26,11 +25,11 @@ export async function addEmailAndPhone(formData) {
   await User.findByIdAndUpdate(
     sessionUser.userId,
     {
-        $set:{
-      phone,
-      address,
-      profileCompleted: true,
-     }
+      $set: {
+        phone,
+        address,
+        profileCompleted: true,
+      },
     },
     { new: true }
   )
@@ -38,6 +37,5 @@ export async function addEmailAndPhone(formData) {
   //refresh layout/session UI
   revalidatePath('/')
 
-  //redirect after success
-  redirect('/')
+  return { success: true }
 }

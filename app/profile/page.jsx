@@ -14,6 +14,7 @@ import { cookies } from 'next/headers';
 import { getServerApiUrl } from '@/utils/serverApiUrl';
 import UserOrders from '@/components/UserOrders';
 import LogoutBtn from '@/components/LogoutBtn';
+import ProfileGuard from '@/components/ProfileGuard';
 
 async function getCookieHeader() {
   const cookieStore = await cookies();
@@ -111,6 +112,7 @@ export default async function ProfilePage() {
   const userOrders = orders.filter((order) => String(order.user) === String(dbUser._id));
 
   return (
+    <ProfileGuard>
     <div className='min-h-screen bg-white pt-16 md:pt-20'>
       <div className='mx-auto overflow-hidden bg-white shadow-xl'>
         {hasError && (
@@ -154,7 +156,7 @@ export default async function ProfilePage() {
         </div>
 
         <div className='grid gap-6 p-6 md:grid-cols-[230px_minmax(0,1fr)] lg:grid-cols-[250px_minmax(0,1fr)] lg:p-8'>
-          <aside className='hidden h-fit min-h-150 rounded-xl border border-gray-100 bg-gray-50 p-4 md:block'>
+          <aside className='hidden min-h-150 rounded-xl border border-gray-100 bg-gray-50 p-4 md:block'>
             <div className='mb-4'>
               <p className='text-sm font-semibold uppercase tracking-[0.25em] text-slate-500'>Profile</p>
             </div>
@@ -173,7 +175,7 @@ export default async function ProfilePage() {
           </aside>
 
           <div className='space-y-6 lg:flex lg:gap-10'>
-            <section className='h-150 overflow-y-scroll rounded-xl border border-gray-100 bg-white px-6 py-5 shadow-sm'>
+            <section className='md:h-150 h-fit md:overflow-y-scroll rounded-xl border border-gray-100 bg-white px-6 py-5 shadow-sm'>
               <h2 className='mb-4 text-lg font-semibold text-slate-900'>Basic Info</h2>
               <div>
                 <h2 className='flex items-center gap-2 text-lg font-semibold text-slate-900'><FaRegUser /> {dbUser.username}</h2>
@@ -222,7 +224,7 @@ export default async function ProfilePage() {
                   )}
                 </div>
 
-                <div className='mt-4 flex flex-col gap-3'>
+                <div className='mt-4 flex flex-col gap-3 py-4 md:py-0 h-fit max-h-100 overflow-y-scroll'>
                   {likedProducts?.length > 0 ? (
                     likedProducts?.slice(0, 7).map((product) => (
                       <Link href={`/menu/${product.productId}`} key={product._id} className='mt-2 flex items-center gap-3 rounded-2xl border border-gray-100 bg-white p-3 shadow-sm'>
@@ -279,5 +281,6 @@ export default async function ProfilePage() {
         </div>
       </div>
     </div>
+    </ProfileGuard>
   );
 }

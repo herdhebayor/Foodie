@@ -3,7 +3,6 @@
 import React from 'react'
 import Image from 'next/image';
 import { RiDeleteBin5Line } from "react-icons/ri";
-import {FaMinus, FaPlus} from 'react-icons/fa'
 import { useGlobalContext } from '@/context/GlobalContext';
 import { resolveImageSrc } from '@/utils/resolveImageSrc';
 
@@ -16,19 +15,21 @@ function CartProduct({item}) {
     setCart(prev => prev.filter(i => i.id !== item.id))
   }
 
+  console.log(cart)
+
   return (
-    <div className='w-full flex md:p-4 px-2 py-3 border-dotted gap-4 items-center text-slate-900 border-b-2 border-b-gray-300'>
-      <div className='w-30 md:h-30 h-20 rounded-md bg-linear-to-b from-gray-100 to-gray-200'>
+    <div className='w-full flex  py-3 border-dotted gap-4 items-center text-slate-900 border-b-2 border-b-gray-300'>
+      <div className='w-30 lg:h-30 h-20 rounded-md bg-linear-to-b from-gray-100 to-gray-200'>
         <Image src={resolveImageSrc(item.image)} alt='product' width={120} height={120} className='w-full h-full object-cover rounded-md'/>
       </div>
       <div className='flex justify-between w-full items-end'>
         <div>
             
-            <h3 className='md:text-lg text-sm font-bold'>{item.name}</h3>
+            <h3 className='lg:text-lg text-md text-sm font-bold'>{item.name}</h3>
             <div className='text-sm'>
               {
 
-                 item.extras.length === 0 ? (null) : (item.extras.map((item, index)=>(
+                 item?.extras.length === 0 ? (null) : (item.productInfo?.extras.map((item, index)=>(
                     <p className='flex text-xs' key={index}>{item.name}</p>
                   )))
 

@@ -78,12 +78,15 @@ function LikePage() {
 
   if(!session || !session.user){
     return(
-      <div className='w-screen h-screen flex justify-center items-center flex-col gap-6 bg-white px-6  '>
-        <h2 className="text-xl  text-slate-900 text-center ">Looks like you've been logged out of your account </h2>
-        <button onClick={()=> router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`)}
+      <div className='flex min-h-screen items-center justify-center bg-white px-4 py-16 pt-20'>
+        <div className='w-full max-w-xl space-y-6 rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm'>
+          <h1 className='text-2xl font-bold text-slate-900'>Your session has expired</h1>
+          <p className='text-sm text-slate-500'>You were signed out because your session timed out. Please sign in again to continue using your profile.</p>
+          <button onClick={()=> router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`)}
          className='bg-orange-500 px-6 py-3 cursor-pointer rounded-lg text-center text-white  hover:bg-orange-600'>
           Login to continue
         </button>
+        </div>
       </div>
     )
   }

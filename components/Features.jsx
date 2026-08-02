@@ -26,33 +26,33 @@ function Features() {
                     </Link>
                 </div>
                     <div className="flex snap-x items-center justify-between snap-mandatory ml-2 md:ml-0 snap-center overflow-x-scroll gap-4 p-4 md:rounded-xl md:shadow-lg">
-                    <Link href='/menu' onClick={()=> setSelectedCategory('Burger')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
-                        <Image src='/images/chicken_burger.jpg' alt='Burger' width={150} height={150} className='w-20 h-20 mx-auto object-cover rounded-full'/>
+                    <Link href='/menu' onClick={()=> setSelectedCategory('Burger')} className='flex flex-col gap-1 p-4 justify-center min-w-30 h-fit md:min-w-55 md:rounded-xl rounded-4xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
+                        <Image src='/images/chicken_burger.jpg' alt='Burger' width={150} height={150} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-full'/>
                         <p className='w-full text-center text-sm'>Burger</p>
                     </Link>
 
-                    <Link href='/menu' onClick={()=> setSelectedCategory('Pizza')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
+                    <Link href='/menu' onClick={()=> setSelectedCategory('Pizza')} className='flex flex-col gap-1 p-4 justify-center min-w-30 h-fit md:min-w-55 md:rounded-xl rounded-4xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
                         <Image src='/images/pepperoni-pizza.jpg' alt='Pizza' width={150} height={150} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-full'/>
                         <p className='w-full text-center text-sm'>Pizza</p>
                     </Link>
 
-                    <Link href='/menu' onClick={()=> setSelectedCategory('Drinks')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
+                    <Link href='/menu' onClick={()=> setSelectedCategory('Drinks')} className='flex flex-col gap-1 p-4 justify-center min-w-30 h-fit md:min-w-55 md:rounded-xl rounded-4xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
                         <Image src='/images/coke.jpg' alt='Milkshakes' width={150} height={150} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-full'/>
                         <p className='w-full text-center text-sm'>Drinks</p>
                     </Link>
 
-                    <Link href='/menu' onClick={()=> setSelectedCategory('Dessert')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
+                    <Link href='/menu' onClick={()=> setSelectedCategory('Dessert')} className='flex flex-col gap-1 p-4 justify-center min-w-30 h-fit md:min-w-55 md:rounded-xl rounded-4xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
                         <Image src='/images/chocolate_cake_slice.jpg' alt='Dessert' width={150} height={150} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-full'/>
                         <p className='w-full text-center text-sm'>Dessert</p>
                     </Link>
 
-                    <Link href='/menu' onClick={()=> setSelectedCategory('BBQ_&_Grills')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
+                    <Link href='/menu' onClick={()=> setSelectedCategory('BBQ_&_Grills')} className='flex flex-col gap-1 p-4 justify-center min-w-30 h-fit md:min-w-55 md:rounded-xl rounded-4xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
                         <Image src='/images/bbq-chicken.jpg' alt='BBQ grills' width={150} height={150} className='w-16 h-16 sm:w-20 sm:h-20 mx-auto object-cover rounded-full'/>
                         <p className='w-full text-center text-sm'>BBQ grills</p>
                     </Link>
 
-                    <Link href='/menu' onClick={()=> setSelectedCategory('All')} className='flex flex-col gap-1 md:p-4 justify-center min-w-20 h-fit md:min-w-55 rounded-xl cursor-pointer md:border border-gray-100 hover:border-orange-300 md:shadow-md md:bg-linear-to-t from-zinc-50 to-white'>
-                        <BiCustomize className='w-12 h-12 sm:w-16 sm:h-16 mx-auto'/>
+                    <Link href='/menu' onClick={()=> setSelectedCategory('All')} className='flex flex-col gap-1 p-4 justify-center min-w-30 h-fit md:min-w-55 md:rounded-xl rounded-4xl cursor-pointer border border-gray-100 hover:border-orange-300 shadow-md bg-linear-to-t from-zinc-50 to-white'>
+                        <BiCustomize className='w-16 h-16 sm:w-20 sm:h-20 mx-auto'/>
                         <p className='w-full text-center text-sm'>More</p>
                     </Link>
                 </div>

@@ -17,14 +17,17 @@ import {reviewProduct} from '@/app/actions/reviewProduct'
 
 
 function ProductIdCard({ product }) {
-  const [extra, setExtra] = useState([])
   const { cart, setCart,setToastType, setToastMessage,setShowToast  } = useGlobalContext()
-  const [quantity, setQuantity] = useState(1)
-  const [variants, setVariants] = useState(null)
-  const [spiceLevel, setSpiceLevel] = useState()
-  const [removeIngredients, setRemoveIngredients] = useState([])
-  const [milkType, setMilkType] = useState(null)
-  const [crustType, setCrustType] = useState(null)
+  //check for existing product in the cart
+  const cartProduct = cart.find((item) => item.id === product.id)
+  const [extra, setExtra] = useState(cartProduct ? cartProduct.extras  : [])
+  
+  const [quantity, setQuantity] = useState(cartProduct ? cartProduct.quantity : 1)
+  const [variants, setVariants] = useState(cartProduct ? {name:cartProduct?.size, price:cartProduct.basePrice} : null)
+  const [spiceLevel, setSpiceLevel] = useState(cartProduct ? cartProduct.spiceLevel : '')
+  const [removeIngredients, setRemoveIngredients] = useState(cartProduct ? cartProduct.removeIngredients : [])
+  const [milkType, setMilkType] = useState(cartProduct ? cartProduct.milkType : null)
+  const [crustType, setCrustType] = useState(cartProduct ? cartProduct.crustType : null)
   const [showReviewForm, setShowReviewForm] = useState(false)
   const [rateSelected, setRateSelected] = useState(1)
   const [reviewComment, setReviewComment] = useState()
@@ -80,17 +83,21 @@ function ProductIdCard({ product }) {
   };
 
   const cartKey = JSON.stringify({
-    id: product.id,
     size: variants?.name ?? null,
+    basePrice: variants?.price ?? null,
     extras: [...extra].sort((a, b) => a.name.localeCompare(b.name)),
     spiceLevel: spiceLevel || null,
     removeIngredients: [...removeIngredients].sort(),
+    milkType,
+    crustType,
+    quantity,
+    extras: extra,
     });
 
-  const cartProduct = cart.find((item) => item.cartKey === cartKey)
+  
+  
 
-  const isAddDisabled = cartProduct &&
-    cartProduct.quantity === quantity;
+  const isAddDisabled = cartKey === cartProduct.cartKey;
 
 
   const handleSelectExtra = (event, selectedExtra) => {
@@ -138,15 +145,17 @@ function ProductIdCard({ product }) {
       setShowToast(true)
       return;
     }
-    const newProduct = {
+    const productInfo = {
       cartKey,
       id: product.id,
       name: product.name,
       image: getProductImage(product),
       price: getProductPrice(product),
-      size: variants?.name,
-      spiceLevel,
-      removeIngredients,
+      size: variants?.name ?? null,
+      basePrice: variants?.price ?? null,
+      extras: [...extra].sort((a, b) => a.name.localeCompare(b.name)),
+      spiceLevel: spiceLevel || null,
+      removeIngredients: [...removeIngredients].sort(),
       milkType,
       crustType,
       quantity,
@@ -156,15 +165,15 @@ function ProductIdCard({ product }) {
 
     
     setCart((prev) => {
-      const existing = prev.find((item) => item.cartKey === cartKey)
-      if (existing) {
+      const existing = prev.find((item) => item.id === product.id)
+      if (existing) { 
         return prev.map((item) =>
-          item.cartKey === cartKey
-            ? { ...item, quantity, totalPrice: calculateItemTotal() }
+          item.id === product.id
+            ? { ...item, productInfo }
             : item
         )
       }
-      return [...prev, newProduct]
+      return [...prev, productInfo]
     })
 
     setShowToast(true)
@@ -172,6 +181,7 @@ function ProductIdCard({ product }) {
     setToastType('success')
   }
 
+  
   const reviewStats = [
     { label: 'ServingSize', value: `${product.nutrition?.servingSize || 0}` },
     { label: 'Calories', value: `${product.nutrition?.calories || 0}` },
@@ -205,7 +215,7 @@ function ProductIdCard({ product }) {
             </div>
           </div>
 
-          <div className='md:rounded-4xl md:border md:border-gray-100 bg-white p-6 md:shadow-sm'>
+          <div className='md:rounded-4xl md:border md:border-gray-100 bg-white px-4 py-6 md:p-6 md:shadow-sm'>
             <div className='flex items-start justify-between gap-4'>
               <div>
                 <div className='mb-3 inline-flex rounded-full bg-orange-50 px-3 py-1 text-sm font-semibold text-orange-600'>
@@ -327,7 +337,7 @@ function ProductIdCard({ product }) {
                   type='button'
                   disabled={quantity === 1}
                   onClick={handleDecreaseQuantity}
-                  className='flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-orange-600 disabled:cursor-not-allowed disabled:bg-gray-100'
+                  className='flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-orange-600 cursor-pointer outline-0 disabled:cursor-not-allowed disabled:bg-gray-100'
                 >
                   <FaMinus size={12} />
                 </button>
@@ -336,7 +346,7 @@ function ProductIdCard({ product }) {
                   type='button'
                   disabled={quantity === 20}
                   onClick={handleIncreaseQuantity}
-                  className='flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-orange-600 disabled:cursor-not-allowed disabled:bg-gray-100'
+                  className='flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-orange-600 cursor-pointer outline-0 disabled:cursor-not-allowed disabled:bg-gray-100'
                 >
                   <FaPlus size={12} />
                 </button>

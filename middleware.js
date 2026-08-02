@@ -38,14 +38,6 @@ export default withAuth(
           return token.role === "admin";
         }
 
-        // 🧩 Profile onboarding protection
-        const isOnboarding =
-          pathname.startsWith("/onboarding");
-
-        if (!token.profileCompleted && !isOnboarding) {
-          return false;
-        }
-
         // ✅ Logged-in pages
         if (
           pathname.startsWith("/dashboard") ||

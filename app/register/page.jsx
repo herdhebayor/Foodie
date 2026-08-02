@@ -18,14 +18,18 @@ export default function RegisterForm() {
     const [btnLoading, setBtnLoading] = useState(false)
     const [googleLoading, setGoogleLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
-    const { setShowToast, setToastMessage,setToastType } = useGlobalContext()
+    const {setLogingin,logingin, setShowToast, setToastMessage,setToastType } = useGlobalContext()
     const router = useRouter();
   const pathname = usePathname();
   const { data: session, status } = useSession();
 
-  useEffect(() => {
+useEffect(() => {
     if (session?.user) {
-      router.replace("/");
+      if (session.user.profileCompleted === false) {
+        router.replace("/onboarding");
+      } else {
+        router.replace('/')
+      }
     }
   }, [router, session?.user]);
 
@@ -49,6 +53,7 @@ export default function RegisterForm() {
         setShowToast(true),
         setToastType('error')
         setToastMessage(res.error)
+        setError(res.error)
         setBtnLoading(false);
         setBtnDisabled(false);
         return;
@@ -60,14 +65,17 @@ export default function RegisterForm() {
         password,
         redirect: false,
       });
+      setLogingin(true)
+      router.push("/onboarding");
       setError('');
       setBtnDisabled(false);
       setBtnLoading(false);
-      router.push("/onboarding");
+      
     } catch (error) {
       setShowToast(true),
       setToastType('error')
       setToastMessage(error.message)
+      setError(error.message)
       setBtnDisabled(false);
       setBtnLoading(false);
     }
@@ -92,10 +100,18 @@ export default function RegisterForm() {
       setGoogleLoading(false)
     };
 
+    if(logingin){
+    return <div className="w-screen h-screen bg-white p-6">
+      <div classname="text-slate-900 h-30 flex justify-center items-center bg-white shadow-lg rounded-lg w-full md:w-120 mx-auto mt-6 border border-gray-200">
+        <p>{`Logingin as ${session.user?.email}`}</p>
+        </div>
+    </div>
+  }
+
   return (
     <div className="w-screen h-screen bg-white">
         <div className="mx-auto h-full w-full flex justify-between items-center">
-          <div className="p-6 w-full h-screen overflow-scroll md:w-[30%] min-w-130 max-w-full px-10">
+          <div className="p-6 w-full h-screen flex justify-center items-center overflow-scroll md:w-[30%] min-w-100 max-w-full lg:px-10">
               <div className="w-full max-w-130 mx-auto block border border-gray-100 shadow-lg  px-6 py-4 rounded-md">
                 <div className="p-4 rounded-full mx-auto w-fit bg-orange-500 text-white text-4xl">
                         <FaUnlockAlt/>
@@ -160,7 +176,7 @@ export default function RegisterForm() {
                   <p className='text-md text-gray-400 mt-6 mx-auto'>Don&apos;t have an account <span onClick={()=> router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`)} className='text-blue-500 underline cursor-pointer'>Login</span></p>
               </div>
             </div>
-            <div className='bg-orange-500 md:flex w-[70%] hidden h-screen overflow-hidden'>
+            <div className='bg-orange-500 md:flex w-[70%] min-w-100 hidden h-screen overflow-hidden'>
               <div className="w-full h-full relative ">
                 <div className="absolute inset-0">
                   <Image
@@ -201,6 +217,7 @@ export default function RegisterForm() {
                     </div>
                   </div>
                 </div>
+                <Toast/>
               </div>
             </div>
         </div>

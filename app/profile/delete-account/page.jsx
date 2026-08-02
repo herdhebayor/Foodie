@@ -78,12 +78,15 @@ export default function DeleteAccountPage() {
 
   if (!session?.user?.id) {
     return (
-      <div className='flex min-h-screen flex-col items-center justify-center bg-white px-4 py-16 pt-20 text-center'>
-        <h2 className='text-2xl font-bold text-slate-900'>You need to sign in</h2>
-        <p className='mt-2 text-sm text-slate-500'>Please sign in again before deleting your account.</p>
-        <Link href={`/login?callbackUrl=${encodeURIComponent(pathname)}`} className='mt-5 rounded-lg bg-orange-600 px-6 py-3 text-white hover:bg-orange-700'>
+      <div className='flex min-h-screen items-center justify-center bg-white px-4 py-16 pt-20'>
+        <div className='w-full max-w-xl space-y-6 rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm'>
+          <h1 className='text-2xl font-bold text-slate-900'>Your session has expired</h1>
+          <p className='text-sm text-slate-500'>You were signed out because your session timed out. Please sign in again to continue using your profile.</p>
+          <button onClick={()=> router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`)}
+         className='bg-orange-500 px-6 py-3 cursor-pointer rounded-lg text-center text-white  hover:bg-orange-600'>
           Login to continue
-        </Link>
+        </button>
+        </div>
       </div>
     );
   }
