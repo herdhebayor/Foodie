@@ -112,19 +112,44 @@ function Checkout() {
                     <div className='flex items-start justify-between gap-2'>
                       <div>
                         <h3 className='font-semibold text-slate-900'>{item.name}</h3>
+                        <p className='text-sm text-slate-900'>Size: {item.size}</p>
+                        <p className='text-sm text-slate-900'>base price: {item.basePrice}</p>
                         <p className='text-sm text-slate-500'>Qty: {item.quantity}</p>
                       </div>
-                      <p className='text-sm font-semibold text-slate-900'>&#x20A6;{(item.totalPrice || 0).toLocaleString('en-US')}</p>
                     </div>
                     {item.extras?.length > 0 && (
                       <div className='mt-2 flex flex-wrap gap-2'>
                         {item.extras.map((extra, eIndex) => (
                           <span key={eIndex} className='rounded-full bg-orange-50 px-2.5 py-1 text-xs font-medium text-orange-600'>
-                            {extra.name}
+                            {`${extra.name} @ ${extra.price}`} 
                           </span>
                         ))}
                       </div>
                     )}
+                    {item.milkType && (
+                      <div className='mt-2 flex flex-wrap gap-2'>
+                          <span className='px-2.5 py-1 text-xs font-medium'>
+                            {`Milk type: ${item.milkType || null}`}
+                          </span>
+                      </div>
+                    )}
+                    {item.crustType && (
+                      <div className='mt-2 flex flex-wrap gap-2'>
+                          <span className='px-2.5 py-1 text-xs font-medium'>
+                            {`Crust type: ${item.crustType || null}`}
+                          </span>
+                      </div>
+                    )}
+                    {item.removeIngredients?.length > 0 && (
+                      <div className='mt-2 flex flex-wrap gap-2'>
+                        {item.removeIngredients.map((ingredient, index) => (
+                          <span key={index} className='rounded-full bg-orange-50 px-2.5 py-1 text-xs font-medium text-orange-600'>
+                            {`${ingredient} |`}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <p className='text-sm font-semibold text-slate-900'>&#x20A6;{(item.totalPrice || 0).toLocaleString('en-US')}</p>
                   </div>
                 </div>
               ))}

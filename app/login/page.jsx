@@ -115,7 +115,7 @@ useEffect(() => {
    }
  
    return (
-      <div className='w-screen h-screen bg-white'>
+      <div className='w-screen h-fit min-h-screen bg-white'>
         <div className='flex justify-between items-center h-full w-full'>
 
           <div className='text-slate-900 w-full sm:min-w-full md:w-[30%] md:min-w-100  max-w-full h-full flex justify-center items-center '>
@@ -180,7 +180,7 @@ useEffect(() => {
             </div>
           </div>
  
-          <div className="bg-orange-500 md:flex w-[70%] hidden h-full">
+          <div className="bg-orange-500 md:flex w-[70%] hidden h-full h-screen min-h-171 ">
             <div className="w-full h-full relative overflow-hidden">
               <div className="absolute inset-0">
                 <Image

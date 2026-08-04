@@ -109,9 +109,9 @@ useEffect(() => {
   }
 
   return (
-    <div className="w-screen h-screen bg-white">
+    <div className="w-screen h-fit min-h-screen bg-white">
         <div className="mx-auto h-full w-full flex justify-between items-center">
-          <div className="p-6 w-full h-screen flex justify-center items-center overflow-scroll md:w-[30%] min-w-100 max-w-full lg:px-10">
+          <div className="p-6 w-full h-fit min-h-screen flex justify-center items-center overflow-scroll md:w-[30%] min-w-100 max-w-full lg:px-10">
               <div className="w-full max-w-130 mx-auto block border border-gray-100 shadow-lg  px-6 py-4 rounded-md">
                 <div className="p-4 rounded-full mx-auto w-fit bg-orange-500 text-white text-4xl">
                         <FaUnlockAlt/>
@@ -176,7 +176,7 @@ useEffect(() => {
                   <p className='text-md text-gray-400 mt-6 mx-auto'>Don&apos;t have an account <span onClick={()=> router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`)} className='text-blue-500 underline cursor-pointer'>Login</span></p>
               </div>
             </div>
-            <div className='bg-orange-500 md:flex w-[70%] min-w-100 hidden h-screen overflow-hidden'>
+            <div className='bg-orange-500 md:flex w-[70%] min-w-100 hidden h-screen min-h-200 overflow-hidden'>
               <div className="w-full h-full relative ">
                 <div className="absolute inset-0">
                   <Image

@@ -24,16 +24,39 @@ function CartProduct({item}) {
       </div>
       <div className='flex justify-between w-full items-end'>
         <div>
-            
             <h3 className='lg:text-lg text-md text-sm font-bold'>{item.name}</h3>
+            <p className='text-sm font-semi-bold'>Size: {item.size}</p>
             <div className='text-sm'>
               {
 
-                 item?.extras.length === 0 ? (null) : (item.productInfo?.extras.map((item, index)=>(
-                    <p className='flex text-xs' key={index}>{item.name}</p>
+                 item?.extras.length === 0 ? (null) : (item.extras.map((extra, index)=>(
+                    <p className='flex text-xs' key={index}>{`${extra.name} @ ${extra.price}`}</p>
                   )))
 
               }
+              {item.milkType && (
+                      <div className='mt-2 flex flex-wrap gap-2'>
+                          <span className='px-2.5 py-1 text-xs font-medium'>
+                            {`Milk type: ${item.milkType || null}`}
+                          </span>
+                      </div>
+                    )}
+                    {item.crustType && (
+                      <div className='mt-2 flex flex-wrap gap-2'>
+                          <span className='px-2.5 py-1 text-xs font-medium'>
+                            {`Crust type: ${item.crustType || null}`}
+                          </span>
+                      </div>
+                    )}
+                    {item.removeIngredients?.length > 0 && (
+                      <div className='mt-2 flex flex-wrap gap-2'>
+                        {item.removeIngredients.map((ingredient, index) => (
+                          <span key={index} className='rounded-full bg-orange-50 px-2.5 py-1 text-xs font-medium text-orange-600'>
+                            {`${ingredient} |`}
+                          </span>
+                        ))}
+                      </div>
+                    )}
           </div>
           <div className='w-fit'>
               <p className='font-bold'>&#x20A6;{item.totalPrice.toLocaleString('en-US')}</p>
